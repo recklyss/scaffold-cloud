@@ -26,6 +26,11 @@
         <spring.boot.version>2.0.3.RELEASE</spring.boot.version>
         <spring.cloud.version>Finchley.RELEASE</spring.cloud.version>
         <spring.cloud.eureka.version>2.1.2.RELEASE</spring.cloud.eureka.version>
+
+        <com.univocity.version>1.5.1</com.univocity.version>
+        <common.lang.version>3.7</common.lang.version>
+        <commons.beanutils.version>1.9.2</commons.beanutils.version>
+        <hutool.version>4.5.10</hutool.version>
     </properties>
 
     <dependencyManagement>
@@ -67,6 +72,27 @@
                 <version>${spring.cloud.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>com.univocity</groupId>
+                <artifactId>univocity-parsers</artifactId>
+                <version>${com.univocity.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${common.lang.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-beanutils</groupId>
+                <artifactId>commons-beanutils</artifactId>
+                <version>${commons.beanutils.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-all</artifactId>
+                <version>${hutool.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

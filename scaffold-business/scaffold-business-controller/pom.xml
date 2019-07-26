@@ -2,15 +2,18 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <parent>
-        <artifactId>scaffold-cloud</artifactId>
+        <artifactId>scaffold-business</artifactId>
         <groupId>com.cms.scaffold</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>scaffold-core</artifactId>
-    <packaging>pom</packaging>
-    <modules>
-        <module>scaffold-core-common</module>
-    </modules>
+    <artifactId>scaffold-business-controller</artifactId>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.cms.scaffold</groupId>
+            <artifactId>scaffold-business-sys-api</artifactId>
+        </dependency>
+    </dependencies>
 </project>
