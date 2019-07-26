@@ -23,6 +23,8 @@
 
     <properties>
         <scaffold.business.sys.api.version>1.0-SNAPSHOT</scaffold.business.sys.api.version>
+        <scaffold.core.common.version>1.0-SNAPSHOT</scaffold.core.common.version>
+
         <spring.boot.version>2.0.3.RELEASE</spring.boot.version>
         <spring.cloud.version>Finchley.RELEASE</spring.cloud.version>
         <spring.cloud.eureka.version>2.1.2.RELEASE</spring.cloud.eureka.version>
@@ -39,6 +41,11 @@
                 <groupId>com.cms.scaffold</groupId>
                 <artifactId>scaffold-business-sys-api</artifactId>
                 <version>${scaffold.business.sys.api.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.cms.scaffold</groupId>
+                <artifactId>scaffold-core-common</artifactId>
+                <version>${scaffold.core.common.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework.boot</groupId>
@@ -70,8 +77,6 @@
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
                 <version>${spring.cloud.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
             </dependency>
 
             <dependency>

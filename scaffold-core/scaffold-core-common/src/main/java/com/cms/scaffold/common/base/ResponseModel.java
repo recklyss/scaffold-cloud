@@ -36,6 +36,10 @@ public class ResponseModel<T> implements Serializable {
     private String message;
     private T data;
 
+    public ResponseModel() {
+        this(STATUS_CODE.SUCCESS);
+    }
+
     public ResponseModel(T data) {
         this(STATUS_CODE.SUCCESS.code, STATUS_CODE.SUCCESS.message, data);
     }
@@ -57,11 +61,11 @@ public class ResponseModel<T> implements Serializable {
         this.data = data;
     }
 
-    public static ResponseModel success(Object data) {
+    public static ResponseModel successData(Object data) {
         return new ResponseModel<>(data);
     }
 
-    public static ResponseModel error(Object data) {
+    public static ResponseModel errorData(Object data) {
         return new ResponseModel<>(STATUS_CODE.FAIL, data);
     }
 }
