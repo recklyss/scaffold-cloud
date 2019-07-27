@@ -19,5 +19,9 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.cms.scaffold</groupId>
+            <artifactId>scaffold-core-common</artifactId>
+        </dependency>
     </dependencies>
 </project>

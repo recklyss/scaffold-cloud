@@ -2,16 +2,14 @@ package com.cms.scaffold.service.controller;
 
 import com.cms.scaffold.common.base.BaseController;
 import com.cms.scaffold.common.base.ResponseModel;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import com.cms.scaffold.service.api.test.TestApi;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/service")
-public class TestController extends BaseController {
+public class TestController extends BaseController implements TestApi {
 
-    @GetMapping("/test")
-    public ResponseModel testService(){
-        return successData("测试服务提供者");
+    @Override
+    public ResponseModel testService(Long id) {
+        return successData("调用服务testService方法，参数：>>> " + id);
     }
 }

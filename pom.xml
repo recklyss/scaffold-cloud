@@ -30,7 +30,7 @@
         <spring.cloud.version>Finchley.RELEASE</spring.cloud.version>
         <spring.cloud.eureka.version>2.1.2.RELEASE</spring.cloud.eureka.version>
         <spring.cloud.feign.version>2.0.1.RELEASE</spring.cloud.feign.version>
-
+        <spring.cloud.hystrix.version>2.0.1.RELEASE</spring.cloud.hystrix.version>
 
         <com.univocity.version>1.5.1</com.univocity.version>
         <common.lang.version>3.7</common.lang.version>
@@ -95,6 +95,11 @@
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-starter-openfeign</artifactId>
                 <version>${spring.cloud.feign.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
+                <version>${spring.cloud.hystrix.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
