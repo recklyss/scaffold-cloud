@@ -22,30 +22,42 @@
     <packaging>pom</packaging>
 
     <properties>
-        <scaffold.business.sys.api.version>1.0-SNAPSHOT</scaffold.business.sys.api.version>
-        <scaffold.core.common.version>1.0-SNAPSHOT</scaffold.core.common.version>
+        <scaffold.version>1.0-SNAPSHOT</scaffold.version>
+
+        <alibaba.fastjson.version>1.2.47</alibaba.fastjson.version>
 
         <spring.boot.version>2.0.3.RELEASE</spring.boot.version>
         <spring.cloud.version>Finchley.RELEASE</spring.cloud.version>
         <spring.cloud.eureka.version>2.1.2.RELEASE</spring.cloud.eureka.version>
+        <spring.cloud.feign.version>2.0.1.RELEASE</spring.cloud.feign.version>
+
 
         <com.univocity.version>1.5.1</com.univocity.version>
         <common.lang.version>3.7</common.lang.version>
         <commons.beanutils.version>1.9.2</commons.beanutils.version>
         <hutool.version>4.5.10</hutool.version>
     </properties>
-
     <dependencyManagement>
         <dependencies>
             <dependency>
                 <groupId>com.cms.scaffold</groupId>
                 <artifactId>scaffold-business-sys-api</artifactId>
-                <version>${scaffold.business.sys.api.version}</version>
+                <version>${scaffold.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.cms.scaffold</groupId>
                 <artifactId>scaffold-core-common</artifactId>
-                <version>${scaffold.core.common.version}</version>
+                <version>${scaffold.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.cms.scaffold</groupId>
+                <artifactId>scaffold-business-service</artifactId>
+                <version>${scaffold.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${alibaba.fastjson.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework.boot</groupId>
@@ -71,13 +83,27 @@
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
+                <exclusions>
+                    <exclusion>
+                        <groupId>com.fasterxml.jackson.dataformat</groupId>
+                        <artifactId>jackson-dataformat-xml</artifactId>
+                    </exclusion>
+                </exclusions>
                 <version>${spring.cloud.eureka.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-openfeign</artifactId>
+                <version>${spring.cloud.feign.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
                 <version>${spring.cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
             </dependency>
+
 
             <dependency>
                 <groupId>com.univocity</groupId>
@@ -101,4 +127,109 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+    <repositories>
+        <repository>
+            <id>public</id>
+            <name>aliyun nexus</name>
+            <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+        </repository>
+    </repositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>public</id>
+            <name>aliyun nexus</name>
+            <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </pluginRepository>
+    </pluginRepositories>
+
+    <build>
+        <resources>
+            <!-- 可以把属性写到文件里,用属性文件里定义的属性做替换 -->
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+                <excludes>
+                    <exclude>**/*.woff</exclude>
+                    <exclude>**/*.woff2</exclude>
+                    <exclude>**/*.ttf</exclude>
+                    <exclude>**/*.eot</exclude>
+                    <exclude>**/*.svg</exclude>
+                    <exclude>static/**/*</exclude>
+                </excludes>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>false</filtering>
+                <includes>
+                    <include>**/*.woff</include>
+                    <include>**/*.woff2</include>
+                    <include>**/*.ttf</include>
+                    <include>**/*.eot</include>
+                    <include>**/*.svg</include>
+                    <include>static/**/*</include>
+                </includes>
+            </resource>
+
+
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.properties</include>
+                    <include>**/*.xml</include>
+                    <include>**/*.tld</include>
+                    <include>**/*.xls</include>
+                    <include>**/*.xlsx</include>
+                </includes>
+                <filtering>false</filtering>
+            </resource>
+
+            <resource>
+                <directory>src/main/resources</directory>
+                <excludes>
+                    <exclude>config/test/*</exclude>
+                    <exclude>config/prod/*</exclude>
+                    <exclude>config/local/*</exclude>
+                </excludes>
+            </resource>
+            <resource>
+                <directory>src/main/resources/config/${environment}</directory>
+                <includes>
+                    <include>**/*.properties</include>
+                </includes>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+    </build>
+    <profiles>
+        <profile>
+            <id>local</id>
+            <properties>
+                <environment>local</environment>
+            </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+        <profile>
+            <id>test</id>
+            <properties>
+                <environment>test</environment>
+            </properties>
+        </profile>
+        <profile>
+            <id>prod</id>
+            <properties>
+                <environment>prod</environment>
+            </properties>
+        </profile>
+    </profiles>
 </project>

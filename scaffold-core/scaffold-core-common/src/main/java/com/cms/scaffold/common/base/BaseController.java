@@ -1,6 +1,5 @@
-package com.cms.scaffold.route.operate.controller;
+package com.cms.scaffold.common.base;
 
-import com.cms.scaffold.common.base.ResponseModel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -14,14 +13,22 @@ public class BaseController {
     /**
      * @return 操作成功
      */
-    public ResponseModel success(){
+    public ResponseModel success() {
         return new ResponseModel();
     }
 
     /**
      * @return 操作失败
      */
-    public ResponseModel error(){
+    public ResponseModel error() {
         return new ResponseModel(ResponseModel.STATUS_CODE.FAIL);
+    }
+
+    /**
+     * @param data 返回的数据
+     * @return 成功
+     */
+    public ResponseModel successData(Object data){
+        return new ResponseModel<>(data);
     }
 }
