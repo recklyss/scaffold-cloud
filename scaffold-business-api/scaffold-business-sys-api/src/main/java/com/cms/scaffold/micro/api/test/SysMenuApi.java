@@ -1,4 +1,4 @@
-package com.cms.scaffold.service.api.test;
+package com.cms.scaffold.micro.api.test;
 
 import com.cms.scaffold.common.base.ResponseModel;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestParam;
  * 用于测试的API接口
  * 接口、实现分离
  */
-public interface TestApi{
+public interface SysMenuApi {
 
-    @RequestMapping(value = "/service/test", method = RequestMethod.GET)
-    ResponseModel testService(@RequestParam("id") Long id);
+    @RequestMapping(value = "/sysMenu/listMenuByPid", method = RequestMethod.GET)
+    ResponseModel listMenuByPid(@RequestParam("pid") Long pid);
 }

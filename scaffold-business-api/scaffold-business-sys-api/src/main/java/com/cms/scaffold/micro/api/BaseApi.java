@@ -1,4 +1,4 @@
-package com.cms.scaffold.service.api;
+package com.cms.scaffold.micro.api;
 
 /**
  * 基础API封装

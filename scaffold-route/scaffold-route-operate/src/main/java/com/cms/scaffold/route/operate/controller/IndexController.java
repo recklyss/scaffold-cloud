@@ -1,8 +1,12 @@
 package com.cms.scaffold.route.operate.controller;
 
+import com.cms.scaffold.common.base.BaseController;
+import org.springframework.stereotype.Controller;
+
 /**
  * @Author zhangjiaheng
  * @Description
  **/
-public class IndexController {
+@Controller
+public class IndexController extends BaseController {
 }
