@@ -12,5 +12,6 @@
     <packaging>pom</packaging>
     <modules>
         <module>scaffold-core-common</module>
+        <module>scaffold-core-plugin</module>
     </modules>
 </project>
