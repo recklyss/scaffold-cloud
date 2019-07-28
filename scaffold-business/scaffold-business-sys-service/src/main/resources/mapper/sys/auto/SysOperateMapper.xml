@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cms.scaffold.micro.sys.dao.SysOperateMapper">
+  <resultMap id="BaseResultMap" type="com.cms.scaffold.micro.sys.domain.SysOperate">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="real_name" jdbcType="VARCHAR" property="realName" />
+    <result column="pwd" jdbcType="VARCHAR" property="pwd" />
+    <result column="mobile_phone" jdbcType="VARCHAR" property="mobilePhone" />
+    <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="partner_id" jdbcType="INTEGER" property="partnerId" />
+    <result column="login_ip" jdbcType="VARCHAR" property="loginIp" />
+    <result column="login_time" jdbcType="TIMESTAMP" property="loginTime" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="openid" jdbcType="VARCHAR" property="openid" />
+  </resultMap>
+  <sql id="sql_columns">
+    id,user_name,real_name,pwd,mobile_phone,add_time,update_time,partner_id,login_ip,login_time,status,openid
+  </sql>
+  <sql id="sql_where">
+    <where>
+      <if test="null != advanceFilterStr and ''!= advanceFilterStr">
+        <if test="null != partnerId and '' != partnerId">and partner_id = #{partnerId}</if>
+        ${advanceFilterStr}
+      </if>
+      <if test="null == advanceFilterStr or ''== advanceFilterStr">
+          <if test="null != id and '' != id or 0 ==id">and id = #{id}</if>
+          <if test="null != userName and '' != userName">and user_name = #{userName}</if>
+          <if test="null != realName and '' != realName">and real_name = #{realName}</if>
+          <if test="null != pwd and '' != pwd">and pwd = #{pwd}</if>
+          <if test="null != mobilePhone and '' != mobilePhone">and mobile_phone = #{mobilePhone}</if>
+          <if test="null != addTime and '' != addTime">and add_time = #{addTime}</if>
+          <if test="null != updateTime and '' != updateTime">and update_time = #{updateTime}</if>
+          <if test="null != partnerId and '' != partnerId or 0 ==partnerId">and partner_id = #{partnerId}</if>
+          <if test="null != loginIp and '' != loginIp">and login_ip = #{loginIp}</if>
+          <if test="null != loginTime and '' != loginTime">and login_time = #{loginTime}</if>
+          <if test="null != status and '' != status or 0 ==status">and status = #{status}</if>
+          <if test="null != openid and '' != openid">and openid = #{openid}</if>
+      </if>
+	</where>
+  </sql>
+  <sql id="sql_map_where">
+    <where>
+	  <foreach collection="map.keys" item="k" separator="and">
+ 	      <if test="null != map[k]">
+	          a.${k} = #{map[${k}]}
+	      </if>
+	  </foreach>
+	</where>
+  </sql>
+  <select id="selectById" resultMap="BaseResultMap">
+    select <include refid="sql_columns" /> from sys_operate where id = #{id}
+  </select>
+  <select id="selectCacheById" resultMap="BaseResultMap">
+    select <include refid="sql_columns" /> from sys_operate where id = #{id}
+  </select>
+  <select id="selectLockById" resultMap="BaseResultMap">
+    select <include refid="sql_columns" /> from sys_operate where id = #{id} for update
+  </select>
+  <select id="selectOne" resultMap="BaseResultMap">
+    select <include refid="sql_columns" /> from sys_operate <include refid="sql_where" />
+  </select>
+  <select id="findList" resultMap="BaseResultMap">
+    select <include refid="sql_columns" /> from sys_operate <include refid="sql_where" />
+  </select>
+  <select id="selectMap" resultMap="BaseResultMap">
+    select <include refid="sql_columns" /> from sys_operate <include refid="sql_map_where" />
+  </select>
+  <select id="count" resultType="java.lang.Integer">
+    select count(1) from sys_operate <include refid="sql_where" />
+  </select>
+  <sql id="sql_insert_columns">
+    insert into sys_operate
+	 <trim prefix="(" suffix=")" suffixOverrides="," >
+	  <if test="null != item.userName"> user_name,</if>
+	  <if test="null != item.realName"> real_name,</if>
+	  <if test="null != item.pwd"> pwd,</if>
+	  <if test="null != item.mobilePhone"> mobile_phone,</if>
+	  <if test="null != item.addTime"> add_time,</if>
+	  <if test="null != item.updateTime"> update_time,</if>
+	  <if test="null != item.partnerId"> partner_id,</if>
+	  <if test="null != item.loginIp"> login_ip,</if>
+	  <if test="null != item.loginTime"> login_time,</if>
+	  <if test="null != item.status"> status,</if>
+	  <if test="null != item.openid"> openid,</if>
+	</trim>
+  </sql>
+  <sql id="sql_insert_values">
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+	  <if test="null != item.userName"> #{item.userName},</if>
+	  <if test="null != item.realName"> #{item.realName},</if>
+	  <if test="null != item.pwd"> #{item.pwd},</if>
+	  <if test="null != item.mobilePhone"> #{item.mobilePhone},</if>
+	  <if test="null != item.addTime"> #{item.addTime},</if>
+	  <if test="null != item.updateTime"> #{item.updateTime},</if>
+	  <if test="null != item.partnerId"> #{item.partnerId},</if>
+	  <if test="null != item.loginIp"> #{item.loginIp},</if>
+	  <if test="null != item.loginTime"> #{item.loginTime},</if>
+	  <if test="null != item.status"> #{item.status},</if>
+	  <if test="null != item.openid"> #{item.openid},</if>
+	</trim>
+  </sql>
+  <insert id="insert" keyProperty="item.id" useGeneratedKeys="true">
+    <include refid="sql_insert_columns" /><include refid="sql_insert_values" />
+  </insert>
+  <insert id="batchInsert">
+    <foreach collection="list" index="index" item="item" open="" separator=";" close="">
+	  <include refid="sql_insert_columns" /><include refid="sql_insert_values" />
+	</foreach>
+  </insert>
+  <sql id="sql_update">
+    update sys_operate set id = #{item.id}
+      <if test="null != item.userName">, user_name = #{item.userName}</if>
+      <if test="null != item.realName">, real_name = #{item.realName}</if>
+      <if test="null != item.pwd">, pwd = #{item.pwd}</if>
+      <if test="null != item.mobilePhone">, mobile_phone = #{item.mobilePhone}</if>
+      <if test="null != item.addTime">, add_time = #{item.addTime}</if>
+      <if test="null != item.updateTime">, update_time = #{item.updateTime}</if>
+      <if test="null != item.partnerId">, partner_id = #{item.partnerId}</if>
+      <if test="null != item.loginIp">, login_ip = #{item.loginIp}</if>
+      <if test="null != item.loginTime">, login_time = #{item.loginTime}</if>
+      <if test="null != item.status">, status = #{item.status}</if>
+      <if test="null != item.openid">, openid = #{item.openid}</if>
+	where id = #{item.id}
+  </sql>
+  <sql id="sql_update_all">
+    update sys_operate set id = #{item.id}
+	  , user_name = #{item.userName}
+	  , real_name = #{item.realName}
+	  , pwd = #{item.pwd}
+	  , mobile_phone = #{item.mobilePhone}
+	  , add_time = #{item.addTime}
+	  , update_time = #{item.updateTime}
+	  , partner_id = #{item.partnerId}
+	  , login_ip = #{item.loginIp}
+	  , login_time = #{item.loginTime}
+	  , status = #{item.status}
+	  , openid = #{item.openid}
+	where id = #{item.id}
+  </sql>
+  <update id="update">
+    <include refid="sql_update" />
+  </update>
+  <update id="batchUpdate">
+    <foreach collection="list" index="index" item="item" open="" separator=";" close="">
+	  <include refid="sql_update" />
+	</foreach>
+  </update>
+  <update id="updateAll">
+    <include refid="sql_update_all" />
+  </update>
+  <update id="updateCompare" />
+  <delete id="delArray">
+    delete from sys_operate where id in
+	<foreach collection="array" index="index" item="item" open="(" separator="," close=")">#{item}</foreach>
+  </delete>
+  <delete id="delList">
+    delete from sys_operate where id in
+	<foreach collection="list" index="index" item="item" open="(" separator="," close=")">#{item}</foreach>
+  </delete>
+</mapper>

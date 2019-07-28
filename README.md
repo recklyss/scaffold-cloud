@@ -12,6 +12,7 @@
 
 ### scaffold-core [工具类以及各种公共代码](#)
 #### scaffold-core-common [工具类模块，公共代码](#)
+#### scaffold-core-plugin [自动代码生成插件模块](#)
 
 ### scaffold-eureka [注册中心Eureka](#) **端口 8761**
 ### scaffold-route [主业务消费者](#)

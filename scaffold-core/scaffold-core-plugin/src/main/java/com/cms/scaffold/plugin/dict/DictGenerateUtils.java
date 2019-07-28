@@ -21,7 +21,7 @@ import java.util.List;
  */
 public class DictGenerateUtils {
 
-    private final String AUTHOR = "auto";
+    private final String AUTHOR = "Mybatis Generator";
     private final String CURRENT_DATE = DateUtil.now();
     private final String tableName = PropertiesUtil.getValue("generator.tableName");
     private final String URL = PropertiesUtil.getValue("generator.connectionUrl");

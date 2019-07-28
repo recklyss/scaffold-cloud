@@ -1,4 +1,4 @@
-package com.cms.scaffold.common.constant_auto;
+package com.cms.scaffold.common.constant;
 
 /**
 * Created by ${author} on ${date}
