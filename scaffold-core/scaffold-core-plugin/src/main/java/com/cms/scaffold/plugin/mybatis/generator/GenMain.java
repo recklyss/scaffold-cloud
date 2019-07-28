@@ -48,19 +48,19 @@ public class GenMain {
             } else if (!arguments.containsKey("-configfile")) {
                 writeLine(Messages.getString("RuntimeError.0"));
             } else if (!arguments.containsKey("-propsFile")) {
-                writeLine(Messages.getString("RuntimeError.0")+":::-propsFile");
+                writeLine(Messages.getString("RuntimeError.0") + ":::-propsFile");
             } else {
-                List<String> warnings = new ArrayList();
+                List<String> warnings = new ArrayList<>();
                 String configfile = (String) arguments.get("-configfile");
                 System.out.println(configfile);
                 String propsFile = (String) arguments.get("-propsFile");
                 File configurationFile = new File(configfile);
                 System.out.println(!configurationFile.exists());
-                if ( !configurationFile.exists()) {
+                if (!configurationFile.exists()) {
                     writeLine(Messages.getString("RuntimeError.1", configfile));
                     System.exit(0);
                 }
-                if ( !new File(propsFile).exists()) {
+                if (!new File(propsFile).exists()) {
                     writeLine(Messages.getString("RuntimeError.1", propsFile));
                     System.exit(0);
                 }

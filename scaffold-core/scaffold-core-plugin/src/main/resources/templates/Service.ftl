@@ -1,9 +1,6 @@
 package ${package_name}.service;
 
-import ${package_name}.ao.${table_name}AO;
-import ${package_name}.bo.${table_name}BO;
-import BaseServiceInterface;
+import com.cms.scaffold.common.base.BaseService;
 
-
-public interface ${table_name}Service extends BaseServiceInterface<${table_name}AO,${table_name}BO>{
+public interface ${table_name}Service extends BaseService<${table_name}>{
 }
