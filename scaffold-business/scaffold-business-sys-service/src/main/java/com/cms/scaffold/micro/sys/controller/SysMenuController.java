@@ -1,8 +1,10 @@
 package com.cms.scaffold.micro.sys.controller;
 
 import com.cms.scaffold.common.base.BaseController;
+import com.cms.scaffold.common.base.Builder;
 import com.cms.scaffold.common.base.ResponseModel;
-import com.cms.scaffold.micro.api.test.SysMenuApi;
+import com.cms.scaffold.micro.sys.api.SysMenuApi;
+import com.cms.scaffold.micro.sys.bo.SysMenuBO;
 import com.cms.scaffold.micro.sys.domain.SysMenu;
 import com.cms.scaffold.micro.sys.service.SysMenuService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +27,7 @@ public class SysMenuController extends BaseController implements SysMenuApi {
     @Override
     public ResponseModel listMenuByPid(Long pid) {
         List<SysMenu> sysMenuList = sysMenuService.selectByPid(pid);
-        return successData(sysMenuList);
+        List<SysMenuBO> bo = Builder.buildList(sysMenuList, SysMenuBO.class);
+        return successData(bo);
     }
 }
