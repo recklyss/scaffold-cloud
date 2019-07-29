@@ -11,25 +11,26 @@ import org.mybatis.generator.internal.util.messages.Messages;
 import java.io.File;
 import java.util.*;
 
+/**
+ * @author Administrator
+ */
 public class GenMain {
     public static String propsFilePath;
 
     public static void genFile(String configFilePath) {
         //读取文件
         File configFile = new File(configFilePath);
-        List<String> warnings = new ArrayList<String>();
+        List<String> warnings = new ArrayList<>();
         ConfigurationParser cp = new ConfigurationParser(warnings);
-        Configuration config = null;
         //true:覆盖生成
-        DefaultShellCallback callback = new DefaultShellCallback(false);
-        MyBatisGenerator myBatisGenerator = null;
+        DefaultShellCallback callback = new DefaultShellCallback(true);
         try {
-            config = cp.parseConfiguration(configFile);
-            myBatisGenerator = new MyBatisGenerator(config, callback, warnings);
+            Configuration config = cp.parseConfiguration(configFile);
+            MyBatisGenerator myBatisGenerator = new MyBatisGenerator(config, callback, warnings);
             myBatisGenerator.generate(null);
 
-//            CodeGenerateUtils codeGenerateUtils = new CodeGenerateUtils();
-//            codeGenerateUtils.generate();
+            CodeGenerateUtils codeGenerateUtils = new CodeGenerateUtils();
+            codeGenerateUtils.generate();
             System.err.println("代码成功生成!");
         } catch (Exception e) {
             e.printStackTrace();

@@ -63,7 +63,8 @@ public class GenPlugin extends PluginAdapter {
      * @return
      */
     @Override
-    public boolean clientGenerated(Interface interfaze, TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
+    public boolean clientGenerated(Interface interfaze, TopLevelClass topLevelClass,
+                                   IntrospectedTable introspectedTable) {
         // 获取实体类
         FullyQualifiedJavaType entityType = new FullyQualifiedJavaType(introspectedTable.getBaseRecordType());
         // import接口
@@ -90,8 +91,6 @@ public class GenPlugin extends PluginAdapter {
         // 公共字段
         StringBuilder columnSQL = new StringBuilder();
         // IF判断语句
-        StringBuilder advanceFilteSQL = new StringBuilder();
-        // IF判断语句
         StringBuilder ifSQL = new StringBuilder();
         // 要插入的字段(排除自增主键)
         StringBuilder saveColumn = new StringBuilder("insert into ").append(tableName).append("\n");
@@ -101,25 +100,21 @@ public class GenPlugin extends PluginAdapter {
         StringBuilder saveValue = new StringBuilder();
         saveValue.append("    <trim prefix=\"values (\" suffix=\")\" suffixOverrides=\",\" >\n");
         // 拼装更新字段
-        StringBuilder updateSQL = new StringBuilder("update ").append(tableName).append(" set ").append(pkColumn.getActualColumnName())
+        StringBuilder updateSQL =
+                new StringBuilder("update ").append(tableName).append(" set ").append(pkColumn.getActualColumnName())
                 .append(" = #{item.").append(pkColumn.getJavaProperty()).append("}\n");
         // 拼装更新所有字段
-        StringBuilder updateAllSQL = new StringBuilder("update ").append(tableName).append(" set ").append(pkColumn.getActualColumnName())
+        StringBuilder updateAllSQL =
+                new StringBuilder("update ").append(tableName).append(" set ").append(pkColumn.getActualColumnName())
                 .append(" = #{item.").append(pkColumn.getJavaProperty()).append("}\n");
         // 数据库字段名
         String columnName = null;
         // java字段名
         String javaProperty = null;
-        //构造查询条件
-        advanceFilteSQL.append(
-                "      <if test=\"null != advanceFilterStr and ''!= advanceFilterStr\">\n");
 
         for (IntrospectedColumn introspectedColumn : introspectedTable.getAllColumns()) {
             columnName = MyBatis3FormattingUtilities.getEscapedColumnName(introspectedColumn);
 
-            if (columnName != null && columnName.equals("partner_id")) {
-                advanceFilteSQL.append("        <if test=\"null != partnerId and '' != partnerId\">and partner_id = #{partnerId}</if>\n");
-            }
             javaProperty = introspectedColumn.getJavaProperty();
             // 拼接字段
             columnSQL.append(columnName).append(",");
@@ -141,7 +136,8 @@ public class GenPlugin extends PluginAdapter {
             // 拼接SQL
             if (!introspectedColumn.isAutoIncrement()) {
 
-                updateAllSQL.append("\t  , ").append(columnName).append(" = #{item.").append(javaProperty).append("}\n");
+                updateAllSQL.append("\t  , ").append(columnName).append(" = #{item.").append(javaProperty).append(
+                        "}\n");
                 // 时间格式用now()作为值
                 /*
                  * if(Types.TIMESTAMP == introspectedColumn.getJdbcType()){
@@ -156,21 +152,13 @@ public class GenPlugin extends PluginAdapter {
         String columns = columnSQL.substring(0, columnSQL.length() - 1);
         rootElement.addElement(createSql("sql_columns", columns));
 
-
-        advanceFilteSQL.append(
-                "        ${advanceFilterStr}\n" +
-                        "      </if>\n");
-        String advanceFilteSQLStr = MessageFormat.format("      <if test=\"null == advanceFilterStr or {0}== advanceFilterStr\">\n{1}      </if>\n"
-                , "''", ifSQL.toString());
-        advanceFilteSQL.append(advanceFilteSQLStr);
-
-        String whereSQL = MessageFormat.format("<where>\n{0}\t</where>", advanceFilteSQL.toString());
-        String mapSQL = "\t  <foreach collection=\"map.keys\" item=\"k\" separator=\"and\">\n " +
+        String whereSQL = MessageFormat.format("<where>\n{0}\t</where>", ifSQL.toString());
+        String mapSql = "\t  <foreach collection=\"map.keys\" item=\"k\" separator=\"and\">\n " +
                 "\t      <if test=\"null != map[k]\">\n" +
                 "\t          a.${k} = #{map[${k}]}\n" +
                 "\t      </if>\n" +
                 "\t  </foreach>\n";
-        String whereMapSQL = MessageFormat.format("<where>\n{0}\t</where>", mapSQL.toString());
+        String whereMapSQL = MessageFormat.format("<where>\n{0}\t</where>", mapSql);
         rootElement.addElement(createSql("sql_where", whereSQL));
         rootElement.addElement(createSql("sql_map_where", whereMapSQL));
 
@@ -294,11 +282,14 @@ public class GenPlugin extends PluginAdapter {
         if (null != pkColumn) {
             save.addAttribute(new Attribute("keyProperty", "item." + pkColumn.getJavaProperty()));
             save.addAttribute(new Attribute("useGeneratedKeys", "true"));
-            save.addElement(new TextElement("<include refid=\"sql_insert_columns\" /><include refid=\"sql_insert_values\" />"));
+            save.addElement(new TextElement("<include refid=\"sql_insert_columns\" /><include " +
+                    "refid=\"sql_insert_values\" />"));
         } else {
             StringBuilder saveStr = new StringBuilder(
-                    "<foreach collection=\"list\" index=\"index\" item=\"item\" open=\"\" separator=\";\" close=\"\">\n\t  ")
-                    .append("<include refid=\"sql_insert_columns\" /><include refid=\"sql_insert_values\" />\n\t</foreach>");
+                    "<foreach collection=\"list\" index=\"index\" item=\"item\" open=\"\" separator=\";\" " +
+                            "close=\"\">\n\t  ")
+                    .append("<include refid=\"sql_insert_columns\" /><include refid=\"sql_insert_values\" " +
+                            "/>\n\t</foreach>");
             save.addElement(new TextElement(saveStr.toString()));
         }
         return save;
@@ -317,7 +308,8 @@ public class GenPlugin extends PluginAdapter {
             update.addElement(new TextElement("<include refid=\"sql_update\" />"));
         } else if ("batchUpdate".equals(id)) {
             update.addElement(new TextElement(
-                    "<foreach collection=\"list\" index=\"index\" item=\"item\" open=\"\" separator=\";\" close=\"\">\n\t  <include refid=\"sql_update\" />\n\t</foreach>"));
+                    "<foreach collection=\"list\" index=\"index\" item=\"item\" open=\"\" separator=\";\" " +
+                            "close=\"\">\n\t  <include refid=\"sql_update\" />\n\t</foreach>"));
         } else if ("updateAll".equals(id)) {
             update.addElement(new TextElement("<include refid=\"sql_update_all\" />"));
         }
@@ -336,7 +328,8 @@ public class GenPlugin extends PluginAdapter {
     private XmlElement createDels(String tableName, IntrospectedColumn pkColumn, String method, String type) {
         XmlElement delete = new XmlElement("delete");
         delete.addAttribute(new Attribute("id", method));
-        StringBuilder deleteStr = new StringBuilder("delete from ").append(tableName).append(" where ").append(pkColumn.getActualColumnName())
+        StringBuilder deleteStr =
+                new StringBuilder("delete from ").append(tableName).append(" where ").append(pkColumn.getActualColumnName())
                 .append(" in\n\t")
                 .append("<foreach collection=\"").append(type)
                 .append("\" index=\"index\" item=\"item\" open=\"(\" separator=\",\" close=\")\">#{item}</foreach>");
@@ -352,19 +345,19 @@ public class GenPlugin extends PluginAdapter {
         String tableName = introspectedTable.getFullyQualifiedTableNameAtRuntime();
 
 
-
         topLevelClass.addImportedType("lombok.Getter");
         topLevelClass.addImportedType("lombok.Setter");
+        topLevelClass.addImportedType("lombok.ToString");
         //添加domain的注解
         topLevelClass.addAnnotation("@Getter");
         topLevelClass.addAnnotation("@Setter");
+        topLevelClass.addAnnotation("@ToString");
 
-        if(topLevelClass.getSuperClass().getShortName().equals("BaseEntity")){
+        if ("BaseEntity".equals(topLevelClass.getSuperClass().getShortName())) {
             topLevelClass.addImportedType("com.cms.scaffold.common.annotation.TableName");
             //添加domain的注解
-            topLevelClass.addAnnotation("@TableName(name = \""+tableName+"\")");
+            topLevelClass.addAnnotation("@TableName(name = \"" + tableName + "\")");
         }
-
 
 
         //添加domain的注释
@@ -388,7 +381,7 @@ public class GenPlugin extends PluginAdapter {
     public boolean modelFieldGenerated(Field field,
                                        TopLevelClass topLevelClass, IntrospectedColumn introspectedColumn,
                                        IntrospectedTable introspectedTable, ModelClassType modelClassType) {
-        if (field.getName().equals("id") || field.getName().equals("addTime") || field.getName().equals("updateTime")) {
+        if ("id".equals(field.getName()) || "addTime".equals(field.getName()) || "updateTime".equals(field.getName())) {
             return false;
         }
         return super.modelFieldGenerated(field, topLevelClass, introspectedColumn,
@@ -422,30 +415,41 @@ public class GenPlugin extends PluginAdapter {
                 introspectedTable);
     }
 
-
-    // 以下设置为false,取消生成默认增删查改xml
+    /**
+     * 以下设置为false,取消生成默认增删查改xml
+     *
+     * @param method
+     * @param interfaze
+     * @param introspectedTable
+     * @return boolean
+     */
     @Override
-    public boolean clientDeleteByPrimaryKeyMethodGenerated(Method method, Interface interfaze, IntrospectedTable introspectedTable) {
+    public boolean clientDeleteByPrimaryKeyMethodGenerated(Method method, Interface interfaze,
+                                                           IntrospectedTable introspectedTable) {
         return false;
     }
 
     @Override
-    public boolean clientInsertMethodGenerated(Method method, Interface interfaze, IntrospectedTable introspectedTable) {
+    public boolean clientInsertMethodGenerated(Method method, Interface interfaze,
+                                               IntrospectedTable introspectedTable) {
         return false;
     }
 
     @Override
-    public boolean clientSelectAllMethodGenerated(Method method, Interface interfaze, IntrospectedTable introspectedTable) {
+    public boolean clientSelectAllMethodGenerated(Method method, Interface interfaze,
+                                                  IntrospectedTable introspectedTable) {
         return false;
     }
 
     @Override
-    public boolean clientSelectByPrimaryKeyMethodGenerated(Method method, Interface interfaze, IntrospectedTable introspectedTable) {
+    public boolean clientSelectByPrimaryKeyMethodGenerated(Method method, Interface interfaze,
+                                                           IntrospectedTable introspectedTable) {
         return false;
     }
 
     @Override
-    public boolean clientUpdateByPrimaryKeyWithoutBLOBsMethodGenerated(Method method, Interface interfaze, IntrospectedTable introspectedTable) {
+    public boolean clientUpdateByPrimaryKeyWithoutBLOBsMethodGenerated(Method method, Interface interfaze,
+                                                                       IntrospectedTable introspectedTable) {
         return false;
     }
 
@@ -470,7 +474,8 @@ public class GenPlugin extends PluginAdapter {
     }
 
     @Override
-    public boolean sqlMapUpdateByPrimaryKeyWithoutBLOBsElementGenerated(XmlElement element, IntrospectedTable introspectedTable) {
+    public boolean sqlMapUpdateByPrimaryKeyWithoutBLOBsElementGenerated(XmlElement element,
+                                                                        IntrospectedTable introspectedTable) {
         return false;
     }
 
