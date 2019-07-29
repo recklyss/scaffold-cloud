@@ -13,5 +13,6 @@
     <modules>
         <module>scaffold-core-common</module>
         <module>scaffold-core-plugin</module>
+        <module>scaffold-core-code</module>
     </modules>
 </project>

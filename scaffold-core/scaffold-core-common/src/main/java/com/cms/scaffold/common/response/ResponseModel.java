@@ -1,4 +1,4 @@
-package com.cms.scaffold.common.base;
+package com.cms.scaffold.common.response;
 
 
 import lombok.Getter;
@@ -13,7 +13,7 @@ import java.io.Serializable;
 @Setter
 public class ResponseModel<T> implements Serializable {
 
-    public enum STATUS_CODE{
+    public enum STATUS_CODE {
         /**
          * 操作失败
          */

@@ -1,8 +1,8 @@
 package com.cms.scaffold.micro.sys.controller;
 
 import com.cms.scaffold.common.base.BaseController;
-import com.cms.scaffold.common.base.Builder;
-import com.cms.scaffold.common.base.ResponseModel;
+import com.cms.scaffold.common.builder.Builder;
+import com.cms.scaffold.common.response.ResponseModel;
 import com.cms.scaffold.micro.sys.api.SysMenuApi;
 import com.cms.scaffold.micro.sys.bo.SysMenuBO;
 import com.cms.scaffold.micro.sys.domain.SysMenu;

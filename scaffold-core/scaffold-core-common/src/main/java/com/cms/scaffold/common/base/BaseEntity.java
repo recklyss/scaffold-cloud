@@ -10,6 +10,7 @@ import java.util.Date;
 
 /**
  * 支持类
+ * 数据库实体类基类
  *
  * @author zjh
  */

@@ -1,5 +1,5 @@
 
-package com.cms.scaffold.common.base;
+package com.cms.scaffold.common.builder;
 
 import cn.hutool.core.util.ReflectUtil;
 import org.apache.commons.beanutils.BeanUtils;

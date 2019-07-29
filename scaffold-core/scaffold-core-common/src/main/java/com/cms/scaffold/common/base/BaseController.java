@@ -1,5 +1,6 @@
 package com.cms.scaffold.common.base;
 
+import com.cms.scaffold.common.response.ResponseModel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

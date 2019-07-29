@@ -1,4 +1,4 @@
-package com.cms.scaffold.common.base;
+package com.cms.scaffold.common.response;
 
 import lombok.Getter;
 import lombok.Setter;

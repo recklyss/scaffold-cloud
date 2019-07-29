@@ -1,6 +1,6 @@
 package com.cms.scaffold.micro.sys.api;
 
-import com.cms.scaffold.common.base.ResponseModel;
+import com.cms.scaffold.common.response.ResponseModel;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
