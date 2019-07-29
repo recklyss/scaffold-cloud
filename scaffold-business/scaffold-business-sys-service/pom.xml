@@ -11,10 +11,4 @@
 
     <artifactId>scaffold-business-sys-service</artifactId>
 
-    <dependencies>
-        <dependency>
-            <groupId>com.cms.scaffold</groupId>
-            <artifactId>scaffold-business-sys-api</artifactId>
-        </dependency>
-    </dependencies>
 </project>

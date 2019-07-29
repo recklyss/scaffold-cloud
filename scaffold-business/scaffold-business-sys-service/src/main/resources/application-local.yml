@@ -16,6 +16,15 @@ spring:
     password: 123456
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.mysql.jdbc.Driver
+  flyway:
+    enabled: true
+    check-location: true
+    locations: classpath:db/migration/ddl,classpath:db/migration/dml
+    validate-on-migrate: true
+    clean-on-validation-error: false
+    encoding: UTF-8
+    baseline-on-migrate: true
+    placeholder-prefix: #{.
 pagehelper:
   offset-as-page-num: true
   row-bounds-with-count: true
