@@ -1,0 +1,40 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+
+server:
+  port: 8750
+  servlet:
+    context-path: /operate
+spring:
+  application:
+    name: scaffold-operate
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  mvc:
+    static-path-pattern: /static/**
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+  freemarker:
+    cache: false
+    content-type: text/html
+    check-template-location: true
+    charset: UTF-8
+    expose-request-attributes: true
+    expose-session-attributes: true
+    request-context-attribute: request
+    template-loader-path: classpath:/templates/
+
+
+feign:
+  hystrix:
+    enabled: true
+
+logging:
+  config: classpath:config/@environment@/logback-spring.xml
+  path: /scaffold/log
+  file: ${spring.application.name:scaffold-route-operate}

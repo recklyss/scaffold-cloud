@@ -8,6 +8,9 @@ import java.io.Serializable;
 import java.util.List;
 
 
+/**
+ * @author Administrator
+ */
 public class BaseServiceImpl<D extends BaseMapper<T>, T extends BaseEntity> implements BaseService<T> {
 
     @Autowired

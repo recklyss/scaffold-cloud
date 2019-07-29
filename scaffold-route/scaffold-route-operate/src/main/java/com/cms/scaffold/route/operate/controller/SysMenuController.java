@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 
+/**
+ * @author zhangjiaheng
+ */
 @Controller
 @RequestMapping("/sys/sysMenu")
 public class SysMenuController extends BaseController {

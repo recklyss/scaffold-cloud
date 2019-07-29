@@ -24,7 +24,6 @@
     <properties>
         <scaffold.version>1.0-SNAPSHOT</scaffold.version>
 
-        <alibaba.fastjson.version>1.2.47</alibaba.fastjson.version>
 
         <spring.boot.version>2.0.3.RELEASE</spring.boot.version>
         <spring.cloud.version>Finchley.RELEASE</spring.cloud.version>
@@ -41,6 +40,8 @@
         <common.lang.version>3.7</common.lang.version>
         <commons.beanutils.version>1.9.2</commons.beanutils.version>
         <hutool.version>4.5.10</hutool.version>
+        <alibaba.fastjson.version>1.2.47</alibaba.fastjson.version>
+        <guava.version>23.0</guava.version>
         <mybatis.generator.version>1.3.5</mybatis.generator.version>
     </properties>
     <dependencyManagement>
@@ -54,16 +55,6 @@
                 <groupId>com.cms.scaffold</groupId>
                 <artifactId>scaffold-core-common</artifactId>
                 <version>${scaffold.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.cms.scaffold</groupId>
-                <artifactId>scaffold-business-service</artifactId>
-                <version>${scaffold.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.alibaba</groupId>
-                <artifactId>fastjson</artifactId>
-                <version>${alibaba.fastjson.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework.boot</groupId>
@@ -163,6 +154,16 @@
                 <artifactId>hutool-all</artifactId>
                 <version>${hutool.version}</version>
             </dependency>
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${alibaba.fastjson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${guava.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
     <repositories>
@@ -217,11 +218,10 @@
                 </includes>
             </resource>
 
-
             <resource>
                 <directory>src/main/java</directory>
                 <includes>
-                    <include>**/*.properties</include>
+                    <include>**/*.yml</include>
                     <include>**/*.xml</include>
                     <include>**/*.tld</include>
                     <include>**/*.xls</include>
@@ -229,19 +229,10 @@
                 </includes>
                 <filtering>false</filtering>
             </resource>
-
-            <resource>
-                <directory>src/main/resources</directory>
-                <excludes>
-                    <exclude>config/test/*</exclude>
-                    <exclude>config/prod/*</exclude>
-                    <exclude>config/local/*</exclude>
-                </excludes>
-            </resource>
             <resource>
                 <directory>src/main/resources/config/${environment}</directory>
                 <includes>
-                    <include>**/*.properties</include>
+                    <include>**/*.yml</include>
                 </includes>
                 <filtering>true</filtering>
             </resource>

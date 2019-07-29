@@ -12,6 +12,12 @@ import org.springframework.web.bind.annotation.RequestParam;
  */
 public interface SysMenuApi {
 
+    /**
+     * 根据pid查询子级菜单
+     *
+     * @param pid
+     * @return
+     */
     @RequestMapping(value = "/sysMenu/listMenuByPid", method = RequestMethod.GET)
     ResponseModel listMenuByPid(@RequestParam("pid") Long pid);
 }

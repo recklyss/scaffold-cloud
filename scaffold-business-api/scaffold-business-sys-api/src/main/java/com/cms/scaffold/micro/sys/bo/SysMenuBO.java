@@ -3,13 +3,16 @@ package com.cms.scaffold.micro.sys.bo;
 import com.cms.scaffold.common.base.BaseEntity;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 /**
+ * @author zjh
  * 增加BO模块
  * 用于返回数据的传递
  */
 @Getter
 @Setter
+@ToString
 public class SysMenuBO extends BaseEntity {
     /** 菜单名称**/
     private String name;
