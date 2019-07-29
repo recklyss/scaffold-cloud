@@ -1,0 +1,140 @@
+<div data-toggle="topjui-layout" data-options="fit:true">
+    <div data-options="region:'center',title:'',fit:true,border:false,bodyCls:'border_right_bottom'">
+        <div data-toggle="topjui-tabs" data-options="fit:true,border:false">
+            <div title="必填信息" data-options="iconCls:'fa fa-th'">
+                <div class="topjui-fluid">
+                    <fieldset>
+                        <legend>基本信息</legend>
+                    </fieldset>
+                    <div class="topjui-row">
+                        <div class="topjui-col-sm12">
+                            <label class="topjui-form-label">商品名称</label>
+                            <div class="topjui-input-block">
+                                <input type="text" name="name" data-toggle="topjui-textbox"
+                                       data-options="required:true">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="topjui-row">
+                        <div class="topjui-col-sm12">
+                            <label class="topjui-form-label">产品质量</label>
+                            <div class="topjui-input-block" style="padding-top: 4px;">
+                                <input name="fruit" data-toggle="topjui-radiobutton" data-options="value:'1',label:'不好',labelPosition:'after'">
+                                <input name="fruit" data-toggle="topjui-radiobutton" data-options="value:'2',label:'好',labelPosition:'after',checked:true">
+                                <input name="fruit" data-toggle="topjui-radiobutton" data-options="value:'3',label:'很好',labelPosition:'after'">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="topjui-row">
+                        <div class="topjui-col-sm12">
+                            <label class="topjui-form-label">特征</label>
+                            <div class="topjui-input-block" style="padding-top: 4px;">
+                                <input name="fruit2" data-toggle="topjui-checkbox" data-options="value:'1',label:'物美',labelPosition:'after',checked:true">
+                                <input name="fruit2" data-toggle="topjui-checkbox" data-options="value:'2',label:'价廉',labelPosition:'after'">
+                                <input name="fruit2" data-toggle="topjui-checkbox" data-options="value:'3',label:'性优',labelPosition:'after',checked:true">
+                                <input name="fruit2" data-toggle="topjui-checkbox" data-options="value:'4',label:'实用',labelPosition:'after'">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="topjui-row">
+                        <div class="topjui-col-sm12">
+                            <label class="topjui-form-label">商品描述</label>
+                            <div class="topjui-input-block">
+                                <input type="text" name="description" data-toggle="topjui-textarea">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div title="选填信息" data-options="iconCls:'fa fa-th'">
+                <div class="topjui-fluid">
+                    <fieldset>
+                        <legend>扩展信息</legend>
+                    </fieldset>
+                    <div class="topjui-row">
+                        <div class="topjui-col-sm6">
+                            <label class="topjui-form-label">所属机构</label>
+                            <div class="topjui-input-block">
+                                <input type="hidden" name="orgName">
+                                <input type="text" name="orgId"
+                                       data-toggle="topjui-combotree"
+                                       data-options="textField:'text',
+                                       url:remoteHost+'/mdata/organization/getListByLevelId?levelId=1',
+                                       expandUrl:remoteHost+'/mdata/organization/getListByPid?pid={id}',
+                                       getFatherIdsUrl:remoteHost+'/mdata/organization/getFatherIds?id={id}',
+                                       param:'orgName:text'">
+                            </div>
+                        </div>
+                        <div class="topjui-col-sm6">
+                            <label class="topjui-form-label">上架日期</label>
+                            <div class="topjui-input-block">
+                                <input type="text" name="sjdate" data-toggle="topjui-datetimebox" data-options="currentText:'今天',value:getCurrentDate()">
+                                <script>
+                                  function getCurrentDate() {
+                                    var now = new Date();
+                                    var year = now.getFullYear(); //得到年份
+                                    var month = now.getMonth();//得到月份
+                                    var date = now.getDate();//得到日期
+                                    var day = now.getDay();//得到周几
+                                    var hour = now.getHours();//得到小时
+                                    var minu = now.getMinutes();//得到分钟
+                                    var sec = now.getSeconds();//得到秒
+                                    month = month + 1;
+                                    if (month < 10) month = "0" + month;
+                                    if (date < 10) date = "0" + date;
+                                    if (hour < 10) hour = "0" + hour;
+                                    if (minu < 10) minu = "0" + minu;
+                                    if (sec < 10) sec = "0" + sec;
+                                    var time = "";
+                                    //精确到天
+                                    time = year + "-" + month + "-" + date+ " " + hour + ":" + minu + ":" + sec;
+
+                                    return time;
+                                  }
+                                </script>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="topjui-row">
+                        <div class="topjui-col-sm6">
+                            <label class="topjui-form-label">规格型号</label>
+                            <div class="topjui-input-block">
+                                <input type="text" name="spec"
+                                       data-toggle="topjui-combobox"
+                                       data-options="valueField:'code',
+                                       url:_ctx + '/json/dictionary/models.json'">
+                            </div>
+                        </div>
+                        <div class="topjui-col-sm6">
+                            <label class="topjui-form-label">销售单价</label>
+                            <div class="topjui-input-block">
+                                <input type="text" name="sale_price" data-toggle="topjui-numberspinner"
+                                       data-options="precision:2">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="topjui-row">
+                        <div class="topjui-col-sm12">
+                            <label class="topjui-form-label">产品缩略图</label>
+                            <div class="topjui-input-block">
+                                <input type="text" name="thumbnail" data-toggle="topjui-uploadbox"
+                                       data-options="editable:false,
+                                       buttonText:'上传图片',
+                                       accept:'images',
+                                       uploadUrl:'/json/response/upload.json'">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="topjui-row">
+                        <div class="topjui-col-sm12">
+                            <label class="topjui-form-label">备注信息</label>
+                            <div class="topjui-input-block">
+                                <input type="text" name="content" data-toggle="topjui-textarea">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

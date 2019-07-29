@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <!-- 避免IE使用兼容模式 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <meta name="renderer" content="webkit">
+    <!-- TopJUI框架样式 -->
+    <link type="text/css" href="../../topjui/themes/default/topjui.core.min.css" rel="stylesheet">
+    <link type="text/css" href="../../topjui/themes/default/topjui.blue.css" rel="stylesheet" id="dynamicTheme"/>
+    <!-- FontAwesome字体图标 -->
+    <link type="text/css" href="../../static/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet"/>
+    <!-- layui框架样式 -->
+    <link type="text/css" href="../../static/plugins/layui/css/layui.css" rel="stylesheet"/>
+    <!-- jQuery相关引用 -->
+    <script type="text/javascript" src="../../static/plugins/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="../../static/plugins/jquery/jquery.cookie.js"></script>
+    <!-- TopJUI框架配置 -->
+    <script type="text/javascript" src="../../static/public/js/topjui.config.js"></script>
+    <!-- TopJUI框架核心-->
+    <script type="text/javascript" src="../../topjui/js/topjui.core.min.js"></script>
+    <!-- TopJUI中文支持 -->
+    <script type="text/javascript" src="../../topjui/js/locale/topjui.lang.zh_CN.js"></script>
+    <!-- layui框架js -->
+    <script type="text/javascript" src="../../static/plugins/layui/layui.js" charset="utf-8"></script>
+</head>
+
+<body>
+<div data-toggle="topjui-layout" data-options="fit:true">
+    <div data-toggle="topjui-panel" title="" data-options="fit:true,iconCls:'icon-ok',footer:'#footer'">
+        <form class="hidden" method="post" data-toggle="topjui-form" data-options="id:'formId',
+               editor:[
+                   {id:'remarkAddEditor',field:'remark'}
+               ]">
+            <div class="topjui-container">
+                <div class="topjui-row">
+                    <div class="topjui-col-sm12">
+                        <fieldset>
+                            <legend>基本信息</legend>
+                        </fieldset>
+                    </div>
+                </div>
+                <div class="topjui-row">
+                    <div class="topjui-col-sm12">
+                        <label class="topjui-form-label">商品名称</label>
+                        <div class="topjui-input-block">
+                            <input type="text" name="name"
+                                   data-toggle="topjui-textbox"
+                                   data-options="required:true">
+                        </div>
+                    </div>
+                </div>
+                <div class="topjui-row">
+                    <div class="topjui-col-sm6">
+                        <label class="topjui-form-label">用户名</label>
+                        <div class="topjui-input-block">
+                            <input type="text" name="userNameId"
+                                   data-toggle="topjui-textbox"
+                                   data-options="required:true,prompt:'必填'">
+                        </div>
+                    </div>
+                    <div class="topjui-col-sm6">
+                        <label class="topjui-form-label">姓名</label>
+                        <div class="topjui-input-block">
+                            <input type="text" name="userName"
+                                   data-toggle="topjui-textbox"
+                                   data-options="required:true,prompt:'必填'">
+                        </div>
+                    </div>
+                </div>
+                <div class="topjui-row">
+                    <div class="topjui-col-sm6">
+                        <label class="topjui-form-label">性别</label>
+                        <div class="topjui-input-block">
+                            <input name="sex" data-toggle="topjui-switchbutton"
+                                   data-options="onText:'男',offText:'女'">
+                        </div>
+                    </div>
+                    <div class="topjui-col-sm6">
+                        <label class="topjui-form-label">年龄</label>
+                        <div class="topjui-input-block">
+                            <input type="text" name="age" data-toggle="topjui-textbox">
+                        </div>
+                    </div>
+                </div>
+                <div class="topjui-row">
+                    <div class="topjui-col-sm12">
+                        <label class="topjui-form-label">所属机构</label>
+                        <div class="topjui-input-block">
+                            <input type="hidden" name="orgName">
+                            <input type="text" name="orgId"
+                                   data-toggle="topjui-combotree"
+                                   data-options="prompt:'必填',
+                                   url:remoteHost + '/mdata/organization/getListByLevelId?levelId=1',
+                                   expandUrl:remoteHost + '/mdata/organization/getListByPid?pid={id}',
+                                   getFatherIdsUrl:remoteHost + '/mdata/organization/getFatherIds?id={id}',
+                                   param:'orgName:text'">
+                        </div>
+                    </div>
+                </div>
+                <div class="topjui-row">
+                    <div class="topjui-col-sm6">
+                        <label class="topjui-form-label">职务</label>
+                        <div class="topjui-input-block">
+                            <input type="text" name="post" data-toggle="topjui-textbox">
+                        </div>
+                    </div>
+                    <div class="topjui-col-sm6">
+                        <label class="topjui-form-label">固定电话</label>
+                        <div class="topjui-input-block">
+                            <input type="text" name="telephone" data-toggle="topjui-textbox"
+                                   data-options="validType:'telephone'">
+                        </div>
+                    </div>
+                </div>
+                <div class="topjui-row">
+                    <div class="topjui-col-sm6">
+                        <label class="topjui-form-label">电子邮箱</label>
+                        <div class="topjui-input-block">
+                            <input type="text" name="email"
+                                   data-toggle="topjui-textbox"
+                                   data-options="validType:'email',prompt:'电子邮箱'">
+                        </div>
+                    </div>
+                    <div class="topjui-col-sm6">
+                        <label class="topjui-form-label">手机</label>
+                        <div class="topjui-input-block">
+                            <input type="text" name="cellphone"
+                                   data-toggle="topjui-textbox"
+                                   data-options="validType:'cellphone',prompt:'手机'">
+                        </div>
+                    </div>
+                </div>
+                <div class="topjui-row">
+                    <div class="topjui-col-sm12">
+                        <fieldset>
+                            <legend>其它信息</legend>
+                        </fieldset>
+                    </div>
+                </div>
+                <div class="topjui-row">
+                    <div class="topjui-col-sm12">
+                        <label class="topjui-form-label">所属区域</label>
+                        <div class="topjui-input-block">
+                            <input type="text" name="zone"
+                                   data-toggle="topjui-combotree"
+                                   data-options="prompt:'必填',
+                                   url:remoteHost + '/system/codeItem/getListByCodeSetIdAndLevelId?codeSetId=AGA&levelId=3',
+                                   panelHeight:'250',
+                                   expandUrl:remoteHost + '/system/codeItem/getListByPid?pid={id}',
+                                   getFatherIdsUrl:remoteHost + '/system/codeItem/getFatherIds?id={id}',
+                                   backfill:{url:remoteHost + '/mdata/user/getZoneFillbackData?id={id}'}">
+                        </div>
+                    </div>
+                </div>
+                <div class="topjui-row">
+                    <div class="topjui-col-sm6">
+                        <label class="topjui-form-label">国家</label>
+                        <div class="topjui-input-block">
+                            <input type="text" name="country" data-toggle="topjui-textbox"
+                                   data-options="readonly:true">
+                        </div>
+                    </div>
+                    <div class="topjui-col-sm6">
+                        <label class="topjui-form-label">省份</label>
+                        <div class="topjui-input-block">
+                            <input type="text" name="province" data-toggle="topjui-textbox"
+                                   data-options="readonly:true">
+                        </div>
+                    </div>
+                </div>
+                <div class="topjui-row">
+                    <div class="topjui-col-sm6">
+                        <label class="topjui-form-label">城市</label>
+                        <div class="topjui-input-block">
+                            <input type="text" name="city"
+                                   data-toggle="topjui-textbox"
+                                   data-options="readonly:true">
+                        </div>
+                    </div>
+                    <div class="topjui-col-sm6">
+                        <label class="topjui-form-label">区县</label>
+                        <div class="topjui-input-block">
+                            <input type="text" name="district"
+                                   data-toggle="topjui-textbox"
+                                   data-options="readonly:true">
+                        </div>
+                    </div>
+                </div>
+                <div class="topjui-row">
+                    <div class="topjui-col-sm6">
+                        <label class="topjui-form-label">籍贯</label>
+                        <div class="topjui-input-block">
+                            <input type="text" name="nativePlace"
+                                   data-toggle="topjui-combobox"
+                                   data-options="url:remoteHost + '/system/codeItem/getListByCodeSetIdAndLevelId?codeSetId=AAAC&levelId=1',
+                                   valueField:'text',
+                                   panelHeight:'250'">
+                        </div>
+                    </div>
+                    <div class="topjui-col-sm6">
+                        <label class="topjui-form-label">民族</label>
+                        <div class="topjui-input-block">
+                            <input type="text" name="nation"
+                                   data-toggle="topjui-combobox"
+                                   data-options="url:remoteHost + '/system/codeItem/getListByCodeSetIdAndLevelId?codeSetId=AAAB&levelId=2',
+                                   valueField:'text',
+                                   panelHeight:'250'">
+                        </div>
+                    </div>
+                </div>
+                <div class="topjui-row">
+                    <div class="topjui-col-sm6">
+                        <label class="topjui-form-label">身份证号</label>
+                        <div class="topjui-input-block">
+                            <input type="text" name="idCard"
+                                   data-toggle="topjui-textbox">
+                        </div>
+                    </div>
+                    <div class="topjui-col-sm6">
+                        <label class="topjui-form-label">毕业院校</label>
+                        <div class="topjui-input-block">
+                            <input type="text" name="school"
+                                   data-toggle="topjui-textbox">
+                        </div>
+                    </div>
+                </div>
+                <div class="topjui-row">
+                    <div class="topjui-col-sm6">
+                        <label class="topjui-form-label">学历</label>
+                        <div class="topjui-input-block">
+                            <input type="text" id="education" name="education"
+                                   data-toggle="topjui-combobox"
+                                   data-options="url:remoteHost + '/system/codeItem/getListByCodeSetIdAndLevelId?codeSetId=AABA&levelId=5',
+                                   valueField:'text'">
+                        </div>
+                    </div>
+                    <div class="topjui-col-sm6">
+                        <label class="topjui-form-label">学位</label>
+                        <div class="topjui-input-block">
+                            <input type="text" id="degree" name="degree"
+                                   data-toggle="topjui-combobox"
+                                   data-options="url:remoteHost + '/system/codeItem/getListByCodeSetIdAndLevelId?codeSetId=AABB&levelId=5',
+                                   valueField:'text'">
+                        </div>
+                    </div>
+                </div>
+                <div class="topjui-row">
+                    <div class="topjui-col-sm12">
+                        <label class="topjui-form-label">备注</label>
+                        <div class="topjui-input-block">
+                            <textarea name="remark"
+                                      data-toggle="topjui-ueditor"
+                                      data-options="id:'remarkAddEditor'"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div id="footer" class="hidden" style="height: 34px; padding: 5px; text-align: right;">
+    <a href="#"
+       data-toggle="topjui-linkbutton"
+       data-options="id:'submitBtn',
+                   iconCls:'fa fa-save',
+                   form:{
+                       id:'formId',
+                       method:'submit',
+                       url:'/json/response/success.json',
+                       refreshRefererTab:true,
+                       closeCurrentTab:true
+                   }">提交成功</a>
+    <a href="#"
+       data-toggle="topjui-linkbutton"
+       data-options="id:'submitBtn',
+                   iconCls:'fa fa-save',
+                   btnCls:'topjui-btn-purple',
+                   form:{
+                       id:'formId',
+                       method:'submit',
+                       url:'/json/response/failure.json',
+                       refreshRefererTab:true,
+                       closeCurrentTab:true
+                   }">提交失败</a>
+    <a href="#"
+       data-toggle="topjui-linkbutton"
+       data-options="id:'submitBtn',
+                   iconCls:'fa fa-exchange',
+                   btnCls:'topjui-btn-black',
+                   form:{
+                       id:'formId',
+                       method:'reset'
+                   }">重置</a>
+    <a href="#"
+       data-toggle="topjui-linkbutton"
+       data-options="id:'submitBtn',
+                   iconCls:'fa fa-trash',
+                   btnCls:'topjui-btn-red',
+                   form:{
+                       id:'formId',
+                       method:'clear'
+                   }">清空</a>
+</div>
+
+<script>
+    function progressFormatter(value, rowData, rowIndex) {
+        var htmlstr = '<div id="p" data-toggle="topjui-progressbar progressbar" data-options="value:' + value + '" style="width: 398px; height: 26px;">';
+        htmlstr += '<div class="progressbar-text" style="width: 398px; height: 26px; line-height: 26px;">' + value + '%</div>';
+        htmlstr += '<div class="progressbar-value" style="width: ' + value + '%; height: 26px; line-height: 26px;">';
+        htmlstr += '<div class="progressbar-text" style="width: 398px; height: 26px; line-height: 26px;">' + value + '%</div>';
+        htmlstr += '</div>';
+        htmlstr += '</div>';
+        return htmlstr;
+    }
+
+    // 自定义方法
+    function myQuery() {
+        // 提示信息
+        $.iMessager.alert('自定义方法', '自定义方法被执行了！', 'messager-info');
+        // 提交参数查询表格数据
+        $('#productDg').iDatagrid('reload', {
+            name: $('#name').iTextbox('getValue'),
+            code: $('#code').iTextbox('getValue')
+        });
+    }
+</script>
+<script type="text/javascript" src="../../static/plugins/ueditor/ueditor.config.js"></script>
+<script type="text/javascript" src="../../static/plugins/ueditor/ueditor.all.min.js"></script>
+</body>
+</html>

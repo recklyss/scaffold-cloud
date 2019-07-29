@@ -1,0 +1,43 @@
+[
+  {
+    "id": 1,
+    "text": "结点 1",
+    "state": "closed",
+    "children": [
+      {
+        "id": 11,
+        "text": "结点 11"
+      },
+      {
+        "id": 12,
+        "text": "结点 12",
+        "state": "closed",
+        "children": [
+          {
+            "id": 121,
+            "text": "结点 121"
+          },
+          {
+            "id": 122,
+            "text": "结点 122"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "text": "结点 2",
+    "state": "closed",
+    "children": [
+      {
+        "id": 21,
+        "text": "结点 21"
+      },
+      {
+        "id": 22,
+        "text": "结点 22"
+      }
+    ]
+  }
+]

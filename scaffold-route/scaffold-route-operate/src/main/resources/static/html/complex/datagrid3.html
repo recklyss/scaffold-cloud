@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <!-- 避免IE使用兼容模式 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <meta name="renderer" content="webkit">
+    <!-- TopJUI框架样式 -->
+    <link type="text/css" href="../../topjui/css/topjui.core.min.css" rel="stylesheet">
+    <link type="text/css" href="../../topjui/themes/default/topjui.blue.css" rel="stylesheet" id="dynamicTheme"/>
+    <!-- FontAwesome字体图标 -->
+    <link type="text/css" href="../../static/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet"/>
+    <!-- layui框架样式 -->
+    <link type="text/css" href="../../static/plugins/layui/css/layui.css" rel="stylesheet"/>
+    <!-- jQuery相关引用 -->
+    <script type="text/javascript" src="../../static/plugins/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="../../static/plugins/jquery/jquery.cookie.js"></script>
+    <!-- TopJUI框架配置 -->
+    <script type="text/javascript" src="../../static/public/js/topjui.config.js"></script>
+    <!-- TopJUI框架核心-->
+    <script type="text/javascript" src="../../topjui/js/topjui.core.min.js"></script>
+    <!-- TopJUI中文支持 -->
+    <script type="text/javascript" src="../../topjui/js/locale/topjui.lang.zh_CN.js"></script>
+    <!-- layui框架js -->
+    <script type="text/javascript" src="../../static/plugins/layui/layui.js" charset="utf-8"></script>
+</head>
+
+<body>
+<div data-toggle="topjui-layout" data-options="fit:true">
+    <div data-options="region:'center',iconCls:'icon-reload',title:'',split:true,border:false">
+        <table id="productDg"></table>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $("#productDg").datagrid({
+            fit: true,
+            fitColumns: true,
+            url: '../../json/product/list.json',
+            queryParams: {
+                "targetID": '1234'
+            }, //请求数据时发送的参数
+            iconCls: 'icon-save',
+            striped: true,
+            nowrap: false,
+            singleSelect: true,
+            rownumbers: true, //是否加行号
+            pagination: true, //是否显式分页
+            pageSize: 10,   //页容量，必须和pageList对应起来，否则会报错
+            pageNumber: 1, //默认显示第几页
+            pageList: [10, 20, 30],//分页中下拉选项的数值
+            frozenColumns: [],
+            rowStyler: function (index, row) {
+                if (index % 2 == 0) {
+                    return 'color:red;';
+                }
+            },
+            columns: [
+                [
+                    {
+                        title: "网格员考核测评表", colspan: 11
+                    }
+                ],
+                [
+                    {field: "uuid", title: "网格", rowspan: 3, align: "center", width: 100},
+                    {field: "name", title: "网格员", rowspan: 3, align: "center", width: 100},
+                    {title: "工作纪律", rowspan: 2},
+                    {title: "民主互评", rowspan: 2},
+                    {title: "志愿者", rowspan: 2},
+                    {title: "加分项", colspan: 2},
+                    {title: "扣分项", colspan: 2},
+                    {title: "总分", rowspan: 2},
+                    {title: "平均分", rowspan: 2}
+                ],
+                [
+                    {title: "信息上报", rowspan: 1},
+                    {title: "简报采纳", rowspan: 1},
+                    {title: "信息上报2", rowspan: 1},
+                    {title: "简报采纳2", rowspan: 1}
+                ],
+                [
+                    {field: "code", title: "5分", rowspan: 1, align: "center", width: 100},
+                    {field: "spec", title: "5分", rowspan: 1, align: "center", width: 100},
+                    {field: "sale_price", title: "6分", rowspan: 1, align: "center", width: 100},
+                    {field: "rate", title: "8分", rowspan: 1, align: "center", width: 100},
+                    {field: "YW5", title: "5分", rowspan: 1, align: "center", width: 100},
+                    {field: "YW6", title: "5分", rowspan: 1, align: "center", width: 100},
+                    {field: "YW7", title: "5分", rowspan: 1, align: "center", width: 100},
+                    {field: "TOTAL", title: "100分", rowspan: 1, align: "center", width: 100},
+                    {field: "AVG", title: "", rowspan: 1, align: "center", width: 100}
+                ]
+            ]
+        });
+    });
+</script>
+</body>
+</html>

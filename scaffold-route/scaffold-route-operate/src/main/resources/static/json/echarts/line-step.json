@@ -1,0 +1,29 @@
+{
+  "xAxis": {
+    "type": "category",
+      "data": ["一", "二", "三", "四", "五", "六", "七"]
+  },
+  "yAxis": {
+    "type": "value"
+  },
+  "series": [{
+    "data": [120, 200, 150, 80, 70, 110, 130],
+    "type": "line",
+    "symbol": "triangle",
+    "symbolSize": 20,
+    "lineStyle": {
+      "normal": {
+        "color": "green",
+        "width": 4,
+        "type": "dashed"
+      }
+    },
+    "itemStyle": {
+      "normal": {
+        "borderWidth": 3,
+        "borderColor": "yellow",
+        "color": "blue"
+      }
+    }
+  }]
+}

@@ -1,0 +1,26 @@
+[
+  {
+    "id": "1",
+    "pid": "100",
+    "text": "男",
+    "value": "1",
+    "email": "1@ewsd.cn",
+    "mobile": "123123"
+  },
+  {
+    "id": "2",
+    "pid": "100",
+    "text": "女",
+    "value": "2",
+    "email": "2@ewsd.cn",
+    "mobile": "223123"
+  },
+  {
+    "id": "3",
+    "pid": "100",
+    "text": "未知",
+    "value": "0",
+    "email": "3@ewsd.cn",
+    "mobile": "323123"
+  }
+]

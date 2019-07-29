@@ -1,0 +1,82 @@
+[
+  {
+    "id": 1339,
+    "pid": 13290101,
+    "state": "open",
+    "iconCls": "fa fa-file-text-o",
+    "text": "打开弹出窗口",
+    "url": "./html/menu/openDialog_index.html"
+  },
+  {
+    "id": 1341,
+    "pid": 132901,
+    "state": "open",
+    "iconCls": "fa fa-file-text-o",
+    "text": "执行Ajax请求",
+    "url": "./html/menu/doAjax_index.html"
+  },
+  {
+    "id": 1341,
+    "pid": 132901,
+    "state": "open",
+    "iconCls": "fa fa-file-text-o",
+    "text": "快捷数据过滤",
+    "url": "./html/menu/filter_index.html"
+  },
+  {
+    "id": 1341,
+    "pid": 132901,
+    "state": "open",
+    "iconCls": "fa fa-file-text-o",
+    "text": "高级组合查询",
+    "url": "./html/menu/search_index.html"
+  },
+  {
+    "id": 1341,
+    "pid": 132901,
+    "state": "open",
+    "iconCls": "fa fa-file-text-o",
+    "text": "Excel数据导入",
+    "url": "./html/menu/import_index.html"
+  },
+  {
+    "id": 1341,
+    "pid": 132901,
+    "state": "open",
+    "iconCls": "fa fa-file-text-o",
+    "text": "Excel数据导出",
+    "url": "./html/menu/export_index.html"
+  },
+  {
+    "id": 1340,
+    "pid": 132901,
+    "state": "open",
+    "iconCls": "fa fa-file-text-o",
+    "text": "打开标签窗口",
+    "url": "./html/menu/openTab_index.html"
+  },
+  {
+    "id": 1340,
+    "pid": 132901,
+    "state": "open",
+    "iconCls": "fa fa-file-text-o",
+    "text": "打开新窗口",
+    "url": "./html/menu/openWindow_index.html"
+  },
+  {
+    "id": 1341,
+    "pid": 132901,
+    "state": "open",
+    "iconCls": "fa fa-file-text-o",
+    "text": "执行普通请求",
+    "url": "./html/menu/request_index.html"
+  },
+  {
+    "id": 1341,
+    "pid": 132901,
+    "state": "open",
+    "iconCls": "fa fa-file-text-o",
+    "text": "执行自定义方法",
+    "url": "./html/menu/executeFunction_index.html"
+  }
+]

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <!-- 避免IE使用兼容模式 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <meta name="renderer" content="webkit">
+    <!-- TopJUI框架样式 -->
+    <link type="text/css" href="../../topjui/themes/default/topjui.core.min.css" rel="stylesheet">
+    <link type="text/css" href="../../topjui/themes/default/topjui.blue.css" rel="stylesheet" id="dynamicTheme"/>
+    <!-- FontAwesome字体图标 -->
+    <link type="text/css" href="../../static/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet"/>
+
+    <!-- jQuery相关引用 -->
+    <script type="text/javascript" src="../../static/plugins/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="../../static/plugins/jquery/jquery.cookie.js"></script>
+    <!-- TopJUI框架配置 -->
+    <script type="text/javascript" src="../../static/public/js/topjui.config.js"></script>
+    <!-- TopJUI框架核心-->
+    <script type="text/javascript" src="../../topjui/js/topjui.core.min.js"></script>
+    <!-- TopJUI中文支持 -->
+    <script type="text/javascript" src="../../topjui/js/locale/topjui.lang.zh_CN.js"></script>
+
+</head>
+
+<body>
+<div class="topjui-container">
+    <div class="topjui-row">
+        <fieldset>
+            <legend>基础演示</legend>
+        </fieldset>
+        <div class="topjui-col-sm12" style="margin:20px 0;">
+            <label class="topjui-form-label">开关把手文本值</label>
+            <div class="topjui-input-block" style="padding-top: 4px;">
+                <input data-toggle="topjui-switchbutton" handleText="是" style="width: 200px"  checked="">
+            </div>
+        </div>
+        <div class="topjui-col-sm12" style="margin:20px 0;">
+            <label class="topjui-form-label">反转开关文本</label>
+            <div class="topjui-input-block" style="padding-top: 4px;">
+                <input data-toggle="topjui-switchbutton" reversed="true" style="width: 200px"  data-options="onText:'Yes',offText:'No'">
+            </div>
+        </div>
+        <div class="topjui-col-sm12" style="margin:20px 0;">
+            <label class="topjui-form-label">禁用开关按钮</label>
+            <div class="topjui-input-block" style="padding-top: 4px;">
+                <input id="sb" data-toggle="topjui-switchbutton"style="width: 500px" checked="">
+            </div>
+        </div>
+
+        <div class="topjui-col-sm12" style="margin:20px 0;">
+            <label class="topjui-form-label">	定义按钮是否只读</label>
+            <div class="topjui-input-block" style="padding-top: 4px;">
+                <input id="sb2" data-toggle="topjui-switchbutton" readonly="true" style="width: 500px" data-options="onText:'Yes',offText:'No'">
+            </div>
+        </div>
+        <div class="topjui-col-sm12" style="margin:20px 0;">
+            <label class="topjui-form-label">左边文本值（反转后是右边）</label>
+            <div class="topjui-input-block" style="padding-top: 4px;">
+                <input data-toggle="topjui-switchbutton" onText="左边"style="width: 700px" checked="">
+            </div>
+        </div>
+        <div class="topjui-col-sm12" style="margin:20px 0;">
+            <label class="topjui-form-label">右边文本值（反转后是左边）</label>
+            <div class="topjui-input-block" style="padding-top: 4px;">
+                <input data-toggle="topjui-switchbutton"  style="width: 700px" data-options="onText:'Yes',offText:'右边'">
+            </div>
+        </div>
+
+    </div>
+</div>
+<script>
+    $(function () {
+        $('#sb').iSwitchbutton('disable');
+        $('#sb2').iSwitchbutton('enable');
+    })
+</script>
+</body>
+</html>

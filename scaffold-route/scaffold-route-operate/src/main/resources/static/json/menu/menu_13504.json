@@ -1,0 +1,10 @@
+[
+  {
+    "id": 1359,
+    "pid": 13502,
+    "state": "open",
+    "iconCls": "fa fa-file-text-o",
+    "text": "动态面板",
+    "url": "./html/layout/panel_refresh.html"
+  }
+]

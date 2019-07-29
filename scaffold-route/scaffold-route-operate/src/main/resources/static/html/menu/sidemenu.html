@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <!-- 避免IE使用兼容模式 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <meta name="renderer" content="webkit">
+    <!-- TopJUI框架样式 -->
+    <link type="text/css" href="../../topjui/themes/default/topjui.core.min.css" rel="stylesheet">
+    <link type="text/css" href="../../topjui/themes/default/topjui.blue.css" rel="stylesheet" id="dynamicTheme"/>
+    <!-- FontAwesome字体图标 -->
+    <link type="text/css" href="../../static/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet"/>
+
+    <!-- jQuery相关引用 -->
+    <script type="text/javascript" src="../../static/plugins/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="../../static/plugins/jquery/jquery.cookie.js"></script>
+    <!-- TopJUI框架配置 -->
+    <script type="text/javascript" src="../../static/public/js/topjui.config.js"></script>
+    <!-- TopJUI框架核心-->
+    <script type="text/javascript" src="../../topjui/js/topjui.core.min.js"></script>
+    <!-- TopJUI中文支持 -->
+    <script type="text/javascript" src="../../topjui/js/locale/topjui.lang.zh_CN.js"></script>
+
+</head>
+
+<body>
+<div class="topjui-container">
+    <div class="topjui-row">
+        <fieldset>
+            <legend>基础演示</legend>
+        </fieldset>
+        <div class="topjui-col-sm6">
+        <div style="margin:20px 0;">
+            <a href="javascript:;" data-toggle="topjui-linkbutton" data-options="onClick:toggle" >切换</a>
+        </div>
+        <div id="sm" data-toggle="topjui-sidemenu" data-options="data:data"></div>
+        </div>
+        <div class="topjui-col-sm6">
+            <div style="margin:20px 0;">
+                <a href="javascript:;" data-toggle="topjui-linkbutton" data-options="onClick:toggle2" >切换</a>
+            </div>
+            <div id="sm2" data-toggle="topjui-sidemenu" data-options="data:data2"></div>
+        </div>
+        <script type="text/javascript">
+            var data = [{
+                text: '项目1',
+                iconCls: 'fa fa-file',
+                state: 'open',
+                children: [{
+                    text: '备选方案1'
+                },{
+                    text: '备选方案2'
+                },{
+                    text: '备选方案3',
+                    children: [{
+                        text: '选择31'
+                    },{
+                        text: '选择32'
+                    }]
+                }]
+            },{
+                text: '项目2',
+                iconCls: 'fa fa-file',
+                children: [{
+                    text: '备选方案4'
+                },{
+                    text: '备选方案5'
+                },{
+                    text: '备选方案6'
+                }]
+            }];
+
+            var data2 = [{
+                text: '菜单',
+                iconCls: 'fa fa-file',
+                state: 'open',
+                children: [{
+                    text: '完成任务'
+                },{
+                    text: '未完成任务'
+                },{
+                    text: '完成查询',
+                    children: [{
+                        text: '我的任务'
+                    },{
+                        text: '全部任务'
+                    }]
+                }]
+            }];
+
+            function toggle(index){
+                var opts = $('#sm').iSidemenu('options');
+                $('#sm').iSidemenu(opts.collapsed ? 'expand' : 'collapse');
+                opts = $('#sm').iSidemenu('options');
+                $('#sm').iSidemenu('resize', {
+                    width: opts.collapsed ? 60 : 200
+                })
+            }
+            function toggle2(){
+                var opts = $('#sm2').iSidemenu('options');
+                $('#sm2').iSidemenu(opts.collapsed ? 'expand' : 'collapse');
+                opts = $('#sm2').iSidemenu('options');
+                $('#sm2').iSidemenu('resize', {
+                    width: opts.collapsed ? 60 : 200
+                })
+            }
+        </script>
+    </div>
+</div>
+</body>
+</html>

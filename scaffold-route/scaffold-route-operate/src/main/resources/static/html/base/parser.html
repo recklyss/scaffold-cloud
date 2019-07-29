@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <!-- 避免IE使用兼容模式 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <meta name="renderer" content="webkit">
+    <!-- TopJUI框架样式 -->
+    <link type="text/css" href="../../topjui/themes/default/topjui.core.min.css" rel="stylesheet">
+    <link type="text/css" href="../../topjui/themes/default/topjui.blue.css" rel="stylesheet" id="dynamicTheme"/>
+    <!-- FontAwesome字体图标 -->
+    <link type="text/css" href="../../static/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet"/>
+    <!-- layui框架样式 -->
+    <link type="text/css" href="../../static/plugins/layui/css/layui.css" rel="stylesheet"/>
+    <!-- jQuery相关引用 -->
+    <script type="text/javascript" src="../../static/plugins/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="../../static/plugins/jquery/jquery.cookie.js"></script>
+    <!-- TopJUI框架配置 -->
+    <script type="text/javascript" src="../../static/public/js/topjui.config.js"></script>
+    <!-- TopJUI框架核心-->
+    <script type="text/javascript" src="../../topjui/js/topjui.core.min.js"></script>
+    <!-- TopJUI中文支持 -->
+    <script type="text/javascript" src="../../topjui/js/locale/topjui.lang.zh_CN.js"></script>
+    <!-- layui框架js -->
+    <script type="text/javascript" src="../../static/plugins/layui/layui.js" charset="utf-8"></script>
+</head>
+<body>
+<div data-toggle="topjui-layout" data-options="fit:true">
+    <div class="topjui-container" style="padding-top: 60px">
+        <div class="topjui-row">
+            <div title="我的面板"  data-toggle="topjui-panel"  data-options="iconCls:'icon-save',iconCls: 'fa fa-window-maximize',tools:'#tt'" style="height: 600px">
+                <div id="component-area" style="min-height:50px;padding: 10px"></div>
+                <footer style="padding: 5px 10px">
+                    <a href="#" data-toggle="topjui-linkbutton" id="insertBtn"
+                       data-options="iconCls: 'fa fa-plus',onClick:insertComponent">插入组件(随机)</a>
+                    <a href="#" class="product" data-toggle="topjui-linkbutton"
+                       data-options="iconCls: 'fa fa-refresh ',onClick:parseComponent">解析组件</a>
+                </footer>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+ $(function () {
+   $.iMessager.alert('操作提示', '页面加载完成之后插入组件，需要调用方法解析组件！', 'messager-info');
+ })
+  function insertComponent() {
+    var compentId = ['tpl_textbox','tpl_passwordbox','tpl_combobox','tpl_datebox']; // 模板id
+    var id =compentId[Math.floor(Math.random()*4)] ;// 随机获取一个模板id
+
+    $("#component-area").append($('#'+id).html());// html中插入组件
+  }
+  function parseComponent() {
+    $.parser.parse('#component-area');// 解析指定节点。此处选择器需要是待解析组件的父节点，
+  }
+  $.parser.onComplete = function () {
+
+    //解析完成要执行的操作
+  }
+</script>
+<template id="tpl_textbox">
+    <div class="topjui-row">
+        <div class="topjui-col-sm12">
+            <label class="topjui-form-label">文本框</label>
+            <div class="topjui-input-block product">
+                <input type="text" name="name" data-toggle="topjui-textbox" data-options="required:true,prompt:'这是一个文本框'">
+            </div>
+        </div>
+    </div>
+</template>
+<template id="tpl_passwordbox">
+    <div class="topjui-row">
+        <div class="topjui-col-sm12">
+            <label class="topjui-form-label">密码框</label>
+            <div class="topjui-input-block">
+                <input type="text" name="passwordbox1" data-toggle="topjui-passwordbox" data-options="prompt:'这是一个密码框组件'">
+            </div>
+        </div>
+    </div>
+</template>
+<template id="tpl_combobox">
+    <div class="topjui-row">
+        <div class="topjui-col-sm12">
+            <label class="topjui-form-label">下拉列表框</label>
+            <div class="topjui-input-block">
+                <input type="text" name="nation"
+                       data-toggle="topjui-combobox"
+                       data-options="required:true,
+                                       prompt:'必填',
+                                       panelHeight:250,
+                                       valueField:'id',
+                                       url:_ctx + '/json/combobox/nation.json'">
+            </div>
+        </div>
+    </div>
+</template>
+<template id="tpl_datebox">
+    <div class="topjui-row">
+        <div class="topjui-col-sm12">
+            <label class="topjui-form-label">日期选择</label>
+            <div class="topjui-input-block">
+                <input type="text" name="birthday" data-toggle="topjui-datebox" data-options="prompt:'这是一个日期选择框组件'">
+            </div>
+        </div>
+    </div>
+
+</template>
+
+</body>
+
+</html>

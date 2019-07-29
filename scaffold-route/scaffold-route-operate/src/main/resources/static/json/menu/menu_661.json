@@ -1,0 +1,34 @@
+[
+  {
+    "id": 1347,
+    "pid": 660,
+    "state": "open",
+    "iconCls": "fa fa-file-text-o",
+    "text": "line（折线图）",
+    "url": "http://www.topjui.com/document/echarts/line.html?source=menu"
+  },
+  {
+    "id": 1346,
+    "pid": 660,
+    "state": "open",
+    "iconCls": "fa fa-file-text-o",
+    "text": "bar（柱状图）",
+    "url": "http://www.topjui.com/document/echarts/bar.html?source=menu"
+  },
+  {
+    "id": 1348,
+    "pid": 660,
+    "state": "open",
+    "iconCls": "fa fa-file-text-o",
+    "text": "pie（饼图）",
+    "url": "http://www.topjui.com/document/echarts/pie.html?source=menu"
+  },
+  {
+    "id": 1347,
+    "pid": 660,
+    "state": "open",
+    "iconCls": "fa fa-file-text-o",
+    "text": "radar（雷达图）",
+    "url": "http://www.topjui.com/document/echarts/radar.html?source=menu"
+  }
+]

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <!-- 避免IE使用兼容模式 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <meta name="renderer" content="webkit">
+    <!-- TopJUI框架样式 -->
+    <link type="text/css" href="../../topjui/themes/default/topjui.core.min.css" rel="stylesheet">
+    <link type="text/css" href="../../topjui/themes/default/topjui.blue.css" rel="stylesheet" id="dynamicTheme"/>
+    <!-- FontAwesome字体图标 -->
+    <link type="text/css" href="../../static/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet"/>
+    <!-- layui框架样式 -->
+    <link type="text/css" href="../../static/plugins/layui/css/layui.css" rel="stylesheet"/>
+    <!-- jQuery相关引用 -->
+    <script type="text/javascript" src="../../static/plugins/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="../../static/plugins/jquery/jquery.cookie.js"></script>
+    <!-- TopJUI框架配置 -->
+    <script type="text/javascript" src="../../static/public/js/topjui.config.js"></script>
+    <!-- TopJUI框架核心-->
+    <script type="text/javascript" src="../../topjui/js/topjui.core.min.js"></script>
+    <!-- TopJUI中文支持 -->
+    <script type="text/javascript" src="../../topjui/js/locale/topjui.lang.zh_CN.js"></script>
+    <!-- layui框架js -->
+    <script type="text/javascript" src="../../static/plugins/layui/layui.js" charset="utf-8"></script>
+
+</head>
+
+<body>
+<div class="topjui-container" style="margin-top: 20px;">
+    <div class="topjui-row">
+        <div class="topjui-col-sm12">
+        <div id="tt" data-toggle="topjui-tabs" data-options="" style="width:500px;height:250px;">
+            <div title="选项卡1" data-options="iconCls:'fa fa-navicon'," style="padding:20px;">
+                <p>内容1</p>
+            </div>
+            <div  title="选项卡2" data-options="iconCls:'fa fa-map-o',closable:true" style="overflow:auto;padding:20px;">
+                <p>内容2</p>
+            </div>
+            <div title="选项卡3" data-options="iconCls:'fa fa-book',closable:true" style="padding:20px;">
+                <p>内容3</p>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>
+
+</table>
+</body>
+<script>
+    $(function () {
+        $('#tt').iTabs('scroll',-100);
+    })
+</script>
+</html>

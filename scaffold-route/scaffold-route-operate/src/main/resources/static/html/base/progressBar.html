@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <!-- 避免IE使用兼容模式 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <meta name="renderer" content="webkit">
+    <!-- TopJUI框架样式 -->
+    <link type="text/css" href="../../topjui/themes/default/topjui.core.min.css" rel="stylesheet">
+    <link type="text/css" href="../../topjui/themes/default/topjui.blue.css" rel="stylesheet" id="dynamicTheme"/>
+    <!-- FontAwesome字体图标 -->
+    <link type="text/css" href="../../static/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet"/>
+    <!-- layui框架样式 -->
+    <link type="text/css" href="../../static/plugins/layui/css/layui.css" rel="stylesheet"/>
+    <!-- jQuery相关引用 -->
+    <script type="text/javascript" src="../../static/plugins/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="../../static/plugins/jquery/jquery.cookie.js"></script>
+    <!-- TopJUI框架配置 -->
+    <script type="text/javascript" src="../../static/public/js/topjui.config.js"></script>
+    <!-- TopJUI框架核心-->
+    <script type="text/javascript" src="../../topjui/js/topjui.core.min.js"></script>
+    <!-- TopJUI中文支持 -->
+    <script type="text/javascript" src="../../topjui/js/locale/topjui.lang.zh_CN.js"></script>
+    <!-- layui框架js -->
+    <script type="text/javascript" src="../../static/plugins/layui/layui.js" charset="utf-8"></script>
+</head>
+
+<body>
+<div class="topjui-container">
+    <div class="row">
+        <fieldset>
+            <legend>宽度:50%</legend>
+        </fieldset>
+        <div  data-toggle="topjui-progressbar" data-options="value:60" style="width:50%;"></div>
+    </div>
+    <div class="row">
+        <fieldset>
+            <legend>宽度:80%</legend>
+        </fieldset>
+        <div  data-toggle="topjui-progressbar" data-options="value:40" style="width:80%;"></div>
+    </div>
+    <div class="row">
+        <fieldset>
+            <legend>点击按钮展示进度信息</legend>
+        </fieldset>
+        <div class="layui-col-sm1 ">
+            <a id="btn" href="#" data-toggle="topjui-linkbutton" data-options="iconCls:'fa fa-hourglass-start',onClick:start">开始</a>
+        </div>
+        <div class="layui-col-sm8">
+            <div id="p" data-toggle="topjui-progressbar" data-options="value:0" style="width:100%;"></div>
+        </div>
+    </div>
+</div>
+<script>
+  function start(){
+    var value = $('#p').iProgressbar('getValue');
+    if (value < 100){
+      value += Math.floor(Math.random() * 10);
+      $('#p').iProgressbar('setValue', value);
+      setTimeout(arguments.callee, 200); // 继续执行start()
+    }
+  };
+</script>
+</body>
+<script>
+
+</script>
+</html>

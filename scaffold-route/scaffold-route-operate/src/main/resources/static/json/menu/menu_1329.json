@@ -1,0 +1,50 @@
+[
+  {
+    "id": 132901,
+    "pid": 1329,
+    "state": "closed",
+    "iconCls": "fa fa-folder",
+    "text": "菜单按钮",
+    "url": ""
+  },
+  {
+    "id": 1350,
+    "pid": 1329,
+    "state": "open",
+    "iconCls": "fa fa-file-text-o",
+    "text": "菜单",
+    "url": "./html/menu/menu.html"
+  },
+  {
+    "id": 1349,
+    "pid": 1329,
+    "state": "open",
+    "iconCls": "fa fa-file-text-o",
+    "text": "侧滑菜单",
+    "url": "./html/menu/sidemenu.html"
+  },
+  {
+    "id": 1351,
+    "pid": 1329,
+    "state": "open",
+    "iconCls": "fa fa-file-text-o",
+    "text": "按钮",
+    "url": "./html/menu/linkButton.html"
+  },
+  {
+    "id": 1352,
+    "pid": 1329,
+    "state": "open",
+    "iconCls": "fa fa-file-text-o",
+    "text": "分割按钮",
+    "url": "./html/menu/splitButton.html"
+  },
+  {
+    "id": 1341,
+    "pid": 1329,
+    "state": "open",
+    "iconCls": "fa fa-file-text-o",
+    "text": "开关按钮",
+    "url": "./html/menu/switchbutton.html"
+  }
+]

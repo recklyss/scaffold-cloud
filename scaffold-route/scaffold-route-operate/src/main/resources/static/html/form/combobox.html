@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <!-- 避免IE使用兼容模式 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <meta name="renderer" content="webkit">
+    <!-- TopJUI框架样式 -->
+    <link type="text/css" href="../../topjui/themes/default/topjui.core.min.css" rel="stylesheet">
+    <link type="text/css" href="../../topjui/themes/default/topjui.blue.css" rel="stylesheet" id="dynamicTheme"/>
+    <!-- FontAwesome字体图标 -->
+    <link type="text/css" href="../../static/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet"/>
+    <!-- layui框架样式 -->
+    <link type="text/css" href="../../static/plugins/layui/css/layui.css" rel="stylesheet"/>
+    <!-- jQuery相关引用 -->
+    <script type="text/javascript" src="../../static/plugins/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="../../static/plugins/jquery/jquery.cookie.js"></script>
+    <!-- TopJUI框架配置 -->
+    <script type="text/javascript" src="../../static/public/js/topjui.config.js"></script>
+    <!-- TopJUI框架核心-->
+    <script type="text/javascript" src="../../topjui/js/topjui.core.min.js"></script>
+    <!-- TopJUI中文支持 -->
+    <script type="text/javascript" src="../../topjui/js/locale/topjui.lang.zh_CN.js"></script>
+    <!-- layui框架js -->
+    <script type="text/javascript" src="../../static/plugins/layui/layui.js" charset="utf-8"></script>
+</head>
+
+<body>
+<form data-toggle="topjui-form">
+    <div class="topjui-container">
+        <fieldset>
+            <legend>调用本地数据</legend>
+        </fieldset>
+
+        <div class="topjui-row">
+            <div class="topjui-col-sm6">
+                <label class="topjui-form-label">性别</label>
+                <div class="topjui-input-block">
+                    <input type="text" name="sex"
+                           data-toggle="topjui-combobox"
+                           data-options="data:[{value:1,text:'男'},{value:2,text:'女'}]">
+                </div>
+            </div>
+            <div class="topjui-col-sm6">
+                <label class="topjui-form-label">学历（必填）</label>
+                <div class="topjui-input-block">
+                    <input type="text" name="degree"
+                           data-toggle="topjui-combobox"
+                           data-options="required:true,
+                       valueField:'id',
+                       textField:'text',
+                       data:[{id:1,text:'大专'},{id:2,text:'本科'},{id:3,text:'研究生'},{id:4,text:'博士生'}]">
+                </div>
+            </div>
+        </div>
+
+        <fieldset>
+            <legend>调用远程数据</legend>
+        </fieldset>
+        <div class="topjui-row">
+            <div class="topjui-col-sm6">
+                <label class="topjui-form-label">籍贯</label>
+                <div class="topjui-input-block">
+                    <input type="text" name="nativePlace"
+                           data-toggle="topjui-combobox"
+                           data-options="panelHeight:250,
+                       valueField:'id',
+                       url:_ctx + '/json/combobox/nativePlace.json'">
+                </div>
+            </div>
+            <div class="topjui-col-sm6">
+                <label class="topjui-form-label">民族（必填）</label>
+                <div class="topjui-input-block">
+                    <input type="text" name="nation"
+                           data-toggle="topjui-combobox"
+                           data-options="required:true,
+                       prompt:'必填',
+                       panelHeight:250,
+                       valueField:'id',
+                       url:_ctx + '/json/combobox/nation.json'">
+                </div>
+            </div>
+        </div>
+
+        <fieldset>
+            <legend>多级联动下拉框（主动级联，上级触发下级）</legend>
+        </fieldset>
+
+        <div class="topjui-row">
+            <div class="topjui-col-sm6">
+                <label class="topjui-form-label">国家</label>
+                <div class="topjui-input-block">
+                    <input type="text" name="country"
+                           data-toggle="topjui-combobox"
+                           data-options="panelHeight:250,
+                       url:_ctx + '/json/combobox/country.json',
+                       valueField: 'id',
+                       childCombobox:{
+                           id:'province',
+                           url:remoteHost+'/system/codeItem/getListByPid?pid={parentValue}'
+                       }">
+                </div>
+            </div>
+            <div class="topjui-col-sm6">
+                <label class="topjui-form-label">省份</label>
+                <div class="topjui-input-block">
+                    <input type="text" name="province"
+                           data-toggle="topjui-combobox"
+                           data-options="id:'province',
+                       panelHeight:250,
+                       valueField: 'id',
+                       childCombobox:{
+                           id:'city',
+                           url:remoteHost+'/system/codeItem/getListByPid?pid={parentValue}'
+                       }">
+                </div>
+            </div>
+        </div>
+
+        <div class="topjui-row">
+            <div class="topjui-col-sm6">
+                <label class="topjui-form-label">城市</label>
+                <div class="topjui-input-block">
+                    <input type="text" name="city"
+                           data-toggle="topjui-combobox"
+                           data-options="id:'city',
+                       panelHeight:250,
+                       valueField: 'id',
+                       childCombobox:{
+                           id:'district',
+                           url:remoteHost+'/system/codeItem/getListByPid?pid={parentValue}'
+                       }">
+                </div>
+            </div>
+            <div class="topjui-col-sm6">
+                <label class="topjui-form-label">区县</label>
+                <div class="topjui-input-block">
+                    <input type="text" name="district"
+                           data-toggle="topjui-combobox"
+                           data-options="id:'district',
+                       panelHeight:250,
+                       valueField: 'id'">
+                </div>
+            </div>
+        </div>
+
+        <fieldset>
+            <legend>多级联动下拉框（被动级联，下级获取上级）</legend>
+        </fieldset>
+
+        <div class="topjui-row">
+            <div class="topjui-col-sm6">
+                <label class="topjui-form-label">国家</label>
+                <div class="topjui-input-block">
+                    <input type="text" name="country2"
+                           data-toggle="topjui-combobox"
+                           data-options="panelHeight:250,
+                       valueField: 'id',
+                       url:_ctx + '/json/combobox/country.json'">
+                </div>
+            </div>
+            <div class="topjui-col-sm6">
+                <label class="topjui-form-label">省份</label>
+                <div class="topjui-input-block">
+                    <input type="text" name="province2"
+                           data-toggle="topjui-combobox"
+                           data-options="id:'province2',
+                       panelHeight:250,
+                       valueField: 'id',
+                       url:remoteHost+'/system/codeItem/getListByPid?pid={country2}'">
+                </div>
+            </div>
+        </div>
+
+        <div class="topjui-row">
+            <div class="topjui-col-sm6">
+                <label class="topjui-form-label">城市</label>
+                <div class="topjui-input-block">
+                    <input type="text"
+                           name="city2"
+                           data-toggle="topjui-combobox"
+                           data-options="id:'city2',
+                       panelHeight:250,
+                       valueField: 'id',
+                       url:remoteHost+'/system/codeItem/getListByPid?pid={province2}'">
+                </div>
+            </div>
+            <div class="topjui-col-sm6">
+                <label class="topjui-form-label">区县</label>
+                <div class="topjui-input-block">
+                    <input type="text"
+                           name="district2"
+                           data-toggle="topjui-combobox"
+                           data-options="id:'district2',
+                       panelHeight:250,
+                       valueField: 'id',
+                       url:remoteHost+'/system/codeItem/getListByPid?pid={city2}'">
+                </div>
+
+            </div>
+        </div>
+    </div>
+</form>
+</body>
+</html>

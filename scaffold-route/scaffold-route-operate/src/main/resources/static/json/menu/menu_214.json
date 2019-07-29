@@ -1,0 +1,34 @@
+[
+  {
+    "id": 1346,
+    "pid": 214,
+    "state": "open",
+    "iconCls": "fa fa-file-text-o",
+    "text": "panel（面板）",
+    "url": "http://www.topjui.com/document/layout/panel.html?source=menu"
+  },
+  {
+    "id": 1348,
+    "pid": 214,
+    "state": "open",
+    "iconCls": "fa fa-file-text-o",
+    "text": "tabs（选项卡）",
+    "url": "http://www.topjui.com/document/layout/tabs.html?source=menu"
+  },
+  {
+    "id": 1347,
+    "pid": 214,
+    "state": "open",
+    "iconCls": "fa fa-file-text-o",
+    "text": "accordion（手风琴）",
+    "url": "http://www.topjui.com/document/layout/accordion.html?source=menu"
+  },
+  {
+    "id": 1347,
+    "pid": 214,
+    "state": "open",
+    "iconCls": "fa fa-file-text-o",
+    "text": "layout（布局）",
+    "url": "http://www.topjui.com/document/layout/layout.html?source=menu"
+  }
+]

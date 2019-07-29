@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <!-- 避免IE使用兼容模式 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <meta name="renderer" content="webkit">
+    <!-- TopJUI框架样式 -->
+    <link type="text/css" href="../../topjui/themes/default/topjui.core.min.css" rel="stylesheet">
+    <link type="text/css" href="../../topjui/themes/default/topjui.blue.css" rel="stylesheet" id="dynamicTheme"/>
+    <!-- FontAwesome字体图标 -->
+    <link type="text/css" href="../../static/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet"/>
+    <!-- layui框架样式 -->
+    <link type="text/css" href="../../static/plugins/layui/css/layui.css" rel="stylesheet"/>
+    <!-- jQuery相关引用 -->
+    <script type="text/javascript" src="../../static/plugins/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="../../static/plugins/jquery/jquery.cookie.js"></script>
+    <!-- TopJUI框架配置 -->
+    <script type="text/javascript" src="../../static/public/js/topjui.config.js"></script>
+    <!-- TopJUI框架核心-->
+    <script type="text/javascript" src="../../topjui/js/topjui.core.min.js"></script>
+    <!-- TopJUI中文支持 -->
+    <script type="text/javascript" src="../../topjui/js/locale/topjui.lang.zh_CN.js"></script>
+    <!-- layui框架js -->
+    <script type="text/javascript" src="../../static/plugins/layui/layui.js" charset="utf-8"></script>
+</head>
+
+<body>
+<div data-toggle="topjui-panel" title="" data-options="fit:true,iconCls:'icon-ok',footer:'#footer'">
+    <div class="topjui-container">
+        <fieldset>
+            <legend>基础演示</legend>
+        </fieldset>
+        <div class="topjui-row">
+            <div class="topjui-col-sm6">
+                <label class="topjui-form-label">普通文本框</label>
+                <div class="topjui-input-block">
+                    <input type="text" name="userNameId" data-toggle="topjui-textbox">
+                </div>
+            </div>
+            <div class="topjui-col-sm6">
+                <label class="topjui-form-label">必填文本框</label>
+                <div class="topjui-input-block">
+                    <input type="text" name="userName" data-toggle="topjui-textbox"
+                           data-options="required:true, value:'这是必填的输入框'">
+                </div>
+            </div>
+        </div>
+        <div class="topjui-row">
+            <div class="topjui-col-sm6">
+                <label class="topjui-form-label">URL地址</label>
+                <div class="topjui-input-block">
+                    <input type="text" name="url" value="http://www.topjui.com" data-toggle="topjui-textbox"
+                           data-options="required:true,validType:'url'">
+                </div>
+            </div>
+            <div class="topjui-col-sm6">
+                <label class="topjui-form-label">电子邮箱</label>
+                <div class="topjui-input-block">
+                    <input type="text" name="email" value="service@ewsd.cn" data-toggle="topjui-textbox"
+                           data-options="required:true,validType:['email','length[0,20]']">
+                </div>
+            </div>
+        </div>
+        <div class="topjui-row">
+            <div class="topjui-col-sm6">
+                <label class="topjui-form-label">用户名</label>
+                <div class="topjui-input-block">
+                    <input type="text" name="userNameId2" data-toggle="topjui-textbox"
+                           data-options="prompt:'用户名是必填的信息'">
+                </div>
+            </div>
+            <div class="topjui-col-sm6">
+                <label class="topjui-form-label">姓名</label>
+                <div class="topjui-input-block">
+                    <input type="text" name="userName2" data-toggle="topjui-textbox"
+                           data-options="prompt:'姓名是必填的信息'">
+                </div>
+            </div>
+        </div>
+        <div class="topjui-row">
+            <div class="topjui-col-sm12">
+                <label class="topjui-form-label">文章标题</label>
+                <div class="topjui-input-block">
+                    <input type="text" name="title" data-toggle="topjui-textbox"
+                           data-options="prompt:'这是指定了宽为450px的必填文本输入框'">
+                </div>
+            </div>
+        </div>
+        <fieldset>
+            <legend>输入框事件监听演示</legend>
+        </fieldset>
+        <div class="topjui-row">
+            <div class="topjui-col-sm12">
+                <label class="topjui-form-label">姓名(单选)</label>
+                <div class="topjui-input-block">
+                    <input type="text" name="userName" value=""
+                           data-toggle="topjui-textbox"
+                           data-options="id:'userName',prompt:'点击事件监听',readonly:true">
+                </div>
+            </div>
+        </div>
+        <div class="topjui-row">
+            <div class="topjui-col-sm12">
+                <label class="topjui-form-label">姓名(多选)</label>
+                <div class="topjui-input-block">
+                    <input type="text" name="userName2" value=""
+                           data-toggle="topjui-textbox"
+                           data-options="id:'userName2',prompt:'点击事件监听',readonly:true">
+                </div>
+            </div>
+        </div>
+        <div class="topjui-row">
+            <div class="topjui-col-sm6">
+                <label class="topjui-form-label">小写转大写</label>
+                <div class="topjui-input-block">
+                    <input type="text" name="enlighName" value=""
+                           data-toggle="topjui-textbox"
+                           data-options="id:'uppercase',prompt:'键盘事件监听'">
+                </div>
+            </div>
+            <div class="topjui-col-sm6">
+                <label class="topjui-form-label">大写转小写</label>
+                <div class="topjui-input-block">
+                    <input type="text" name="enlighName" value=""
+                           data-toggle="topjui-textbox"
+                           data-options="id:'lowercase',prompt:'键盘事件监听'">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--点击事件JS-->
+<script>
+    $(function () {
+        // 1 弹框的基本属性配置
+        var opts = {
+            id: 'userDialog',// 唯一标识id
+            title: '自定义打开一个窗口',// 标题
+            closed: false, // 关闭状态
+            height: 450, // 高度
+            width: 700, // 宽度
+            href: '', // 加载页面元素的地址
+            buttons: [
+                {text: '关闭', iconCls: 'fa fa-close', btnCls: 'topjui-btn-red', handler: closeMyDialog}//调用下面closeMyDialog方法
+            ]
+        };
+        var $userDialog = $('<div></div>');// 创建元素<div>
+
+        // 2.1 给id=userName 的textbox绑定事件 打开单选弹框
+        $('#userName').textbox('textbox').bind('click', function (e) {
+            opts.href = _ctx + '/html/complex/dialog_user.html';
+            $userDialog.iDialog(opts)
+        });
+
+        // 2.2 给id=userName2 的textbox绑定事件 打开多选弹框
+        $('#userName2').textbox('textbox').bind('click', function (e) {
+            opts.href = _ctx + '/html/complex/dialog_user2.html';
+            $userDialog.iDialog(opts)
+        });
+    })
+
+    /**
+     * @description   关闭面板方法
+     */
+    function closeMyDialog() {
+        $('#userDialog').iDialog('destroy');
+    }
+
+</script>
+<!--键盘事件JS-->
+<script>
+    $(function () {
+        $('#uppercase').textbox('textbox').bind('keyup', function (e) {
+            var val = $('#uppercase').iTextbox('getText');
+            $('#uppercase').iTextbox('setText',val.toUpperCase())
+        });
+        $('#lowercase').textbox('textbox').bind('keyup', function (e) {
+            var val = $('#lowercase').iTextbox('getText');
+            $('#lowercase').iTextbox('setText',val.toLowerCase())
+        });
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <!-- 避免IE使用兼容模式 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <meta name="renderer" content="webkit">
+    <!-- TopJUI框架样式 -->
+    <link type="text/css" href="../../topjui/themes/default/topjui.core.min.css" rel="stylesheet">
+    <link type="text/css" href="../../topjui/themes/default/topjui.blue.css" rel="stylesheet" id="dynamicTheme"/>
+    <!-- FontAwesome字体图标 -->
+    <link type="text/css" href="../../static/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet"/>
+    <!-- layui框架样式 -->
+    <link type="text/css" href="../../static/plugins/layui/css/layui.css" rel="stylesheet"/>
+    <!-- jQuery相关引用 -->
+    <script type="text/javascript" src="../../static/plugins/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="../../static/plugins/jquery/jquery.cookie.js"></script>
+    <!-- TopJUI框架配置 -->
+    <script type="text/javascript" src="../../static/public/js/topjui.config.js"></script>
+    <!-- TopJUI框架核心-->
+    <script type="text/javascript" src="../../topjui/js/topjui.core.min.js"></script>
+    <!-- TopJUI中文支持 -->
+    <script type="text/javascript" src="../../topjui/js/locale/topjui.lang.zh_CN.js"></script>
+    <!-- layui框架js -->
+    <script type="text/javascript" src="../../static/plugins/layui/layui.js" charset="utf-8"></script>
+</head>
+
+<body>
+<table id="editorEventGrid"></table>
+
+<!-- 表格工具栏 -->
+<div id="editorEventGrid-toolbar" data-options="grid:{
+           type:'edatagrid',
+           id:'editorEventGrid'
+       }" class="topjui-toolbar">
+    <a href="javascript:void(0)"
+       data-toggle="topjui-menubutton"
+       data-options="method:'edatagrid',
+       extend: '#editorEventGrid-toolbar',
+       iconCls:'fa fa-plus',
+       btnCls:'topjui-btn-green',
+       type:'addRow'">新增</a>
+    <a href="javascript:void(0)"
+       data-toggle="topjui-menubutton"
+       data-options="method:'edatagrid',
+       extend: '#editorEventGrid-toolbar',
+       iconCls:'fa fa-save',
+       btnCls:'topjui-btn-brown',
+       type:'saveRow'">保存</a>
+    <a href="javascript:void(0)"
+       data-toggle="topjui-menubutton"
+       data-options="method:'edatagrid',
+       extend: '#editorEventGrid-toolbar',
+       iconCls:'fa fa-remove',
+       btnCls:'topjui-btn-black',
+       type:'cancelRow'">取消</a>
+    <a href="javascript:void(0)"
+       data-toggle="topjui-menubutton"
+       data-options="method:'doAjax',
+       extend: '#editorEventGrid-toolbar',
+       iconCls:'fa fa-remove',
+       btnCls:'topjui-btn-blue',
+       url:_ctx + '/json/response/delete.json'">删除</a>
+    <a href="javascript:void(0)"
+       data-toggle="topjui-menubutton"
+       data-options="method:'filter',
+       extend: '#editorEventGrid-toolbar',
+       btnCls:'topjui-btn-black'">过滤</a>
+    <a href="javascript:void(0)"
+       data-toggle="topjui-menubutton"
+       data-options="method:'search',
+       extend: '#editorEventGrid-toolbar',
+       btnCls:'topjui-btn-blue'">查询</a>
+</div>
+
+<script type="text/javascript">
+
+    var userData = [
+        {"uid": 1, "username": "张三", "age": 20, "sex": 0, "cell": "13076847475", "birthday": "1990-01-01"},
+        {"uid": 2, "username": "李四", "age": 30, "sex": 1, "cell": "15876847478", "birthday": "1990-02-02"},
+        {"uid": 3, "username": "王五", "age": 40, "sex": 0, "cell": "18976847479", "birthday": "1990-03-03"}
+    ]
+
+    $(function () {
+
+        var rowEditingIndex = 0;
+        $("#editorEventGrid").iEdatagrid({
+            singleSelect: true,
+            striped: true,
+            nowrap: true,
+            fit: true,
+            fitColumns: true,
+            loadMsg: "加载数据中...",
+            pagination: true,
+            pageNumber: 1,
+            pageSize: 30,
+            pageList: [30, 40, 50],
+            toolbar: "#editorEventGrid-toolbar",
+            saveUrl: '',
+            columns: [[
+                {
+                    field: 'uid', title: '姓名', width: 80,
+                    formatter: function (value, row, index) {
+                        return row.username
+                    },
+                    editor: {
+                        type: 'combobox',
+                        options: {
+                            height: 30,
+                            required: true,
+                            textField: 'name',
+                            valueField: 'uid',
+                            selectOnNavigation: false,
+                            data: [
+                                {name: "张三", uid: 1},
+                                {name: '李四', uid: 2},
+                                {name: '王五', uid: 3},
+                                {name: '王老五', uid: 4}
+                            ],
+                            onChange: function (n, o) {
+                                if (n) {
+                                    //正常情况下，应该到后台获取数据
+                                    var obj = getObj(n);
+                                    if (obj) {
+                                        setGridFieldsValue("editorEventGrid", rowEditingIndex, ["age", "sex", "cell", "birthday"], obj, "address");
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    field: 'age',
+                    title: '年龄',
+                    width: 40,
+                    align: 'right',
+                    editor: {type: 'numberbox', options: {height: 30}}
+                },
+                {
+                    field: 'sex', title: '性别', width: 40,
+                    formatter: function (value, row, index) {
+                        return row.sexName
+                    },
+                    editor: {
+                        type: 'combobox', options: {
+                            height: 30,
+                            textField: 'text',
+                            valueField: 'value',
+                            data: [
+                                {text: "男", value: 0},
+                                {text: "女", value: 1}
+                            ]
+                        }
+                    }
+                },
+                {
+                    field: 'cell', title: '手机', width: 80, align: 'center',
+                    editor: {type: 'numberbox', options: {height: 30, required: true}}
+                },
+                {
+                    field: 'address', title: '地址', width: 150,
+                    editor: {type: "textbox", options: {height: 30, required: true}}
+                },
+                {
+                    field: 'birthday',
+                    title: '生日',
+                    width: 60,
+                    align: 'center',
+                    editor: {type: 'datebox', options: {height: 30}}
+                }
+            ]],
+            onAdd: function (index, row) {
+                rowEditingIndex = index;
+                //添加行时，让第一个编辑器获取焦点
+                $(".datagrid-row-editing .textbox-text")[0].focus();
+                //为编辑器添加键盘事件
+                var editors = $("#editorEventGrid").edatagrid("getEditors", index);
+                for (var i = 0; i < editors.length; i++) {
+                    var editor = editors[i];
+                    $(editor.target.siblings("span").children("input")).on("keydown", function (e) {
+                        var code = e.keyCode || e.which;
+                        if (code == 13) {//13是回车键
+                            addRow();
+                        } else if (code == 38) {//38是方向↑键
+                            cancelRow();
+                        }
+                    });
+                }
+            },
+            onEndEdit: endEditing
+        })
+
+    });
+
+    function addRow() {
+        $("#editorEventGrid").edatagrid("addRow");
+    }
+
+    function cancelRow() {
+        $("#editorEventGrid").edatagrid("cancelRow");
+    }
+
+    function endEditing(index, row) {
+        var ed = $("#editorEventGrid").edatagrid("getEditor", {index: index, field: 'uid'});
+        var ed2 = $("#editorEventGrid").edatagrid("getEditor", {index: index, field: 'sex'});
+        row.username = $(ed.target).combobox("getText");
+        row.sexName = $(ed2.target).combobox("getText");
+    }
+
+    function setGridFieldsValue(gridID, rowIndex, fieldArr, rowData, focusField) {
+        //gridID 是表格的ID，rowIndex是当前编辑行的索引，fieldArr是要插入值的字段数组，rowData是要插入的数据（json对象），focusField是插入数据后，焦点在哪个字段上
+        var editors = $("#" + gridID).datagrid("getEditors", rowIndex),
+                editorLength = editors.length;
+        for (var j = 0; j < fieldArr.length; j++) {
+            for (var i = 0; i < editorLength; i++) {
+                var ed = editors[i];
+                if (ed.field == fieldArr[j]) {
+                    $(ed.target)[ed.type]("setValue", rowData[fieldArr[j]]);
+                } else if (ed.field == focusField) {
+                    $(ed.target.siblings("span").children("input")).focus();
+                }
+            }
+        }
+    }
+
+    function getObj(uid) {
+        for (var i = 0; i < userData.length; i++) {
+            if (userData[i].uid == uid) {
+                return userData[i]
+            }
+        }
+    }
+</script>
+</body>
+</html>

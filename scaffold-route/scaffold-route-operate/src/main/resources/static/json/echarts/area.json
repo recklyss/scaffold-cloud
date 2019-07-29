@@ -1,0 +1,21 @@
+{
+  "xAxis": {
+    "type": "category",
+    "boundaryGap": false,
+   "data": ["一", "二", "三", "四", "五", "六", "七"]
+  },
+  "yAxis": {
+    "type": "value",
+    "axisLabel": {
+      "formatter": "1°C"
+    }
+  },
+  "toolbox":{
+  "borderColor": "red"
+  },
+  "series": [{
+    "data": [820, 932, 901, 934, 1290, 1330, 1320],
+    "type": "line",
+    "areaStyle": {}
+  }]
+}

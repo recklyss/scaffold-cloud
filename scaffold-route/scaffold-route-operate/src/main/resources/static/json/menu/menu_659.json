@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1346,
+    "pid": 659,
+    "state": "open",
+    "iconCls": "fa fa-file-text-o",
+    "text": "window（窗口）",
+    "url": "http://www.topjui.com/document/window/window.html?source=menu"
+  },
+  {
+    "id": 1348,
+    "pid": 659,
+    "state": "open",
+    "iconCls": "fa fa-file-text-o",
+    "text": "dialog（对话框窗口）",
+    "url": "http://www.topjui.com/document/window/dialog.html?source=menu"
+  },
+  {
+    "id": 1347,
+    "pid": 659,
+    "state": "open",
+    "iconCls": "fa fa-file-text-o",
+    "text": "messager（消息窗口）",
+    "url": "http://www.topjui.com/document/window/messager.html?source=menu"
+  }
+]
