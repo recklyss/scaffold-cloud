@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.cms.scaffold.sys.sys.dao.SysMenuMapper">
-  <resultMap id="BaseResultMap" type="com.cms.scaffold.sys.sys.domain.SysMenu">
+<mapper namespace="com.cms.scaffold.micro.sys.dao.SysMenuMapper">
+  <resultMap id="BaseResultMap" type="com.cms.scaffold.micro.sys.domain.SysMenu">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="i18n_nid" jdbcType="VARCHAR" property="i18nNid" />
@@ -25,10 +25,6 @@
   </sql>
   <sql id="sql_where">
     <where>
-      <if test="null != advanceFilterStr and ''!= advanceFilterStr">
-        ${advanceFilterStr}
-      </if>
-      <if test="null == advanceFilterStr or ''== advanceFilterStr">
           <if test="null != id and '' != id or 0 ==id">and id = #{id}</if>
           <if test="null != name and '' != name">and name = #{name}</if>
           <if test="null != i18nNid and '' != i18nNid">and i18n_nid = #{i18nNid}</if>
@@ -46,7 +42,6 @@
           <if test="null != updateTime and '' != updateTime">and update_time = #{updateTime}</if>
           <if test="null != updateUser and '' != updateUser">and update_user = #{updateUser}</if>
           <if test="null != remark and '' != remark">and remark = #{remark}</if>
-      </if>
 	</where>
   </sql>
   <sql id="sql_map_where">

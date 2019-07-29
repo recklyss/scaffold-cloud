@@ -10,7 +10,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
  */
 @SpringBootApplication(scanBasePackages = {"com.cms.scaffold.micro"})
 @EnableDiscoveryClient
-@MapperScan(basePackages = "com.cms.scaffold.**.dao")
+@MapperScan(basePackages = "com.cms.scaffold.micro.**.dao")
 public class SysServiceApplication {
     public static void main(String[] args) {
         System.setProperty("projectName", "scaffold-sys-service");
