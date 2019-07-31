@@ -19,10 +19,6 @@
     <dependencies>
         <dependency>
             <groupId>com.cms.scaffold</groupId>
-            <artifactId>scaffold-business-sys-api</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.cms.scaffold</groupId>
             <artifactId>scaffold-feign-sys</artifactId>
         </dependency>
         <dependency>
