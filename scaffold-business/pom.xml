@@ -12,6 +12,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>scaffold-business-sys-service</module>
+        <module>scaffold-business-job-service</module>
     </modules>
 
     <dependencies>
@@ -38,7 +39,7 @@
         </dependency>
         <dependency>
             <groupId>com.alibaba</groupId>
-            <artifactId>druid</artifactId>
+            <artifactId>druid-spring-boot-starter</artifactId>
         </dependency>
         <dependency>
             <groupId>org.mybatis.spring.boot</groupId>
