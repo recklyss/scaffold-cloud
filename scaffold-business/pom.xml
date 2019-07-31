@@ -13,6 +13,7 @@
     <modules>
         <module>scaffold-business-sys-service</module>
         <module>scaffold-business-job-service</module>
+        <module>scaffold-business-thirdparty-service</module>
     </modules>
 
     <dependencies>

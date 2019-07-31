@@ -47,6 +47,7 @@
         <guava.version>23.0</guava.version>
         <mybatis.generator.version>1.3.5</mybatis.generator.version>
         <quartz.version>2.2.1</quartz.version>
+        <aliyun.sdk.oss.version>2.7.0</aliyun.sdk.oss.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -187,6 +188,11 @@
                 <groupId>org.quartz-scheduler</groupId>
                 <artifactId>quartz</artifactId>
                 <version>${quartz.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.aliyun.oss</groupId>
+                <artifactId>aliyun-sdk-oss</artifactId>
+                <version>${aliyun.sdk.oss.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

@@ -1,0 +1,48 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+server:
+  port: 8851
+spring:
+  application:
+    name: scaffold-job-service
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  datasource:
+    url: jdbc:mysql://localhost:3306/base?useSSL=false&useUnicode=true&characterEncoding=utf8&autoReconnect=true&failOverReadOnly=false&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true
+    username: root
+    password: 123456
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      initial-size: 5
+      min-idle: 5
+      max-active: 200
+      max-wait: 10000
+      test-on-borrow: false
+      test-on-return: false
+      time-between-eviction-runs-millis: 15000
+      default-auto-commit: true
+    driver-class-name: com.mysql.jdbc.Driver
+pagehelper:
+  offset-as-page-num: true
+  row-bounds-with-count: true
+  page-size-zero: true
+  reasonable: true
+  params: pageNum=pageHelperStart;pageSize=pageHelperRows;
+  support-methods-arguments: false
+
+logging:
+  config: classpath:config/@environment@/logback-spring.xml
+  path: /scaffold/log
+  file: ${spring.application.name:scaffold-sys-service}
+
+mybatis:
+  mapper-locations: classpath:mapper/**/*.xml
+  type-aliases-package: com.cms.scaffold.micro
+  configuration:
+    local-cache-scope: session
+    map-underscore-to-camel-case: true
+    aggressive-lazy-loading: false
+    cache-enabled: true

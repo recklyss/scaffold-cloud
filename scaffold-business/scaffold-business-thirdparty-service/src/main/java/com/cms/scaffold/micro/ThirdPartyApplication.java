@@ -6,13 +6,13 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 /**
  * @Author zhangjiaheng
- * @Description 定时任务模块
+ * @Description 第三方任务模块
  **/
 @SpringBootApplication(scanBasePackages = {"com.cms.scaffold.micro"})
 @EnableDiscoveryClient
 @MapperScan(basePackages = "com.cms.scaffold.micro.**.dao")
-public class JobApplication {
+public class ThirdPartyApplication {
     public static void main(String[] args) {
-        SpringApplication.run(JobApplication.class, args);
+        SpringApplication.run(ThirdPartyApplication.class, args);
     }
 }
