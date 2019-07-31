@@ -23,6 +23,10 @@
         </dependency>
         <dependency>
             <groupId>com.cms.scaffold</groupId>
+            <artifactId>scaffold-feign-sys</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.cms.scaffold</groupId>
             <artifactId>scaffold-core-common</artifactId>
         </dependency>
 

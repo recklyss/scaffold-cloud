@@ -15,6 +15,15 @@ spring:
     username: root
     password: 123456
     type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      initial-size: 5
+      min-idle: 5
+      max-active: 200
+      max-wait: 10000
+      test-on-borrow: false
+      test-on-return: false
+      time-between-eviction-runs-millis: 15000
+      default-auto-commit: true
     driver-class-name: com.mysql.jdbc.Driver
   flyway:
     enabled: true
@@ -41,3 +50,8 @@ logging:
 mybatis:
   mapper-locations: classpath:mapper/**/*.xml
   type-aliases-package: com.cms.scaffold.micro
+  configuration:
+    local-cache-scope: session
+    map-underscore-to-camel-case: true
+    aggressive-lazy-loading: false
+    cache-enabled: true

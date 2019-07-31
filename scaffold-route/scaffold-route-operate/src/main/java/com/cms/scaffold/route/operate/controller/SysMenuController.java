@@ -2,7 +2,7 @@ package com.cms.scaffold.route.operate.controller;
 
 import com.cms.scaffold.common.base.BaseController;
 import com.cms.scaffold.common.response.ResponseModel;
-import com.cms.scaffold.route.operate.feigin.SysMenuFeign;
+import com.cms.scaffold.feign.sys.SysMenuFeign;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
