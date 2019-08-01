@@ -1,5 +1,8 @@
 package com.cms.scaffold.common.base;
 
+import com.cms.scaffold.common.response.ResponsePageModel;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +41,14 @@ public class BaseServiceImpl<D extends BaseMapper<T>, T extends BaseEntity> impl
     @Override
     public List<T> findList(T record) {
         return dao.findList(record);
+    }
+
+    @Override
+    public ResponsePageModel<T> findPage(T record) {
+        PageHelper.startPage(record.getPage(), record.getRows());
+        List<T> list = dao.findList(record);
+        PageInfo<T> pageInfo = new PageInfo<>(list);
+        return new ResponsePageModel<>(list, pageInfo.getTotal());
     }
 
     @Override

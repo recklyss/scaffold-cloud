@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cms.scaffold.micro.sys.dao.SysI18nMapper">
+  <resultMap id="BaseResultMap" type="com.cms.scaffold.micro.sys.domain.SysI18n">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="model" jdbcType="VARCHAR" property="model" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="text" jdbcType="VARCHAR" property="text" />
+    <result column="zh_CN" jdbcType="VARCHAR" property="zhCn" />
+    <result column="en_US" jdbcType="VARCHAR" property="enUs" />
+    <result column="in_ID" jdbcType="VARCHAR" property="inId" />
+    <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="sql_columns">
+    id,model,name,text,zh_CN,en_US,in_ID,add_time,update_time
+  </sql>
+  <sql id="sql_where">
+    <where>
+          <if test="null != id and '' != id or 0 ==id">and id = #{id}</if>
+          <if test="null != model and '' != model">and model = #{model}</if>
+          <if test="null != name and '' != name">and name = #{name}</if>
+          <if test="null != text and '' != text">and text = #{text}</if>
+          <if test="null != zhCn and '' != zhCn">and zh_CN = #{zhCn}</if>
+          <if test="null != enUs and '' != enUs">and en_US = #{enUs}</if>
+          <if test="null != inId and '' != inId">and in_ID = #{inId}</if>
+          <if test="null != addTime and '' != addTime">and add_time = #{addTime}</if>
+          <if test="null != updateTime and '' != updateTime">and update_time = #{updateTime}</if>
+	</where>
+  </sql>
+  <sql id="sql_map_where">
+    <where>
+	  <foreach collection="map.keys" item="k" separator="and">
+ 	      <if test="null != map[k]">
+	          a.${k} = #{map[${k}]}
+	      </if>
+	  </foreach>
+	</where>
+  </sql>
+  <select id="selectById" resultMap="BaseResultMap">
+    select <include refid="sql_columns" /> from sys_i18n where id = #{id}
+  </select>
+  <select id="selectCacheById" resultMap="BaseResultMap">
+    select <include refid="sql_columns" /> from sys_i18n where id = #{id}
+  </select>
+  <select id="selectLockById" resultMap="BaseResultMap">
+    select <include refid="sql_columns" /> from sys_i18n where id = #{id} for update
+  </select>
+  <select id="selectOne" resultMap="BaseResultMap">
+    select <include refid="sql_columns" /> from sys_i18n <include refid="sql_where" />
+  </select>
+  <select id="findList" resultMap="BaseResultMap">
+    select <include refid="sql_columns" /> from sys_i18n <include refid="sql_where" />
+  </select>
+  <select id="selectMap" resultMap="BaseResultMap">
+    select <include refid="sql_columns" /> from sys_i18n <include refid="sql_map_where" />
+  </select>
+  <select id="count" resultType="java.lang.Integer">
+    select count(1) from sys_i18n <include refid="sql_where" />
+  </select>
+  <sql id="sql_insert_columns">
+    insert into sys_i18n
+	 <trim prefix="(" suffix=")" suffixOverrides=",">
+	  <if test="null != item.model"> model,</if>
+	  <if test="null != item.name"> name,</if>
+	  <if test="null != item.text"> text,</if>
+	  <if test="null != item.zhCn"> zh_CN,</if>
+	  <if test="null != item.enUs"> en_US,</if>
+	  <if test="null != item.inId"> in_ID,</if>
+	  <if test="null != item.addTime"> add_time,</if>
+	  <if test="null != item.updateTime"> update_time,</if>
+	</trim>
+  </sql>
+  <sql id="sql_insert_values">
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+	  <if test="null != item.model"> #{item.model},</if>
+	  <if test="null != item.name"> #{item.name},</if>
+	  <if test="null != item.text"> #{item.text},</if>
+	  <if test="null != item.zhCn"> #{item.zhCn},</if>
+	  <if test="null != item.enUs"> #{item.enUs},</if>
+	  <if test="null != item.inId"> #{item.inId},</if>
+	  <if test="null != item.addTime"> #{item.addTime},</if>
+	  <if test="null != item.updateTime"> #{item.updateTime},</if>
+	</trim>
+  </sql>
+  <insert id="insert" keyProperty="item.id" useGeneratedKeys="true">
+    <include refid="sql_insert_columns" /><include refid="sql_insert_values" />
+  </insert>
+  <insert id="batchInsert">
+    <foreach close="" collection="list" index="index" item="item" open="" separator=";">
+	  <include refid="sql_insert_columns" /><include refid="sql_insert_values" />
+	</foreach>
+  </insert>
+  <sql id="sql_update">
+    update sys_i18n set id = #{item.id}
+      <if test="null != item.model">, model = #{item.model}</if>
+      <if test="null != item.name">, name = #{item.name}</if>
+      <if test="null != item.text">, text = #{item.text}</if>
+      <if test="null != item.zhCn">, zh_CN = #{item.zhCn}</if>
+      <if test="null != item.enUs">, en_US = #{item.enUs}</if>
+      <if test="null != item.inId">, in_ID = #{item.inId}</if>
+      <if test="null != item.addTime">, add_time = #{item.addTime}</if>
+      <if test="null != item.updateTime">, update_time = #{item.updateTime}</if>
+	where id = #{item.id}
+  </sql>
+  <sql id="sql_update_all">
+    update sys_i18n set id = #{item.id}
+	  , model = #{item.model}
+	  , name = #{item.name}
+	  , text = #{item.text}
+	  , zh_CN = #{item.zhCn}
+	  , en_US = #{item.enUs}
+	  , in_ID = #{item.inId}
+	  , add_time = #{item.addTime}
+	  , update_time = #{item.updateTime}
+	where id = #{item.id}
+  </sql>
+  <update id="update">
+    <include refid="sql_update" />
+  </update>
+  <update id="batchUpdate">
+    <foreach close="" collection="list" index="index" item="item" open="" separator=";">
+	  <include refid="sql_update" />
+	</foreach>
+  </update>
+  <update id="updateAll">
+    <include refid="sql_update_all" />
+  </update>
+  <update id="updateCompare" />
+  <delete id="delArray">
+    delete from sys_i18n where id in
+	<foreach close=")" collection="array" index="index" item="item" open="(" separator=",">#{item}</foreach>
+  </delete>
+  <delete id="delList">
+    delete from sys_i18n where id in
+	<foreach close=")" collection="list" index="index" item="item" open="(" separator=",">#{item}</foreach>
+  </delete>
+</mapper>

@@ -19,4 +19,11 @@ public interface SysMenuApi {
      */
     @RequestMapping(value = "/sysMenu/listMenuByPid", method = RequestMethod.GET)
     ResponseModel listMenuByPid(@RequestParam("pid") Long pid);
+
+    /**
+     * @param id 主键
+     * @return 根据主键查询
+     */
+    @RequestMapping(value = "/sysMenu/selectById", method = RequestMethod.GET)
+    ResponseModel selectById(@RequestParam("id") Long id);
 }

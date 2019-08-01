@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cms.scaffold.micro.sys.dao.SysRoleMenuMapper">
+  <resultMap id="BaseResultMap" type="com.cms.scaffold.micro.sys.domain.SysRoleMenu">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="role_id" jdbcType="INTEGER" property="roleId" />
+    <result column="menu_id" jdbcType="INTEGER" property="menuId" />
+    <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="sql_columns">
+    id,role_id,menu_id,add_time,update_time
+  </sql>
+  <sql id="sql_where">
+    <where>
+          <if test="null != id and '' != id or 0 ==id">and id = #{id}</if>
+          <if test="null != roleId and '' != roleId or 0 ==roleId">and role_id = #{roleId}</if>
+          <if test="null != menuId and '' != menuId or 0 ==menuId">and menu_id = #{menuId}</if>
+          <if test="null != addTime and '' != addTime">and add_time = #{addTime}</if>
+          <if test="null != updateTime and '' != updateTime">and update_time = #{updateTime}</if>
+	</where>
+  </sql>
+  <sql id="sql_map_where">
+    <where>
+	  <foreach collection="map.keys" item="k" separator="and">
+ 	      <if test="null != map[k]">
+	          a.${k} = #{map[${k}]}
+	      </if>
+	  </foreach>
+	</where>
+  </sql>
+  <select id="selectById" resultMap="BaseResultMap">
+    select <include refid="sql_columns" /> from sys_role_menu where id = #{id}
+  </select>
+  <select id="selectCacheById" resultMap="BaseResultMap">
+    select <include refid="sql_columns" /> from sys_role_menu where id = #{id}
+  </select>
+  <select id="selectLockById" resultMap="BaseResultMap">
+    select <include refid="sql_columns" /> from sys_role_menu where id = #{id} for update
+  </select>
+  <select id="selectOne" resultMap="BaseResultMap">
+    select <include refid="sql_columns" /> from sys_role_menu <include refid="sql_where" />
+  </select>
+  <select id="findList" resultMap="BaseResultMap">
+    select <include refid="sql_columns" /> from sys_role_menu <include refid="sql_where" />
+  </select>
+  <select id="selectMap" resultMap="BaseResultMap">
+    select <include refid="sql_columns" /> from sys_role_menu <include refid="sql_map_where" />
+  </select>
+  <select id="count" resultType="java.lang.Integer">
+    select count(1) from sys_role_menu <include refid="sql_where" />
+  </select>
+  <sql id="sql_insert_columns">
+    insert into sys_role_menu
+	 <trim prefix="(" suffix=")" suffixOverrides="," >
+	  <if test="null != item.roleId"> role_id,</if>
+	  <if test="null != item.menuId"> menu_id,</if>
+	  <if test="null != item.addTime"> add_time,</if>
+	  <if test="null != item.updateTime"> update_time,</if>
+	</trim>
+  </sql>
+  <sql id="sql_insert_values">
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+	  <if test="null != item.roleId"> #{item.roleId},</if>
+	  <if test="null != item.menuId"> #{item.menuId},</if>
+	  <if test="null != item.addTime"> #{item.addTime},</if>
+	  <if test="null != item.updateTime"> #{item.updateTime},</if>
+	</trim>
+  </sql>
+  <insert id="insert" keyProperty="item.id" useGeneratedKeys="true">
+    <include refid="sql_insert_columns" /><include refid="sql_insert_values" />
+  </insert>
+  <insert id="batchInsert">
+    <foreach collection="list" index="index" item="item" open="" separator=";" close="">
+	  <include refid="sql_insert_columns" /><include refid="sql_insert_values" />
+	</foreach>
+  </insert>
+  <sql id="sql_update">
+    update sys_role_menu set id = #{item.id}
+      <if test="null != item.roleId">, role_id = #{item.roleId}</if>
+      <if test="null != item.menuId">, menu_id = #{item.menuId}</if>
+      <if test="null != item.addTime">, add_time = #{item.addTime}</if>
+      <if test="null != item.updateTime">, update_time = #{item.updateTime}</if>
+	where id = #{item.id}
+  </sql>
+  <sql id="sql_update_all">
+    update sys_role_menu set id = #{item.id}
+	  , role_id = #{item.roleId}
+	  , menu_id = #{item.menuId}
+	  , add_time = #{item.addTime}
+	  , update_time = #{item.updateTime}
+	where id = #{item.id}
+  </sql>
+  <update id="update">
+    <include refid="sql_update" />
+  </update>
+  <update id="batchUpdate">
+    <foreach collection="list" index="index" item="item" open="" separator=";" close="">
+	  <include refid="sql_update" />
+	</foreach>
+  </update>
+  <update id="updateAll">
+    <include refid="sql_update_all" />
+  </update>
+  <update id="updateCompare" />
+  <delete id="delArray">
+    delete from sys_role_menu where id in
+	<foreach collection="array" index="index" item="item" open="(" separator="," close=")">#{item}</foreach>
+  </delete>
+  <delete id="delList">
+    delete from sys_role_menu where id in
+	<foreach collection="list" index="index" item="item" open="(" separator="," close=")">#{item}</foreach>
+  </delete>
+</mapper>

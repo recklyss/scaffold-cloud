@@ -7,6 +7,8 @@
  */
 package com.cms.scaffold.common.base;
 
+import com.cms.scaffold.common.response.ResponsePageModel;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -50,6 +52,14 @@ public interface BaseService<T extends BaseEntity> {
      * @return
      */
     List<T> findList(T record);
+
+    /**
+     * 分页查询
+     *
+     * @param record
+     * @return
+     */
+    ResponsePageModel<T> findPage(T record);
 
     /**
      * 插入记录
