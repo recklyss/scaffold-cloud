@@ -23,7 +23,7 @@
         </dependency>
         <dependency>
             <groupId>com.cms.scaffold</groupId>
-            <artifactId>scaffold-core-common</artifactId>
+            <artifactId>scaffold-core-code</artifactId>
         </dependency>
 
         <dependency>
@@ -45,6 +45,14 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-spring</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>net.mingsoft</groupId>
+            <artifactId>shiro-freemarker-tags</artifactId>
         </dependency>
     </dependencies>
 

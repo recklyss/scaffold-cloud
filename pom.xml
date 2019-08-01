@@ -48,6 +48,9 @@
         <mybatis.generator.version>1.3.5</mybatis.generator.version>
         <quartz.version>2.2.1</quartz.version>
         <aliyun.sdk.oss.version>2.7.0</aliyun.sdk.oss.version>
+
+        <shiro.version>1.3.2</shiro.version>
+        <shiro.freemarker.version>0.1</shiro.freemarker.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -198,6 +201,17 @@
                 <groupId>com.aliyun.oss</groupId>
                 <artifactId>aliyun-sdk-oss</artifactId>
                 <version>${aliyun.sdk.oss.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>net.mingsoft</groupId>
+                <artifactId>shiro-freemarker-tags</artifactId>
+                <version>${shiro.freemarker.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.shiro</groupId>
+                <artifactId>shiro-spring</artifactId>
+                <version>${shiro.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

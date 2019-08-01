@@ -68,15 +68,15 @@
 
         <!-- 生成实体类配置 -->
         <javaModelGenerator targetPackage="${generator.javaModelTargetPackage}"
-                            targetProject="D:\\workspace${generator.javaModelTargetProject}">
+                            targetProject="E:\\workspaces\\github${generator.javaModelTargetProject}">
             <property name="rootClass" value="BaseEntity"/>
         </javaModelGenerator>
         <!-- 生成映射文件配置 -->
         <sqlMapGenerator targetPackage="${generator.sqlMapTargetPackage}"
-                         targetProject="D:\\workspace${generator.sqlMapTargetProject}"/>
+                         targetProject="E:\\workspaces\\github${generator.sqlMapTargetProject}"/>
         <!-- 生成映射接口配置 -->
         <javaClientGenerator targetPackage="${generator.javaClientTargetPackage}"
-                             targetProject="D:\\workspace${generator.javaClientTargetProject}" type="XMLMAPPER"/>
+                             targetProject="E:\\workspaces\\github${generator.javaClientTargetProject}" type="XMLMAPPER"/>
 
 
         <!-- 选择一个table来生成相关文件，可以有一个或多个table，必须要有table元素
