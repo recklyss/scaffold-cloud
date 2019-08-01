@@ -6,6 +6,9 @@ import ${package_name}.service.${table_name}Service;
 import com.cms.scaffold.common.base.BaseServiceImpl;
 import org.springframework.stereotype.Service;
 
+/**
+* @author zhangjiaheng
+*/
 @Service
 public class ${table_name}ServiceImpl extends BaseServiceImpl<${table_name}Mapper, ${table_name}> implements ${table_name}Service {
 }

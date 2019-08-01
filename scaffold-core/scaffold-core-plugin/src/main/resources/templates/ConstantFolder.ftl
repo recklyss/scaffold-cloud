@@ -1,7 +1,7 @@
 package com.cms.scaffold.common.constant;
 
 /**
-* Created by ${author} on ${date}
+* @author zhangjiaheng
 */
 public class ${fileName} {
 

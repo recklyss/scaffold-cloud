@@ -7,7 +7,7 @@ import com.cms.scaffold.common.base.BaseServiceImpl;
 import org.springframework.stereotype.Service;
 
 /**
- * @author Administrator
+ * @author zhangjiaheng
  */
 @Service
 public class SysRoleServiceImpl extends BaseServiceImpl<SysRoleMapper, SysRole> implements SysRoleService {
