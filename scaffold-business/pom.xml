@@ -19,7 +19,7 @@
     <dependencies>
         <dependency>
             <groupId>com.cms.scaffold</groupId>
-            <artifactId>scaffold-core-common</artifactId>
+            <artifactId>scaffold-core-code</artifactId>
         </dependency>
         <dependency>
             <groupId>com.cms.scaffold</groupId>
