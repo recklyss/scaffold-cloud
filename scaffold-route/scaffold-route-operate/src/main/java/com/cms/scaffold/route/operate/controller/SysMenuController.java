@@ -24,4 +24,10 @@ public class SysMenuController extends BaseController {
     public ResponseModel listMenuByPid(Long pid){
         return sysMenuFeign.listMenuByPid(pid);
     }
+
+    @GetMapping("/selectById")
+    @ResponseBody
+    public ResponseModel selectById(Long id){
+        return sysMenuFeign.selectById(id);
+    }
 }
