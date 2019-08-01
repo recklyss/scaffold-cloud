@@ -28,10 +28,6 @@ public class GenMain {
             Configuration config = cp.parseConfiguration(configFile);
             MyBatisGenerator myBatisGenerator = new MyBatisGenerator(config, callback, warnings);
             myBatisGenerator.generate(null);
-
-            CodeGenerateUtils codeGenerateUtils = new CodeGenerateUtils();
-            codeGenerateUtils.generate();
-            System.err.println("代码成功生成!");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -66,7 +62,7 @@ public class GenMain {
                     System.exit(0);
                 }
                 propsFilePath = propsFile;
-                String type = (String) arguments.get("-type");
+                String type = arguments.get("-type");
                 if (StringUtils.isBlank(type) || "common".equalsIgnoreCase(type)) {
                     genFile(configfile);
                 } else if ("dict".equalsIgnoreCase(type)) {

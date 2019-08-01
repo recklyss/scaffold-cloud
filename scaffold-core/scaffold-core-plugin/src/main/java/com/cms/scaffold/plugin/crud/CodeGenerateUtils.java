@@ -20,6 +20,8 @@ public class CodeGenerateUtils {
     private final String CURRENT_DATE = DateUtil.now();
     private final String changeTableName = PropertiesUtil.getValue("generator.domainObjectName");
     private final String packageName = PropertiesUtil.getValue("generator.packageName");
+    private final String feignPackageName = PropertiesUtil.getValue("generator.feign.packageName");
+    private final String feignServiceName = PropertiesUtil.getValue("feign.service.name");
 
     private final String apiFilePath = PropertiesUtil.getValue("generator.path") + "\\" +
             PropertiesUtil.getValue("generator.api.javaModelTargetProject")
@@ -45,7 +47,8 @@ public class CodeGenerateUtils {
             generateFile("Service.ftl", changeTableName + "Service", implFilePath + "/service/");
             generateFile("ServiceImpl.ftl", changeTableName + "ServiceImpl", implFilePath + "/service/impl/");
             generateFile("api.ftl", changeTableName + "Api", apiFilePath + "/api/");
-            generateFile("feign.ftl", changeTableName + "Feign", feignFilePath);
+            generateFile("feign.ftl", changeTableName + "Feign", feignFilePath + "/");
+            generateFile("micro-controller.ftl", changeTableName + "Controller", implFilePath + "/controller/");
         } catch (Exception e) {
             throw new RuntimeException(e);
         } finally {
@@ -77,8 +80,10 @@ public class CodeGenerateUtils {
         FileOutputStream fos = new FileOutputStream(file);
         dataMap.put("table_name", changeTableName);
         dataMap.put("package_name", packageName);
+        dataMap.put("feign_package_name", feignPackageName);
         dataMap.put("author", AUTHOR);
         dataMap.put("date", CURRENT_DATE);
+        dataMap.put("feign_service_name", feignServiceName);
         Writer out = new BufferedWriter(new OutputStreamWriter(fos, StandardCharsets.UTF_8), 10240);
         template.process(dataMap, out);
     }
