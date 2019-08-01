@@ -7,36 +7,44 @@ import lombok.Setter;
 import java.util.Date;
 
 /**
-* 
-* @author: Mybatis Generator
-* @date: 2019-07-28 18:54:02
-*/
+ * @author: Mybatis Generator
+ * @date: 2019-07-28 18:54:02
+ */
 @Getter
 @Setter
 public class SysOperateBO extends BaseEntity {
-    /** 用户名**/
+    /**
+     * 用户名
+     **/
     private String userName;
 
+    /**
+     * 姓名
+     */
     private String realName;
 
-    /** 密码**/
+    /**
+     * 密码
+     **/
     private String pwd;
 
-    /** 手机号**/
+    /**
+     * 手机号
+     **/
     private String mobilePhone;
 
-    /** 商户id**/
-    private Long partnerId;
-
-    /** 最近登录ip**/
+    /**
+     * 最近登录ip
+     **/
     private String loginIp;
 
-    /** 最近登录时间**/
+    /**
+     * 最近登录时间
+     **/
     private Date loginTime;
 
-    /** 状态**/
+    /**
+     * 状态
+     **/
     private Long status;
-
-    /** 钉钉系统用户id**/
-    private String openid;
 }
