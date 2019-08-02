@@ -17,7 +17,6 @@ import org.springframework.scheduling.annotation.EnableAsync;
 @EnableFeignClients
 public class AppOperateApplication {
     public static void main(String[] args) {
-        System.setProperty("projectName", "scaffold-route-operate");
         SpringApplication.run(AppOperateApplication.class, args);
     }
 
