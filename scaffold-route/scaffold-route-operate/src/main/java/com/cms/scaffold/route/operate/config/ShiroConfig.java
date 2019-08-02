@@ -15,6 +15,7 @@ import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.filter.authc.LogoutFilter;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -30,6 +31,7 @@ import java.util.Map;
  * @Description shiro配置类
  **/
 @Configuration
+@ConditionalOnMissingBean(name = "sysMenuFeign")
 public class ShiroConfig {
     /** 默认premission字符串 */
     public static final String PREMISSION_STRING = "perms[\"{0}\"]";

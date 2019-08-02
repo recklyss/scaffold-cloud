@@ -29,8 +29,6 @@
         <spring.boot.version>2.0.3.RELEASE</spring.boot.version>
         <spring.cloud.version>Finchley.RELEASE</spring.cloud.version>
         <spring.cloud.eureka.version>2.1.2.RELEASE</spring.cloud.eureka.version>
-        <spring.cloud.feign.version>2.0.1.RELEASE</spring.cloud.feign.version>
-        <spring.cloud.hystrix.version>2.0.1.RELEASE</spring.cloud.hystrix.version>
 
         <pagehelper-spring-boot-autoconfigure.version>1.2.3</pagehelper-spring-boot-autoconfigure.version>
         <pagehelper.version>5.1.2</pagehelper.version>
@@ -105,16 +103,6 @@
                     </exclusion>
                 </exclusions>
                 <version>${spring.cloud.eureka.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-starter-openfeign</artifactId>
-                <version>${spring.cloud.feign.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
-                <version>${spring.cloud.hystrix.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework.cloud</groupId>

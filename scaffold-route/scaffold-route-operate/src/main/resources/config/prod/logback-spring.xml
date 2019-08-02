@@ -114,7 +114,7 @@
     </appender>
 
     <!-- 业务日志 -->
-    <logger name="com.gjj" level="INFO" additivity="FALSE">
+    <logger name="com.cms.scaffold" level="INFO" additivity="FALSE">
         <appender-ref ref="BUSINESS_FILE"/>
     </logger>
 

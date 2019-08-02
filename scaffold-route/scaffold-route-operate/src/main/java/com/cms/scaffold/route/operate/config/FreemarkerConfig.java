@@ -3,7 +3,7 @@ package com.cms.scaffold.route.operate.config;
 
 import com.cms.scaffold.route.operate.freemarker.TableThDirective;
 import com.jagregory.shiro.freemarker.ShiroTags;
-import freemarker.template.Configuration;
+import org.springframework.context.annotation.Configuration;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
@@ -13,11 +13,11 @@ import javax.annotation.Resource;
  * @author zjh
  * @date 2018/4/16
  */
-@org.springframework.context.annotation.Configuration
+@Configuration
 public class FreemarkerConfig {
 
     @Resource
-    private Configuration configuration;
+    private freemarker.template.Configuration configuration;
     @Resource
     private TableThDirective tableThDirective;
 

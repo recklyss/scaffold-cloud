@@ -7,6 +7,8 @@ import com.cms.scaffold.micro.sys.api.SysMenuApi;
 import com.cms.scaffold.micro.sys.bo.SysMenuBO;
 import com.cms.scaffold.micro.sys.domain.SysMenu;
 import com.cms.scaffold.micro.sys.service.SysMenuService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,6 +22,8 @@ import java.util.List;
  */
 @RestController
 public class SysMenuController extends BaseController implements SysMenuApi {
+
+    private static final Logger logger = LoggerFactory.getLogger(SysMenuController.class);
 
     @Autowired
     SysMenuService sysMenuService;

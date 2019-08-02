@@ -16,6 +16,8 @@ public interface SysDictApi {
     /**
      * 根据pid查询子级菜单
      *
+     * @param nid
+     * @return
      */
     @RequestMapping(value = "/sysMenu/findByNid", method = RequestMethod.GET)
     ResponseModel<List<SysDictBO>> findByNid(@RequestParam("nid") String nid);

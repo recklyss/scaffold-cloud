@@ -9,7 +9,7 @@ server:
     context-path: /operate
 spring:
   application:
-    name: scaffold-operate
+    name: scaffold-route-operate
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
