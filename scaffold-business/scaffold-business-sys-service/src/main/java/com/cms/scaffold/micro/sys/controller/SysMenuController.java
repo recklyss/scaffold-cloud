@@ -53,7 +53,13 @@ public class SysMenuController extends BaseController implements SysMenuApi {
 
     @Override
     public ResponseModel<List<SysMenuBO>> findByOperateId(Long id) {
-        sysMenuService.findByOperateId(id);
-        return null;
+        final List<SysMenu> sysMenu = sysMenuService.findByOperateId(id);
+        return successData(Builder.buildList(sysMenu, SysMenuBO.class));
+    }
+
+    @Override
+    public ResponseModel<List<SysMenuBO>> findByPidAndOperateId(Long pId, Long operateId) {
+        final List<SysMenu> sysMenus = sysMenuService.findByPidAndOperateId(pId, operateId);
+        return successData(Builder.buildList(sysMenus, SysMenuBO.class));
     }
 }

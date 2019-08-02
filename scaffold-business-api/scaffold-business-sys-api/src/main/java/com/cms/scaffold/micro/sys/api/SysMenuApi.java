@@ -42,4 +42,15 @@ public interface SysMenuApi {
      */
     @RequestMapping(value = "/sysMenu/findByOperateId", method = RequestMethod.GET)
     ResponseModel<List<SysMenuBO>> findByOperateId(@RequestParam("id") Long id);
+
+    /**
+     * 根据父级ID和操作员ID查询
+     *
+     * @param pId
+     * @param operateId
+     * @return
+     */
+    @RequestMapping(value = "/sysMenu/findByPidAndOperateId", method = RequestMethod.GET)
+    ResponseModel<List<SysMenuBO>> findByPidAndOperateId(@RequestParam("pId") Long pId,
+                                                         @RequestParam("operateId") Long operateId);
 }

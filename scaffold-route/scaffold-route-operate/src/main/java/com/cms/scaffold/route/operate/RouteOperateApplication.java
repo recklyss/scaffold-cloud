@@ -12,11 +12,11 @@ import org.springframework.scheduling.annotation.EnableAsync;
 /**
  * @author zhangjiaheng
  */
-@SpringBootApplication(scanBasePackages = {"com.cms.scaffold.route.operate"}, exclude =
+@SpringBootApplication(scanBasePackages = {"com.cms.scaffold"}, exclude =
         {DataSourceAutoConfiguration.class})
 @EnableAsync
 @EnableEurekaClient
-@EnableFeignClients
+@EnableFeignClients(basePackages = "com.cms.scaffold.feign.*")
 @EnableHystrix
 @EnableAspectJAutoProxy
 public class RouteOperateApplication {

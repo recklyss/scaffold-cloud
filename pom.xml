@@ -254,11 +254,18 @@
                     <include>static/**/*</include>
                 </includes>
             </resource>
-
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/*.*</include>
+                </includes>
+                <filtering>false</filtering>
+            </resource>
             <resource>
                 <directory>src/main/java</directory>
                 <includes>
                     <include>**/*.yml</include>
+                    <include>**/*.properties</include>
                     <include>**/*.xml</include>
                     <include>**/*.tld</include>
                     <include>**/*.xls</include>
@@ -270,6 +277,7 @@
                 <directory>src/main/resources/config/${environment}</directory>
                 <includes>
                     <include>**/*.yml</include>
+                    <include>**/*.properties</include>
                 </includes>
                 <filtering>true</filtering>
             </resource>
