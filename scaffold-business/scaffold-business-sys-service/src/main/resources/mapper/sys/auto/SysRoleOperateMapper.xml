@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cms.scaffold.micro.sys.dao.SysRoleOperateMapper">
+  <resultMap id="BaseResultMap" type="com.cms.scaffold.micro.sys.domain.SysRoleOperate">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="operate_id" jdbcType="INTEGER" property="operateId" />
+    <result column="role_id" jdbcType="INTEGER" property="roleId" />
+  </resultMap>
+  <sql id="sql_columns">
+    id,operate_id,role_id
+  </sql>
+  <sql id="sql_where">
+    <where>
+          <if test="null != id and '' != id or 0 ==id">and id = #{id}</if>
+          <if test="null != operateId and '' != operateId or 0 ==operateId">and operate_id = #{operateId}</if>
+          <if test="null != roleId and '' != roleId or 0 ==roleId">and role_id = #{roleId}</if>
+	</where>
+  </sql>
+  <sql id="sql_map_where">
+    <where>
+	  <foreach collection="map.keys" item="k" separator="and">
+ 	      <if test="null != map[k]">
+	          a.${k} = #{map[${k}]}
+	      </if>
+	  </foreach>
+	</where>
+  </sql>
+  <select id="selectById" resultMap="BaseResultMap">
+    select <include refid="sql_columns" /> from sys_role_operate where id = #{id}
+  </select>
+  <select id="selectCacheById" resultMap="BaseResultMap">
+    select <include refid="sql_columns" /> from sys_role_operate where id = #{id}
+  </select>
+  <select id="selectLockById" resultMap="BaseResultMap">
+    select <include refid="sql_columns" /> from sys_role_operate where id = #{id} for update
+  </select>
+  <select id="selectOne" resultMap="BaseResultMap">
+    select <include refid="sql_columns" /> from sys_role_operate <include refid="sql_where" />
+  </select>
+  <select id="findList" resultMap="BaseResultMap">
+    select <include refid="sql_columns" /> from sys_role_operate <include refid="sql_where" />
+  </select>
+  <select id="selectMap" resultMap="BaseResultMap">
+    select <include refid="sql_columns" /> from sys_role_operate <include refid="sql_map_where" />
+  </select>
+  <select id="count" resultType="java.lang.Integer">
+    select count(1) from sys_role_operate <include refid="sql_where" />
+  </select>
+  <sql id="sql_insert_columns">
+    insert into sys_role_operate
+	 <trim prefix="(" suffix=")" suffixOverrides="," >
+	  <if test="null != item.operateId"> operate_id,</if>
+	  <if test="null != item.roleId"> role_id,</if>
+	</trim>
+  </sql>
+  <sql id="sql_insert_values">
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+	  <if test="null != item.operateId"> #{item.operateId},</if>
+	  <if test="null != item.roleId"> #{item.roleId},</if>
+	</trim>
+  </sql>
+  <insert id="insert" keyProperty="item.id" useGeneratedKeys="true">
+    <include refid="sql_insert_columns" /><include refid="sql_insert_values" />
+  </insert>
+  <insert id="batchInsert">
+    <foreach collection="list" index="index" item="item" open="" separator=";" close="">
+	  <include refid="sql_insert_columns" /><include refid="sql_insert_values" />
+	</foreach>
+  </insert>
+  <sql id="sql_update">
+    update sys_role_operate set id = #{item.id}
+      <if test="null != item.operateId">, operate_id = #{item.operateId}</if>
+      <if test="null != item.roleId">, role_id = #{item.roleId}</if>
+	where id = #{item.id}
+  </sql>
+  <sql id="sql_update_all">
+    update sys_role_operate set id = #{item.id}
+	  , operate_id = #{item.operateId}
+	  , role_id = #{item.roleId}
+	where id = #{item.id}
+  </sql>
+  <update id="update">
+    <include refid="sql_update" />
+  </update>
+  <update id="batchUpdate">
+    <foreach collection="list" index="index" item="item" open="" separator=";" close="">
+	  <include refid="sql_update" />
+	</foreach>
+  </update>
+  <update id="updateAll">
+    <include refid="sql_update_all" />
+  </update>
+  <update id="updateCompare" />
+  <delete id="delArray">
+    delete from sys_role_operate where id in
+	<foreach collection="array" index="index" item="item" open="(" separator="," close=")">#{item}</foreach>
+  </delete>
+  <delete id="delList">
+    delete from sys_role_operate where id in
+	<foreach collection="list" index="index" item="item" open="(" separator="," close=")">#{item}</foreach>
+  </delete>
+</mapper>

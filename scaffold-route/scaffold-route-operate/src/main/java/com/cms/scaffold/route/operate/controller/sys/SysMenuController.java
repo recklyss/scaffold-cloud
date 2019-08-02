@@ -1,4 +1,4 @@
-package com.cms.scaffold.route.operate.controller;
+package com.cms.scaffold.route.operate.controller.sys;
 
 import com.cms.scaffold.common.base.BaseController;
 import com.cms.scaffold.common.response.ResponseModel;
@@ -16,8 +16,16 @@ import javax.annotation.Resource;
 @Controller
 @RequestMapping("/sys/sysMenu")
 public class SysMenuController extends BaseController {
+
+    private static final String ftlPath = "/sys/sysMenu/";
+
     @Resource
     SysMenuFeign sysMenuFeign;
+
+    @GetMapping("/sysMenuIndex")
+    public String sysMenuIndex(){
+        return ftlPath + "sysMenuIndex";
+    }
 
     @GetMapping("/listMenuByPid")
     @ResponseBody

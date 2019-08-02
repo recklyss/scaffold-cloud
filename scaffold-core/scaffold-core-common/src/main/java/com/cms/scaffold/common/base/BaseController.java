@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory;
  * @Author zhangjiaheng
  * @Description 控制类基类
  **/
-public class BaseController {
+public class BaseController<T> {
     private Logger logger = LoggerFactory.getLogger(BaseController.class);
 
     /**
@@ -29,7 +29,7 @@ public class BaseController {
      * @param data 返回的数据
      * @return 成功
      */
-    public ResponseModel successData(Object data){
+    public ResponseModel<T> successData(T data){
         return new ResponseModel<>(data);
     }
 }

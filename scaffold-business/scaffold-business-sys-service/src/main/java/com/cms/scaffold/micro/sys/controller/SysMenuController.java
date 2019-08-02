@@ -36,8 +36,20 @@ public class SysMenuController extends BaseController implements SysMenuApi {
      * @return 根据主键查询
      */
     @Override
-    public ResponseModel selectById(Long id) {
+    public ResponseModel<SysMenuBO> selectById(Long id) {
         final SysMenu sysMenu = sysMenuService.selectById(id);
         return successData(Builder.build(sysMenu, SysMenuBO.class));
+    }
+
+    @Override
+    public ResponseModel<List<SysMenuBO>> findAll() {
+        List<SysMenu> sysMenus = sysMenuService.findList(new SysMenu());
+        return successData(Builder.buildList(sysMenus, SysMenuBO.class));
+    }
+
+    @Override
+    public ResponseModel<List<SysMenuBO>> findByOperateId(Long id) {
+        sysMenuService.findByOperateId(id);
+        return null;
     }
 }

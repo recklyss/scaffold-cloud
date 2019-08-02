@@ -22,8 +22,5 @@ public interface SysMenuMapper extends BaseMapper<SysMenu> {
     List<SysMenu> selectByPid(Long pid);
 
     @Select("select * from sys_menu where id in(select menu_id  from sys_role_menu  where role_id = (select  role_id from  sys_role_operate  where operate_id =#{id}))")
-    List<SysMenu>  findByOpId(Long operateId);
-
-    @Select("select * from sys_menu")
-    List<SysMenu> findAll();
+    SysMenu findByOperateId(@Param("id") Long id);
 }

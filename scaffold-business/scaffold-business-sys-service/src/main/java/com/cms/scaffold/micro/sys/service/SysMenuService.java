@@ -11,4 +11,11 @@ public interface SysMenuService extends BaseService<SysMenu>{
      * @return 根据Pid查询下一级子菜单
      */
     List<SysMenu> selectByPid(Long pid);
+
+    /**
+     * 根据操作员ID查询其有权限的菜单
+     * @param id
+     * @return
+     */
+    SysMenu findByOperateId(Long id);
 }
