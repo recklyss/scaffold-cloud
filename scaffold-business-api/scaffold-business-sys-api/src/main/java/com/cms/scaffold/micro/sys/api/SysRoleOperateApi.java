@@ -19,7 +19,7 @@ public interface SysRoleOperateApi {
      * @return
      */
     @RequestMapping(value = "/sysRoleOperate/selectById", method = RequestMethod.GET)
-    ResponseModel<SysRoleOperateBO> selectById(@RequestParam("id") Long id);
+    ResponseModel<SysRoleOperateBO> selectById(@RequestParam(value = "id") Long id);
 
     /**
      * 根据操作员ID查询
@@ -28,5 +28,5 @@ public interface SysRoleOperateApi {
      * @return
      */
     @RequestMapping(value = "/sysRoleOperate/selectByOperateId", method = RequestMethod.GET)
-    ResponseModel<SysRoleOperateBO> selectByOperateId(@RequestParam("operateId") Long operateId);
+    ResponseModel<SysRoleOperateBO> selectByOperateId(@RequestParam(value = "operateId") Long operateId);
 }

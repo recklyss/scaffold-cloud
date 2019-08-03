@@ -22,7 +22,15 @@ public class BaseController<T> {
      * @return 操作失败
      */
     public ResponseModel error() {
-        return new ResponseModel(ResponseModel.STATUS_CODE.FAIL);
+        return new ResponseModel<>(ResponseModel.STATUS_CODE.FAIL);
+    }
+
+    /**返回错误信息
+     * @param message
+     * @return
+     */
+    public ResponseModel errorMessage(String message){
+        return new ResponseModel<>(ResponseModel.STATUS_CODE.FAIL.getCode(), message, null);
     }
 
     /**

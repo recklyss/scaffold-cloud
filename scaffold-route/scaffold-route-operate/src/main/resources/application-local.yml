@@ -32,7 +32,7 @@ spring:
 
 feign:
   hystrix:
-    enabled: true
+    enabled: false
 
 logging:
   config: classpath:config/@environment@/logback-spring.xml

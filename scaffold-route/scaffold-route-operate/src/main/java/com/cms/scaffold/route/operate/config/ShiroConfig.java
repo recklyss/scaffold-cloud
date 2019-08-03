@@ -88,21 +88,19 @@ public class ShiroConfig {
         }
         filterChainDefinitionManager.put("/login", "anon");
         filterChainDefinitionManager.put("/logout", "logout");
-        filterChainDefinitionManager.put("/loginPage", "anon");
-        filterChainDefinitionManager.put("/dingLogin/check", "anon");
+        filterChainDefinitionManager.put("/login/check", "anon");
         filterChainDefinitionManager.put("/static/**", "anon");
         filterChainDefinitionManager.put("/notify/**", "anon");
         filterChainDefinitionManager.put("/lang/**", "anon");
 
         filterChainDefinitionManager.put("/*/login", "anon");
         filterChainDefinitionManager.put("/*/logout", "logout");
-        filterChainDefinitionManager.put("/*/loginPage", "anon");
-        filterChainDefinitionManager.put("/*/dingLogin/check", "anon");
+        filterChainDefinitionManager.put("/*/login/check", "anon");
         filterChainDefinitionManager.put("/*/static/**", "anon");
         filterChainDefinitionManager.put("/*/notify/**", "anon");
         filterChainDefinitionManager.put("/*/lang/**", "anon");
 
-        filterChainDefinitionManager.put("/**", "user");
+        filterChainDefinitionManager.put("/**", "anon");
 
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionManager);
 

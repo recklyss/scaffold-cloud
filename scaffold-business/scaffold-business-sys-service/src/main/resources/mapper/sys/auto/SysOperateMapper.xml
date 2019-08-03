@@ -20,11 +20,6 @@
   </sql>
   <sql id="sql_where">
     <where>
-      <if test="null != advanceFilterStr and ''!= advanceFilterStr">
-        <if test="null != partnerId and '' != partnerId">and partner_id = #{partnerId}</if>
-        ${advanceFilterStr}
-      </if>
-      <if test="null == advanceFilterStr or ''== advanceFilterStr">
           <if test="null != id and '' != id or 0 ==id">and id = #{id}</if>
           <if test="null != userName and '' != userName">and user_name = #{userName}</if>
           <if test="null != realName and '' != realName">and real_name = #{realName}</if>
@@ -37,7 +32,6 @@
           <if test="null != loginTime and '' != loginTime">and login_time = #{loginTime}</if>
           <if test="null != status and '' != status or 0 ==status">and status = #{status}</if>
           <if test="null != openid and '' != openid">and openid = #{openid}</if>
-      </if>
 	</where>
   </sql>
   <sql id="sql_map_where">

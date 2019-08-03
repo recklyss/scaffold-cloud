@@ -20,12 +20,16 @@ import java.util.Locale;
 @Configuration
 public class WebMvcConfig extends WebMvcConfigurerAdapter {
 
+    /**
+     * cookie 语言 存在时间
+     */
+    private static final int LOCAL_COOKIE_TIME = 3600;
+
     @Bean
     public LocaleResolver localeResolver() {
         CookieLocaleResolver slr = new CookieLocaleResolver();
         slr.setDefaultLocale(Locale.CHINA);
-        slr.setCookieMaxAge(3600);
-
+        slr.setCookieMaxAge(LOCAL_COOKIE_TIME);
         return slr;
 
     }

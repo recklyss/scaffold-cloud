@@ -17,5 +17,5 @@ public interface SysOperateApi {
      * @return 根据用户名查询的用户实体
      */
     @RequestMapping(value = "/sysOperate/findByUserName", method = RequestMethod.GET)
-    ResponseModel<SysOperateBO> findByUserName(@RequestParam("username") String username);
+    ResponseModel<SysOperateBO> findByUserName(@RequestParam(value = "username") String username);
 }

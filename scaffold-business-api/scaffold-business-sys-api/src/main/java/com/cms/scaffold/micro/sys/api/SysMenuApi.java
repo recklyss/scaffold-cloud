@@ -21,14 +21,14 @@ public interface SysMenuApi {
      * @return
      */
     @RequestMapping(value = "/sysMenu/listMenuByPid", method = RequestMethod.GET)
-    ResponseModel listMenuByPid(@RequestParam("pid") Long pid);
+    ResponseModel listMenuByPid(@RequestParam(value = "pid") Long pid);
 
     /**
      * @param id 主键
      * @return 根据主键查询
      */
     @RequestMapping(value = "/sysMenu/selectById", method = RequestMethod.GET)
-    ResponseModel selectById(@RequestParam("id") Long id);
+    ResponseModel<SysMenuBO> selectById(@RequestParam(value = "id") Long id);
 
     /**
      * @return 所有菜单数据
@@ -41,7 +41,7 @@ public interface SysMenuApi {
      * @return 根据操作员查询他拥有权限的菜单
      */
     @RequestMapping(value = "/sysMenu/findByOperateId", method = RequestMethod.GET)
-    ResponseModel<List<SysMenuBO>> findByOperateId(@RequestParam("id") Long id);
+    ResponseModel<List<SysMenuBO>> findByOperateId(@RequestParam(value = "id") Long id);
 
     /**
      * 根据父级ID和操作员ID查询
@@ -51,6 +51,6 @@ public interface SysMenuApi {
      * @return
      */
     @RequestMapping(value = "/sysMenu/findByPidAndOperateId", method = RequestMethod.GET)
-    ResponseModel<List<SysMenuBO>> findByPidAndOperateId(@RequestParam("pId") Long pId,
-                                                         @RequestParam("operateId") Long operateId);
+    ResponseModel<List<SysMenuBO>> findByPidAndOperateId(@RequestParam(value = "pId") Long pId,
+                                                         @RequestParam(value = "operateId") Long operateId);
 }

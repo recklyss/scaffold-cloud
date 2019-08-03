@@ -65,7 +65,7 @@
                             data: obj,
                             dataType: 'json',
                             success: function (data) {
-                                if (data.statusCode == 200) {
+                                if (data.statusCode === 0) {
                                     $.iMessager.show({
                                         title: '<@spring.message "sys.promptMessage"/>',
                                         msg: '<@spring.message "sys.startedandlooklogs"/>'
@@ -135,7 +135,7 @@
             data: {id:id},
             dataType: "json",
             success: function (data) {
-                if (data.statusCode == 200) {
+                if (data.statusCode === 0) {
                     // 提示信息
                     $.iMessager.show({
                         title: '<@spring.message "sys.promptMessage"/>',
@@ -158,7 +158,7 @@
             data: {id:id},
             dataType: "json",
             success: function (data) {
-                if (data.statusCode == 200) {
+                if (data.statusCode === 0) {
                     // 提示信息
                     $('#datagridId').iDatagrid('reload');
                 } else {
@@ -178,7 +178,7 @@
             data: {id:id},
             dataType: "json",
             success: function (data) {
-                if (data.statusCode == 200) {
+                if (data.statusCode === 0) {
                     // 提示信息
                     $('#datagridId').iDatagrid('reload');
                 } else {
@@ -198,7 +198,7 @@
             data: {id:id,status:1},
             dataType: "json",
             success: function (data) {
-                if (data.statusCode == 200) {
+                if (data.statusCode === 0) {
                     // 提示信息
                     $('#datagridId').iDatagrid('reload');
                 } else {
@@ -231,7 +231,7 @@
                         url: _ctx+'/job/jobManager/updateJob',
                         data: obj,
                         success: function (data) {
-                            if (data.statusCode == 200) {
+                            if (data.statusCode === 0) {
                                 // 提示信息
                                 $editDialog.iDialog('close');
                                 $('#datagridId').iDatagrid('reload');

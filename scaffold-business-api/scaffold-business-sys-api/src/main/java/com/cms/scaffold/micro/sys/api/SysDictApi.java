@@ -20,5 +20,5 @@ public interface SysDictApi {
      * @return
      */
     @RequestMapping(value = "/sysMenu/findByNid", method = RequestMethod.GET)
-    ResponseModel<List<SysDictBO>> findByNid(@RequestParam("nid") String nid);
+    ResponseModel<List<SysDictBO>> findByNid(@RequestParam(value = "nid") String nid);
 }

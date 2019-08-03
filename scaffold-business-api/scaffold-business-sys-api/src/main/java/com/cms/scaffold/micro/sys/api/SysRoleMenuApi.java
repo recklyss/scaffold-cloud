@@ -16,5 +16,5 @@ public interface SysRoleMenuApi{
     * @return 根据主键查询
     */
     @RequestMapping(value = "/sysRoleMenu/selectById", method = RequestMethod.GET)
-    ResponseModel selectById(@RequestParam("id") Long id);
+    ResponseModel selectById(@RequestParam(value = "id") Long id);
 }

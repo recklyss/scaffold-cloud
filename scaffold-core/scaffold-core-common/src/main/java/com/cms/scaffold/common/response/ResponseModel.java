@@ -13,6 +13,7 @@ import java.io.Serializable;
 @Setter
 public class ResponseModel<T> implements Serializable {
 
+    @Getter
     public enum STATUS_CODE {
         /**
          * 操作失败

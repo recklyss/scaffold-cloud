@@ -5,7 +5,6 @@ import cn.hutool.core.util.StrUtil;
 import com.cms.scaffold.common.response.ResponseModel;
 import com.cms.scaffold.feign.sys.SysMenuFeign;
 import com.cms.scaffold.feign.sys.SysOperateFeign;
-import com.cms.scaffold.feign.sys.SysRoleOperateFeign;
 import com.cms.scaffold.micro.sys.bo.SysMenuBO;
 import com.cms.scaffold.micro.sys.bo.SysOperateBO;
 import org.apache.shiro.SecurityUtils;
@@ -36,9 +35,6 @@ public class MyShiroRealm extends AuthorizingRealm {
     SysMenuFeign sysMenuFeign;
     @Resource
     SysOperateFeign sysOperateFeign;
-    @Resource
-    SysRoleOperateFeign sysRoleOperateFeign;
-
 
     /**
      * 授权
