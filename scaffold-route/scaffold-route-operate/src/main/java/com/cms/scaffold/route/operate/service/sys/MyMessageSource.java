@@ -29,6 +29,7 @@ import java.util.concurrent.ConcurrentHashMap;
 public class MyMessageSource extends AbstractMessageSource implements ResourceLoaderAware {
 
     private static final Log logger = LogFactory.get(MyMessageSource.class);
+
     ResourceLoader resourceLoader;
     @Resource
     SysI18nFeign sysI18nFeign;
@@ -64,19 +65,15 @@ public class MyMessageSource extends AbstractMessageSource implements ResourceLo
         if (CollectionUtils.isNotEmpty(list)) {
             final Map<String, String> zhCnMessageResources = new HashMap<>(list.size());
             final Map<String, String> enUsMessageResources = new HashMap<>(list.size());
-            final Map<String, String> idIdMessageResources = new HashMap<>(list.size());
             for (SysI18nBO bo : list) {
                 String name = bo.getModel() + "." + bo.getName();
                 String zhText = bo.getZhCn();
                 String enText = bo.getEnUs();
-                String idText = bo.getInId();
                 zhCnMessageResources.put(name, zhText);
                 enUsMessageResources.put(name, enText);
-                idIdMessageResources.put(name, idText);
             }
             LOCAL_CACHE.put("zh", zhCnMessageResources);
             LOCAL_CACHE.put("en", enUsMessageResources);
-            LOCAL_CACHE.put("in", idIdMessageResources);
         }
         return MapUtils.EMPTY_MAP;
     }

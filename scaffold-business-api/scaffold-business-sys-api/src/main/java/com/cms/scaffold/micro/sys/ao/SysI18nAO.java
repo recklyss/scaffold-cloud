@@ -28,7 +28,4 @@ public class SysI18nAO extends BaseEntity {
 
     /** 英文内容**/
     private String enUs;
-
-    /** 印尼内容**/
-    private String inId;
 }

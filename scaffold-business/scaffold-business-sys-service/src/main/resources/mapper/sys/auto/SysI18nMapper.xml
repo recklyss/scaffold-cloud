@@ -8,12 +8,11 @@
     <result column="text" jdbcType="VARCHAR" property="text" />
     <result column="zh_CN" jdbcType="VARCHAR" property="zhCn" />
     <result column="en_US" jdbcType="VARCHAR" property="enUs" />
-    <result column="in_ID" jdbcType="VARCHAR" property="inId" />
     <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
   </resultMap>
   <sql id="sql_columns">
-    id,model,name,text,zh_CN,en_US,in_ID,add_time,update_time
+    id,model,name,text,zh_CN,en_US,add_time,update_time
   </sql>
   <sql id="sql_where">
     <where>
@@ -23,7 +22,6 @@
           <if test="null != text and '' != text">and text = #{text}</if>
           <if test="null != zhCn and '' != zhCn">and zh_CN = #{zhCn}</if>
           <if test="null != enUs and '' != enUs">and en_US = #{enUs}</if>
-          <if test="null != inId and '' != inId">and in_ID = #{inId}</if>
           <if test="null != addTime and '' != addTime">and add_time = #{addTime}</if>
           <if test="null != updateTime and '' != updateTime">and update_time = #{updateTime}</if>
 	</where>
@@ -66,7 +64,6 @@
 	  <if test="null != item.text"> text,</if>
 	  <if test="null != item.zhCn"> zh_CN,</if>
 	  <if test="null != item.enUs"> en_US,</if>
-	  <if test="null != item.inId"> in_ID,</if>
 	  <if test="null != item.addTime"> add_time,</if>
 	  <if test="null != item.updateTime"> update_time,</if>
 	</trim>
@@ -78,7 +75,6 @@
 	  <if test="null != item.text"> #{item.text},</if>
 	  <if test="null != item.zhCn"> #{item.zhCn},</if>
 	  <if test="null != item.enUs"> #{item.enUs},</if>
-	  <if test="null != item.inId"> #{item.inId},</if>
 	  <if test="null != item.addTime"> #{item.addTime},</if>
 	  <if test="null != item.updateTime"> #{item.updateTime},</if>
 	</trim>
@@ -98,7 +94,6 @@
       <if test="null != item.text">, text = #{item.text}</if>
       <if test="null != item.zhCn">, zh_CN = #{item.zhCn}</if>
       <if test="null != item.enUs">, en_US = #{item.enUs}</if>
-      <if test="null != item.inId">, in_ID = #{item.inId}</if>
       <if test="null != item.addTime">, add_time = #{item.addTime}</if>
       <if test="null != item.updateTime">, update_time = #{item.updateTime}</if>
 	where id = #{item.id}
@@ -110,7 +105,6 @@
 	  , text = #{item.text}
 	  , zh_CN = #{item.zhCn}
 	  , en_US = #{item.enUs}
-	  , in_ID = #{item.inId}
 	  , add_time = #{item.addTime}
 	  , update_time = #{item.updateTime}
 	where id = #{item.id}
