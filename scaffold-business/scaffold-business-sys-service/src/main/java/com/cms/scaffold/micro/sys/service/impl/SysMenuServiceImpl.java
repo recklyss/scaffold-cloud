@@ -16,7 +16,12 @@ public class SysMenuServiceImpl extends BaseServiceImpl<SysMenuMapper, SysMenu> 
     }
 
     @Override
-    public SysMenu findByOperateId(Long id) {
+    public List<SysMenu> findByOperateId(Long id) {
         return dao.findByOperateId(id);
+    }
+
+    @Override
+    public List<SysMenu> findByPidAndOperateId(Long pId, Long operateId) {
+        return dao.findByPidAndOperateId(pId, operateId);
     }
 }

@@ -19,7 +19,7 @@ import java.util.Map;
 @Service
 public class ShiroService {
 
-    public static final String PREMISSION_STRING="perms[\"{0}\"]";
+    public static final String PERMISSION_STRING = "perms[\"{0}\"]";
 
     @Autowired
     ShiroFilterFactoryBean shiroFilterFactoryBean;
@@ -35,20 +35,24 @@ public class ShiroService {
         Map<String, String> filterChainDefinitionMap = new LinkedHashMap<String, String>();
         List<SysMenuBO> menuList = sysMenuFeign.findAll().getData();
 
-        if(menuList !=null && !menuList.isEmpty()){
-            for(SysMenuBO menu : menuList){
-                if(!StringUtils.isEmpty(menu.getUrl())){
-                    if(menu.getUrl().indexOf("/")==0){
-                        filterChainDefinitionMap.put(menu.getUrl(),
-                                MessageFormat.format(PREMISSION_STRING,menu.getUrl().replaceFirst("/","").replaceAll("/",":")));
-                    }else{
-                        filterChainDefinitionMap.put(menu.getUrl(),
-                                MessageFormat.format(PREMISSION_STRING,menu.getUrl().replaceAll("/",":")));
-                    }
+        if (menuList != null && !menuList.isEmpty()) {
+            for (SysMenuBO menu : menuList) {
+                if (!StringUtils.isEmpty(menu.getUrl())) {
+                    formatUrl2Code(filterChainDefinitionMap, menu, PERMISSION_STRING);
                 }
             }
         }
         return filterChainDefinitionMap;
+    }
+
+    public static void formatUrl2Code(Map<String, String> filterChainDefinitionMap, SysMenuBO menu, String permissionString) {
+        if (menu.getUrl().indexOf("/") == 0) {
+            filterChainDefinitionMap.put(menu.getUrl(),
+                    MessageFormat.format(permissionString, menu.getUrl().replaceFirst("/", "").replaceAll("/", ":")));
+        } else {
+            filterChainDefinitionMap.put(menu.getUrl(),
+                    MessageFormat.format(permissionString, menu.getUrl().replaceAll("/", ":")));
+        }
     }
 
 

@@ -8,6 +8,7 @@ import com.cms.scaffold.micro.sys.bo.SysMenuBO;
 import com.cms.scaffold.route.operate.shiro.Md5CredentialsMatcher;
 import com.cms.scaffold.route.operate.shiro.MySessionManager;
 import com.cms.scaffold.route.operate.shiro.MyShiroRealm;
+import com.cms.scaffold.route.operate.shiro.ShiroService;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
@@ -20,7 +21,6 @@ import org.springframework.context.annotation.Configuration;
 
 import javax.annotation.Resource;
 import javax.servlet.Filter;
-import java.text.MessageFormat;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -32,8 +32,10 @@ import java.util.Map;
 @Configuration
 public class ShiroConfig {
 
-    /** 默认premission字符串 */
-    public static final String PREMISSION_STRING = "perms[\"{0}\"]";
+    /**
+     * 默认permission字符串
+     */
+    public static final String PERMISSION_STRING = "perms[\"{0}\"]";
 
     @Resource
     SysMenuFeign sysMenuFeign;
@@ -80,16 +82,7 @@ public class ShiroConfig {
         if (CollectionUtil.isNotEmpty(menuList)) {
             for (SysMenuBO menu : menuList) {
                 if (StrUtil.isNotEmpty(menu.getUrl())) {
-                    if (menu.getUrl().indexOf("/") == 0) {
-                        filterChainDefinitionManager.put(
-                                menu.getUrl(),
-                                MessageFormat.format(
-                                        PREMISSION_STRING, menu.getUrl().replaceFirst("/", "").replaceAll("/", ":")));
-                    } else {
-                        filterChainDefinitionManager.put(
-                                menu.getUrl(),
-                                MessageFormat.format(PREMISSION_STRING, menu.getUrl().replaceAll("/", ":")));
-                    }
+                    ShiroService.formatUrl2Code(filterChainDefinitionManager, menu, PERMISSION_STRING);
                 }
             }
         }
