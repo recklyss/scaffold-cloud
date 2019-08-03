@@ -55,6 +55,7 @@ public class LoginController extends BaseController {
         UsernamePasswordToken token = new UsernamePasswordToken(username, password);
         try {
             subject.login(token);
+            subject.getSession().setAttribute(SysConstants.SESSION_ATTRIBUTE_KEY_OPERATOR, operate);
         } catch (AuthenticationException e) {
             e.printStackTrace();
             return error();
