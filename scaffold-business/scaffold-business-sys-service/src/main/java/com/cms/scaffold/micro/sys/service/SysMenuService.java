@@ -28,4 +28,20 @@ public interface SysMenuService extends BaseService<SysMenu> {
      * @return
      */
     List<SysMenu> findByPidAndOperateId(Long pId, Long operateId);
+
+    /**
+     * 更新或者新增菜单
+     *
+     * @param menu
+     * @return
+     */
+    int saveOrUpdate(SysMenu menu);
+
+    /**
+     * 查询父级Ids
+     *
+     * @param id
+     * @return
+     */
+    String findFatherIds(Long id);
 }

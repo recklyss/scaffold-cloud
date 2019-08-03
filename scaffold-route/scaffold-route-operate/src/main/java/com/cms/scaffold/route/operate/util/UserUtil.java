@@ -1,6 +1,9 @@
 package com.cms.scaffold.route.operate.util;
 
+import cn.hutool.log.Log;
+import cn.hutool.log.LogFactory;
 import com.cms.scaffold.micro.sys.bo.SysOperateBO;
+import com.cms.scaffold.route.operate.constant.SysConstants;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.session.InvalidSessionException;
@@ -8,13 +11,14 @@ import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
 import org.apache.shiro.util.ThreadContext;
 
+import java.util.Optional;
+
 /**
  * Created by zjh on 2018/2/13.
  */
 public class UserUtil {
 
-
-    private static final String SESSION_ATTRIBUTE_KEY_OPERATOR = "session_user";
+    private static final Log logger = LogFactory.get(UserUtil.class);
 
     /**
      * 获取授权主要对象
@@ -51,10 +55,18 @@ public class UserUtil {
      */
     public static SysOperateBO getOperatorFromSession() {
         if(getSession() != null){
-            Object attribute = getSession().getAttribute(SESSION_ATTRIBUTE_KEY_OPERATOR);
+            Object attribute = getSession().getAttribute(SysConstants.SESSION_ATTRIBUTE_KEY_OPERATOR);
             return attribute == null ? null : (SysOperateBO) attribute;
         }
+        logger.warn("当前系统session无登陆用户");
         return  null;
+    }
+
+    /**
+     * @return 当前登陆用户的ID
+     */
+    public static Long getOperatorId() {
+        return Optional.ofNullable(getOperatorFromSession()).orElse(new SysOperateBO()).getId();
     }
 
 

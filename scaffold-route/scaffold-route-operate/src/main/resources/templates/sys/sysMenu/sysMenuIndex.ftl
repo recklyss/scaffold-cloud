@@ -10,8 +10,8 @@
         idField:'id',
         treeField:'name',
         singleSelect:true,
-        url: _ctx+'/sys/sysMenu/findSysMenuByPid?parentId=0',
-        expandUrl: _ctx+'/sys/sysMenu/findSysMenuByPid?parentId={id}'">
+        url: _ctx+'/sys/sysMenu/listMenuByPid?pid=0',
+        expandUrl: _ctx+'/sys/sysMenu/listMenuByPid?pid={id}'">
     <thead>
     <tr>
         <th data-options="field:'id',title:'id',checkbox:true"></th>
@@ -72,7 +72,7 @@
                id:'menuAddDialog',
                href:_ctx+'/sys/sysMenu/sysMenuEdit?pid={id}',
                buttonsGroup:[
-                   {text:'<@spring.message "sys.save"/>',url: _ctx+'/sys/sysMenu/sysMenuSave',iconCls:'fa fa-plus',handler:'ajaxForm'}
+                   {text:'<@spring.message "sys.save"/>',url: _ctx+'/sys/sysMenu/saveOrUpdate',iconCls:'fa fa-plus',handler:'ajaxForm'}
                ]
            }"><@spring.message "sys.add"/></a>
 
@@ -91,7 +91,7 @@
                id:'menuEditDialog',
                href:_ctx+'/sys/sysMenu/sysMenuEdit?id={id}',
                buttonsGroup:[
-                   {text:'<@spring.message "sys.update"/>',url: _ctx+'/sys/sysMenu/sysMenuSave',iconCls:'fa fa-save',handler:'ajaxForm'}
+                   {text:'<@spring.message "sys.update"/>',url: _ctx+'/sys/sysMenu/saveOrUpdate',iconCls:'fa fa-save',handler:'ajaxForm'}
                ]
            }"><@spring.message "sys.edit"/></a>
 

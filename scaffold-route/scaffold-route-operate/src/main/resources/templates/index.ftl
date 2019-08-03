@@ -229,7 +229,7 @@
                             url: _ctx+'/sys/sysOperate/updateOperatePwd',
                             data: obj,
                             success: function (data) {
-                                if (data.statusCode === 0) {
+                                if (data.code === 0) {
                                     $editDialog.iDialog('close');
                                     $('#userDatagridId').iDatagrid('reload');
                                 } else {
@@ -255,7 +255,7 @@
             contentType: "application/json; charset=utf-8",
             /*         data: JSON.stringify(formData),*/
             success: function (data) {
-                if (data.statusCode === 0) {
+                if (data.code === 0) {
                     window.location.reload();
                     //location.href = _ctx +  '/index';
                     /*location.href = data.referer;*/

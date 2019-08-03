@@ -53,13 +53,10 @@ public class LoginController extends BaseController {
     @ResponseBody
     public ResponseModel loginCheck(@RequestParam("username") String username,
                                     @RequestParam("password") String password) {
-        final ResponseModel<SysOperateBO> responseModel = sysOperateFeign.findByUserName(username);
-        final SysOperateBO operate = responseModel.getData();
         Subject subject = SecurityUtils.getSubject();
         UsernamePasswordToken token = new UsernamePasswordToken(username, password);
         try {
             subject.login(token);
-            subject.getSession().setAttribute(SysConstants.SESSION_ATTRIBUTE_KEY_OPERATOR, operate);
         } catch (AuthenticationException e) {
             logger.error("登陆失败：{}", e);
             return errorMessage("用户名或者密码错误");

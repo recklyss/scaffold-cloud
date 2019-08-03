@@ -1,7 +1,9 @@
 package com.cms.scaffold.micro.sys.api;
 
 import com.cms.scaffold.common.response.ResponseModel;
+import com.cms.scaffold.micro.sys.ao.SysMenuAO;
 import com.cms.scaffold.micro.sys.bo.SysMenuBO;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -53,4 +55,22 @@ public interface SysMenuApi {
     @RequestMapping(value = "/sysMenu/findByPidAndOperateId", method = RequestMethod.GET)
     ResponseModel<List<SysMenuBO>> findByPidAndOperateId(@RequestParam(value = "pId") Long pId,
                                                          @RequestParam(value = "operateId") Long operateId);
+
+    /**
+     * 保存或者更新
+     *
+     * @param menu
+     * @return
+     */
+    @RequestMapping(value = "/sysMenu/saveOrUpdate", method = RequestMethod.POST)
+    ResponseModel saveOrUpdate(@RequestBody SysMenuAO menu);
+
+    /**
+     * 查询所有父级ID
+     *
+     * @param id
+     * @return
+     */
+    @RequestMapping(value = "/sysMenu/findFatherIds", method = RequestMethod.GET)
+    ResponseModel<String> findFatherIds(@RequestParam(value = "id") Long id);
 }

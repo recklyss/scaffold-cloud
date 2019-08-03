@@ -13,8 +13,14 @@ import org.springframework.util.StringUtils;
  */
 public class ThFormatterFactory {
 
+    /**
+     * 反射用到的包路径
+     */
     private static final String PACKAGE_PATH = "com.cms.scaffold.route.operate.freemarker.impl.";
 
+    /**
+     * 反射用到的类前缀
+     */
     private static final String PRE_STRING = "ThFormatter";
 
     private static Logger logger = LoggerFactory.getLogger(ThFormatterFactory.class);

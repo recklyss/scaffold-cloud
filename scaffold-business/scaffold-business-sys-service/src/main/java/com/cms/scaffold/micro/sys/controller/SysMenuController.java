@@ -3,12 +3,11 @@ package com.cms.scaffold.micro.sys.controller;
 import com.cms.scaffold.common.base.BaseController;
 import com.cms.scaffold.common.builder.Builder;
 import com.cms.scaffold.common.response.ResponseModel;
+import com.cms.scaffold.micro.sys.ao.SysMenuAO;
 import com.cms.scaffold.micro.sys.api.SysMenuApi;
 import com.cms.scaffold.micro.sys.bo.SysMenuBO;
 import com.cms.scaffold.micro.sys.domain.SysMenu;
 import com.cms.scaffold.micro.sys.service.SysMenuService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,13 +22,11 @@ import java.util.List;
 @RestController
 public class SysMenuController extends BaseController implements SysMenuApi {
 
-    private static final Logger logger = LoggerFactory.getLogger(SysMenuController.class);
-
     @Autowired
     SysMenuService sysMenuService;
 
     @Override
-    public ResponseModel listMenuByPid(Long pid) {
+    public ResponseModel<SysMenuBO> listMenuByPid(Long pid) {
         List<SysMenu> sysMenuList = sysMenuService.selectByPid(pid);
         List<SysMenuBO> bo = Builder.buildList(sysMenuList, SysMenuBO.class);
         return successData(bo);
@@ -61,5 +58,23 @@ public class SysMenuController extends BaseController implements SysMenuApi {
     public ResponseModel<List<SysMenuBO>> findByPidAndOperateId(Long pId, Long operateId) {
         final List<SysMenu> sysMenus = sysMenuService.findByPidAndOperateId(pId, operateId);
         return successData(Builder.buildList(sysMenus, SysMenuBO.class));
+    }
+
+    @Override
+    public ResponseModel saveOrUpdate(SysMenuAO ao) {
+        try {
+            SysMenu menu = Builder.build(ao, SysMenu.class);
+            sysMenuService.saveOrUpdate(menu);
+            return success();
+        } catch (Exception e) {
+            return errorMessage(e.getMessage());
+        }
+
+    }
+
+    @Override
+    public ResponseModel<String> findFatherIds(Long id) {
+        String pIds = sysMenuService.findFatherIds(id);
+        return successData(pIds);
     }
 }
