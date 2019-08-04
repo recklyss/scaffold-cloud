@@ -8,7 +8,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 /**
  * @author zhang
  */
-@SpringBootApplication(scanBasePackages = {"com.cms.scaffold.micro"})
+@SpringBootApplication(scanBasePackages = {"com.cms.scaffold"})
 @EnableDiscoveryClient
 @MapperScan(basePackages = "com.cms.scaffold.micro.**.dao")
 public class SysServiceApplication {
