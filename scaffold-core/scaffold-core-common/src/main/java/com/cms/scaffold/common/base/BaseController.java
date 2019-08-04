@@ -28,7 +28,7 @@ public class BaseController<T> {
      * @return
      */
     public ResponseModel<T> errorMessage(String message) {
-        return new ResponseModel<>(ResponseModel.STATUS_CODE.FAIL.getCode(), message, null);
+        return new ResponseModel<>(ResponseModel.STATUS_CODE.FAIL.getStatusCode(), message, null);
     }
 
     /**

@@ -23,14 +23,14 @@
 <#--
  * message
  *
- * Macro to translate a message code into a message.
+ * Macro to translate a message statusCode into a message.
  -->
 <#macro message code>${springMacroRequestContext.getMessage(code)}</#macro>
 
 <#--
  * messageText
  *
- * Macro to translate a message code into a message,
+ * Macro to translate a message statusCode into a message,
  * using the given default text if no message found.
  -->
 <#macro messageText code, text>${springMacroRequestContext.getMessage(code, text)}</#macro>
@@ -38,14 +38,14 @@
 <#--
  * messageArgs
  *
- * Macro to translate a message code with arguments into a message.
+ * Macro to translate a message statusCode with arguments into a message.
  -->
 <#macro messageArgs code, args>${springMacroRequestContext.getMessage(code, args)}</#macro>
 
 <#--
  * messageArgsText
  *
- * Macro to translate a message code with arguments into a message,
+ * Macro to translate a message statusCode with arguments into a message,
  * using the given default text if no message found.
  -->
 <#macro messageArgsText code, args, text>${springMacroRequestContext.getMessage(code, args, text)}</#macro>
@@ -53,14 +53,14 @@
 <#--
  * theme
  *
- * Macro to translate a theme message code into a message.
+ * Macro to translate a theme message statusCode into a message.
  -->
 <#macro theme code>${springMacroRequestContext.getThemeMessage(code)}</#macro>
 
 <#--
  * themeText
  *
- * Macro to translate a theme message code into a message,
+ * Macro to translate a theme message statusCode into a message,
  * using the given default text if no message found.
  -->
 <#macro themeText code, text>${springMacroRequestContext.getThemeMessage(code, text)}</#macro>
@@ -68,14 +68,14 @@
 <#--
  * themeArgs
  *
- * Macro to translate a theme message code with arguments into a message.
+ * Macro to translate a theme message statusCode with arguments into a message.
  -->
 <#macro themeArgs code, args>${springMacroRequestContext.getThemeMessage(code, args)}</#macro>
 
 <#--
  * themeArgsText
  *
- * Macro to translate a theme message code with arguments into a message,
+ * Macro to translate a theme message statusCode with arguments into a message,
  * using the given default text if no message found.
  -->
 <#macro themeArgsText code, args, text>${springMacroRequestContext.getThemeMessage(code, args, text)}</#macro>
@@ -345,7 +345,7 @@ ${stringStatusValue}</textarea>
  * Check a value in a list to see if it is the currently selected value.
  * If so, add the 'selected="selected"' text to the output.
  * Handles values of numeric and string types.
- * This function is used internally but can be accessed by user code if required.
+ * This function is used internally but can be accessed by user statusCode if required.
  *
  * @param value the current value in a list iteration
 -->
@@ -359,7 +359,7 @@ ${stringStatusValue}</textarea>
  *
  * Macro to return true if the list contains the scalar, false if not.
  * Surprisingly not a FreeMarker builtin.
- * This function is used internally but can be accessed by user code if required.
+ * This function is used internally but can be accessed by user statusCode if required.
  *
  * @param list the list to search for the item
  * @param item the item to search for in the list

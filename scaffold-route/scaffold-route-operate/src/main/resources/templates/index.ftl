@@ -79,7 +79,7 @@
         <span style="float: right; padding-right: 10px; height: 50px; line-height: 50px;">
             <a href="javascript:void(0)" data-toggle="topjui-menubutton"
                data-options="iconCls:'fa fa-user',hasDownArrow:false"
-               style="color:#fff;">${sysOperate.userName}</a>|
+               style="color:#fff;">${sysOperate.realName}</a>|
 
             <a href="javascript:void(0)" id="mb4" data-toggle="topjui-menubutton"
                        data-options="menu:'#mm4',iconCls:'fa fa-language',hasDownArrow:true" style="color:#fff;"><@spring.message "sys.change"/><@spring.message "sys.language"/></a>|</a>
@@ -229,7 +229,7 @@
                             url: _ctx+'/sys/sysOperate/updateOperatePwd',
                             data: obj,
                             success: function (data) {
-                                if (data.code === 0) {
+                                if (data.statusCode === 200) {
                                     $editDialog.iDialog('close');
                                     $('#userDatagridId').iDatagrid('reload');
                                 } else {
@@ -255,7 +255,7 @@
             contentType: "application/json; charset=utf-8",
             /*         data: JSON.stringify(formData),*/
             success: function (data) {
-                if (data.code === 0) {
+                if (data.statusCode === 200) {
                     window.location.reload();
                     //location.href = _ctx +  '/index';
                     /*location.href = data.referer;*/

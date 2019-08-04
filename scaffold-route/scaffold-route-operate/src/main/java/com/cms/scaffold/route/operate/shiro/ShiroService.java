@@ -1,5 +1,7 @@
 package com.cms.scaffold.route.operate.shiro;
 
+import cn.hutool.log.Log;
+import cn.hutool.log.LogFactory;
 import com.cms.scaffold.feign.sys.SysMenuFeign;
 import com.cms.scaffold.micro.sys.bo.SysMenuBO;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
@@ -18,6 +20,8 @@ import java.util.Map;
 
 @Service
 public class ShiroService {
+
+    private static final Log logger = LogFactory.get(ShiroService.class);
 
     public static final String PERMISSION_STRING = "perms[\"{0}\"]";
 
@@ -93,7 +97,7 @@ public class ShiroService {
                 manager.createChain(url, chainDefinition);
             }
 
-            System.out.println("更新权限成功！！");
+            logger.info("更新权限成功！！");
         }
     }
 

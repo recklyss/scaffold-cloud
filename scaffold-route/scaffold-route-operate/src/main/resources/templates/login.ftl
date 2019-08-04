@@ -98,7 +98,7 @@
                     url:  _ctx + '/login/check?username='+$("#username").val()+"&password="+$("#password").val(),
                     contentType: "application/json; charset=utf-8",
                     success: function (data) {
-                        if (data.code === 0) {
+                        if (data.statusCode === 200) {
                             location.href = _ctx +  '/index';
                         } else {
                             $.iMessager.alert(data.title,data.message,'error');
@@ -125,7 +125,7 @@
             url:  _ctx + '/lang/changeLanguage?lang='+lang,
             contentType: "application/json; charset=utf-8",
             success: function (data) {
-                if (data.code === 0) {
+                if (data.statusCode === 200) {
                     window.location.reload();
                 } else {
                     $.iMessager.alert(data.title,data.message,'info');
