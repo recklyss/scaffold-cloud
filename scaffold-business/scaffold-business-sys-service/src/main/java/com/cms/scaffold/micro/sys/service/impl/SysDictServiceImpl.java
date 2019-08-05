@@ -14,4 +14,9 @@ public class SysDictServiceImpl extends BaseServiceImpl<SysDictMapper, SysDict> 
     public List<SysDict> findByNid(String nid) {
         return dao.findByNid(nid);
     }
+
+    @Override
+    public List<SysDict> findSysDictByPid(Long parentId) {
+        return dao.listByPid(parentId);
+    }
 }

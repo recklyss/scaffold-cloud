@@ -21,4 +21,13 @@ public interface SysDictApi {
      */
     @RequestMapping(value = "/sysMenu/findByNid", method = RequestMethod.GET)
     ResponseModel<List<SysDictBO>> findByNid(@RequestParam(value = "nid") String nid);
+
+    /**
+     * 根据pid查询
+     *
+     * @param parentId
+     * @return
+     */
+    @RequestMapping(value ="/sysMenu/findSysDictByPid", method = RequestMethod.GET)
+    ResponseModel<List<SysDictBO>> findSysDictByPid(@RequestParam("parentId") Long parentId);
 }

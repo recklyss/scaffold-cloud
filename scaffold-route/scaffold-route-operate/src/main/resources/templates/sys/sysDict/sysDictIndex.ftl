@@ -27,7 +27,7 @@
     <tr>
         <th data-options="field:'id',title:'id',checkbox:true"></th>
         <th data-options="field:'name',title:'<@spring.message "sys.name"/>',width:400"></th>
-        <th data-options="field:'nid',title:'nid',width:200""></th>
+        <th data-options="field:'nid',title:'nid',width:200"></th>
         <th data-options="field:'value',title:'<@spring.message "sys.value"/>',width:80"></th>
         <@th field='type' title='类型' i18n="sys.type" width='80' nid='basics_dict_type'></@th>
         <th data-options="field:'code',title:'<@spring.message "sys.code"/>',width:80"></th>

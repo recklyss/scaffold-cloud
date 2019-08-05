@@ -26,7 +26,7 @@ public class SysMenuController extends BaseController implements SysMenuApi {
     SysMenuService sysMenuService;
 
     @Override
-    public ResponseModel<SysMenuBO> listMenuByPid(Long pid) {
+    public ResponseModel<List<SysMenuBO>> listMenuByPid(Long pid) {
         List<SysMenu> sysMenuList = sysMenuService.selectByPid(pid);
         List<SysMenuBO> bo = Builder.buildList(sysMenuList, SysMenuBO.class);
         return successData(bo);

@@ -36,7 +36,6 @@ public class IndexController extends BaseController {
 
     @GetMapping("/home")
     public String home(){
-        SysOperateBO operate = UserUtil.getOperatorFromSession();
         return "home";
     }
 }

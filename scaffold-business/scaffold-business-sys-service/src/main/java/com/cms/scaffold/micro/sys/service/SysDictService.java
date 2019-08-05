@@ -13,4 +13,10 @@ public interface SysDictService extends BaseService<SysDict> {
      * @return
      */
     List<SysDict> findByNid(String nid);
+
+    /**根据pid查询
+     * @param parentId
+     * @return
+     */
+    List<SysDict> findSysDictByPid(Long parentId);
 }

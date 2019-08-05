@@ -57,10 +57,10 @@ public class SysMenuController extends BaseController {
         return resp;
     }
 
-    @RequestMapping("/listMenuByPid")
+    @RequestMapping("/findSysMenuByPid")
     @ResponseBody
-    public ResponseModel listMenuByPid(Long pid) {
-        return sysMenuFeign.listMenuByPid(pid);
+    public List<SysMenuBO> listMenuByPid(Long parentId) {
+        return sysMenuFeign.listMenuByPid(parentId).getData();
     }
 
     @GetMapping("/selectById")

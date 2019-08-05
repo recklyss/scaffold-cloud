@@ -37,6 +37,7 @@ public class ResponseModel<T> implements Serializable {
 
     private int statusCode;
     private String message;
+    private String title;
     private T data;
 
     public ResponseModel() {

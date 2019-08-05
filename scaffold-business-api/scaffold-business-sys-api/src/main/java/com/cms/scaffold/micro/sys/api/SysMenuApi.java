@@ -23,7 +23,7 @@ public interface SysMenuApi {
      * @return
      */
     @RequestMapping(value = "/sysMenu/listMenuByPid", method = RequestMethod.GET)
-    ResponseModel listMenuByPid(@RequestParam(value = "pid") Long pid);
+    ResponseModel<List<SysMenuBO>> listMenuByPid(@RequestParam(value = "pid") Long pid);
 
     /**
      * @param id 主键

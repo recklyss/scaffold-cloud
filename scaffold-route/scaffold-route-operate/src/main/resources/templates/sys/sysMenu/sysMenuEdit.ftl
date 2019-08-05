@@ -13,8 +13,8 @@
                            columns:[[
                                {field:'name',title:'<@spring.message "sys.name"/>',width:100}
                            ]],
-                           url: _ctx+'/sys/sysMenu/listMenuByPid?pid=0',
-                           expandUrl: _ctx+'/sys/sysMenu/listMenuByPid?pid={id}',
+                           url: _ctx+'/sys/sysMenu/findSysMenuByPid?parentId=0',
+                           expandUrl: _ctx+'/sys/sysMenu/findSysMenuByPid?parentId={id}',
                            getFatherIdsUrl: _ctx+'/sys/sysMenu/findFatherIds?id={id}'">
                 </div>
             </div>

@@ -21,4 +21,10 @@ public class SysDictController extends BaseController implements SysDictApi {
         List<SysDict> sysDictList = sysDictService.findByNid(nid);
         return successData(Builder.buildList(sysDictList, SysDictBO.class));
     }
+
+    @Override
+    public ResponseModel<List<SysDictBO>> findSysDictByPid(Long parentId) {
+        List<SysDict> list = sysDictService.findSysDictByPid(parentId);
+        return successData(Builder.buildList(list, SysDictBO.class));
+    }
 }

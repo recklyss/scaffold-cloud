@@ -10,8 +10,8 @@
         idField:'id',
         treeField:'name',
         singleSelect:true,
-        url: _ctx+'/sys/sysMenu/listMenuByPid?pid=0',
-        expandUrl: _ctx+'/sys/sysMenu/listMenuByPid?pid={id}'">
+        url: _ctx+'/sys/sysMenu/findSysMenuByPid?parentId=0',
+        expandUrl: _ctx+'/sys/sysMenu/findSysMenuByPid?parentId={id}'">
     <thead>
     <tr>
         <th data-options="field:'id',title:'id',checkbox:true"></th>
