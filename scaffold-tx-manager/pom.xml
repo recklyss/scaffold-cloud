@@ -12,6 +12,10 @@
     <artifactId>scaffold-txmanager</artifactId>
     <dependencies>
         <dependency>
+            <groupId>com.cms.scaffold</groupId>
+            <artifactId>scaffold-core-common</artifactId>
+        </dependency>
+        <dependency>
             <groupId>com.codingapi.txlcn</groupId>
             <artifactId>txlcn-tm</artifactId>
         </dependency>

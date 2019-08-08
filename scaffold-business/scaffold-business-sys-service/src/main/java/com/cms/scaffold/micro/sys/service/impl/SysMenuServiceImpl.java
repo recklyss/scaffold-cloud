@@ -5,7 +5,9 @@ import com.cms.scaffold.common.base.BaseServiceImpl;
 import com.cms.scaffold.micro.sys.dao.SysMenuMapper;
 import com.cms.scaffold.micro.sys.domain.SysMenu;
 import com.cms.scaffold.micro.sys.service.SysMenuService;
+import com.codingapi.txlcn.tc.annotation.LcnTransaction;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.StringJoiner;
@@ -28,6 +30,8 @@ public class SysMenuServiceImpl extends BaseServiceImpl<SysMenuMapper, SysMenu> 
     }
 
     @Override
+    @LcnTransaction
+    @Transactional(rollbackFor = Exception.class)
     public int saveOrUpdate(SysMenu menu) {
         SysMenu parentSysMenu = dao.selectById(menu.getPid());
         menu.setLevelId(parentSysMenu.getLevelId() + 1);

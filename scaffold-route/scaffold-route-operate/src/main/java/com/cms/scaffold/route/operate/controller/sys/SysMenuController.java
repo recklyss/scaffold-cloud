@@ -4,14 +4,20 @@ import com.cms.scaffold.common.base.BaseController;
 import com.cms.scaffold.common.builder.Builder;
 import com.cms.scaffold.common.response.ResponseModel;
 import com.cms.scaffold.feign.sys.SysMenuFeign;
+import com.cms.scaffold.feign.sys.SysOperateFeign;
 import com.cms.scaffold.micro.sys.ao.SysMenuAO;
+import com.cms.scaffold.micro.sys.ao.SysOperateAO;
 import com.cms.scaffold.micro.sys.bo.SysMenuBO;
+import com.cms.scaffold.micro.sys.bo.SysOperateBO;
 import com.cms.scaffold.route.operate.response.SysMenuResp;
 import com.cms.scaffold.route.operate.shiro.ShiroService;
 import com.cms.scaffold.route.operate.util.UserUtil;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -27,6 +33,8 @@ public class SysMenuController extends BaseController {
 
     @Resource
     SysMenuFeign sysMenuFeign;
+    @Resource
+    SysOperateFeign sysOperateFeign;
     @Resource
     ShiroService shiroService;
 
@@ -81,5 +89,17 @@ public class SysMenuController extends BaseController {
     public List<SysMenuResp> rightMenus(Long pid) {
         List<SysMenuBO> menuBOS = sysMenuFeign.findByPidAndOperateId(pid, UserUtil.getOperatorId()).getData();
         return Builder.buildList(menuBOS, SysMenuResp.class);
+    }
+
+    @RequestMapping("/test")
+    @ResponseBody
+    public ResponseModel test(Long a){
+
+        final ResponseModel responseModel1 = sysMenuFeign.saveOrUpdate(new SysMenuAO());
+
+        final ResponseModel<SysOperateBO> responseModel2 = sysOperateFeign.insert(new SysOperateAO());
+
+        System.out.println(1/a);
+        return success();
     }
 }

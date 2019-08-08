@@ -56,3 +56,6 @@ mybatis:
     aggressive-lazy-loading: false
     cache-enabled: true
     log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl
+tx-lcn:
+  client:
+    manager-address: 127.0.0.1:8890

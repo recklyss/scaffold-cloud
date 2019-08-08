@@ -38,3 +38,6 @@ logging:
   config: classpath:config/@environment@/logback-spring.xml
   path: /scaffold/log
   file: ${spring.application.name:scaffold-route-operate}
+tx-lcn:
+  client:
+    manager-address: 127.0.0.1:8890
