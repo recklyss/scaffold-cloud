@@ -1,0 +1,18 @@
+server:
+  port: 8771
+spring:
+  application:
+    name: tx-manager
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/tx-manager?characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+    username: root
+    password: 123456
+  jpa:
+    hibernate:
+      ddl-auto: update
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+    use-generated-keys: true
