@@ -3,6 +3,7 @@ package com.cms.scaffold.micro.sys.api;
 import com.cms.scaffold.common.response.ResponseModel;
 import com.cms.scaffold.micro.sys.ao.SysMenuAO;
 import com.cms.scaffold.micro.sys.bo.SysMenuBO;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -62,7 +63,7 @@ public interface SysMenuApi {
      * @param menu
      * @return
      */
-    @RequestMapping(value = "/sysMenu/saveOrUpdate", method = RequestMethod.POST)
+    @RequestMapping(value = "/sysMenu/saveOrUpdate", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
     ResponseModel saveOrUpdate(@RequestBody SysMenuAO menu);
 
     /**

@@ -8,7 +8,6 @@ import com.cms.scaffold.micro.sys.api.SysOperateApi;
 import com.cms.scaffold.micro.sys.bo.SysOperateBO;
 import com.cms.scaffold.micro.sys.domain.SysOperate;
 import com.cms.scaffold.micro.sys.service.SysOperateService;
-import com.codingapi.txlcn.tc.annotation.LcnTransaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RestController;
@@ -28,10 +27,9 @@ public class SysOperateController extends BaseController<SysOperateBO> implement
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    @LcnTransaction
     public ResponseModel<SysOperateBO> insert(SysOperateAO sysOperate) {
         final SysOperate operate = Builder.build(sysOperate, SysOperate.class);
-        final int col = sysOperateService.insert(operate);
+        sysOperateService.insert(operate);
         return successData(Builder.build(operate, SysOperateBO.class));
     }
 }

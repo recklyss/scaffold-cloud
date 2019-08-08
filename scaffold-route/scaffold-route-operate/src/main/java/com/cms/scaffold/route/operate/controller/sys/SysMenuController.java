@@ -95,10 +95,16 @@ public class SysMenuController extends BaseController {
     @ResponseBody
     public ResponseModel test(Long a){
 
-        final ResponseModel responseModel1 = sysMenuFeign.saveOrUpdate(new SysMenuAO());
-
-        final ResponseModel<SysOperateBO> responseModel2 = sysOperateFeign.insert(new SysOperateAO());
-
+        SysMenuAO menu = new SysMenuAO();
+        menu.setName("test");
+        menu.setPid(1L);
+        menu.setRemark("权威测试");
+        final ResponseModel responseModel1 = sysMenuFeign.saveOrUpdate(menu);
+        System.out.println(responseModel1);
+        SysOperateAO sysOperate = new SysOperateAO();
+        sysOperate.setRealName("test");
+        final ResponseModel<SysOperateBO> responseModel2 = sysOperateFeign.insert(sysOperate);
+        System.out.println(responseModel2);
         System.out.println(1/a);
         return success();
     }

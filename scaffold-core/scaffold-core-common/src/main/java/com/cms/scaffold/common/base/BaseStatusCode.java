@@ -4,17 +4,22 @@ public enum BaseStatusCode {
     /**
      * 操作失败
      */
-    FAIL(-1, "操作失败"),
+    FAIL(300, "操作失败"),
 
     /**
      * 操作成功
      */
-    SUCCESS(0, "操作成功"),
+    SUCCESS(200, "操作成功"),
 
     /**
      * 未知异常
      */
-    UNKNOW_ERROR(-99, "未知异常");
+    UNKNOW_ERROR(-100, "未知异常"),
+
+    /**
+     * 参数异常（参数不正确、不符合格式要求等）
+     */
+    PARAM_ERROR(-101, "参数异常");
 
     BaseStatusCode(Integer code, String message) {
         this.code = code;

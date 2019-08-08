@@ -53,4 +53,12 @@ public class BaseEntity implements Serializable {
      **/
     private Long updateOperate;
 
+    public void preInsert() {
+        this.addTime = new Date();
+        this.updateTime = new Date();
+    }
+
+    public void preUpdate() {
+        this.updateTime = new Date();
+    }
 }

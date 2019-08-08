@@ -1,7 +1,9 @@
 package com.cms.scaffold.micro.sys.controller;
 
 import com.cms.scaffold.common.base.BaseController;
+import com.cms.scaffold.common.base.BaseStatusCode;
 import com.cms.scaffold.common.builder.Builder;
+import com.cms.scaffold.common.exception.BusinessException;
 import com.cms.scaffold.common.response.ResponseModel;
 import com.cms.scaffold.micro.sys.ao.SysMenuAO;
 import com.cms.scaffold.micro.sys.api.SysMenuApi;
@@ -62,14 +64,9 @@ public class SysMenuController extends BaseController implements SysMenuApi {
 
     @Override
     public ResponseModel saveOrUpdate(SysMenuAO ao) {
-        try {
-            SysMenu menu = Builder.build(ao, SysMenu.class);
-            sysMenuService.saveOrUpdate(menu);
-            return success();
-        } catch (Exception e) {
-            return errorMessage(e.getMessage());
-        }
-
+        SysMenu menu = Builder.build(ao, SysMenu.class);
+        sysMenuService.saveOrUpdate(menu);
+        throw new BusinessException(BaseStatusCode.PARAM_ERROR);
     }
 
     @Override
