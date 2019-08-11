@@ -67,6 +67,13 @@ public class ResponseModel<T> implements Serializable {
         this.data = data;
     }
 
+    public ResponseModel(int statusCode, String message, String title, T data) {
+        this.statusCode = statusCode;
+        this.message = message;
+        this.data = data;
+        this.title = title;
+    }
+
     public static ResponseModel successData(Object data) {
         return new ResponseModel<>(data);
     }

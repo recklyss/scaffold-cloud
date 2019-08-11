@@ -11,6 +11,7 @@ import com.cms.scaffold.micro.sys.bo.SysMenuBO;
 import com.cms.scaffold.micro.sys.domain.SysMenu;
 import com.cms.scaffold.micro.sys.service.SysMenuService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -63,7 +64,7 @@ public class SysMenuController extends BaseController implements SysMenuApi {
     }
 
     @Override
-    public ResponseModel saveOrUpdate(SysMenuAO ao) {
+    public ResponseModel saveOrUpdate(@RequestBody SysMenuAO ao) {
         SysMenu menu = Builder.build(ao, SysMenu.class);
         sysMenuService.saveOrUpdate(menu);
         throw new BusinessException(BaseStatusCode.PARAM_ERROR);

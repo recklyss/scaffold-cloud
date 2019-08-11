@@ -59,7 +59,7 @@ public class LoginController extends BaseController {
             subject.login(token);
         } catch (AuthenticationException e) {
             logger.error("登陆失败：{}", e);
-            return errorMessage("用户名或者密码错误");
+            return errorMessage("用户名或者密码错误", "操作失败");
         }
         return success();
     }

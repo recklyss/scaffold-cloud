@@ -49,4 +49,13 @@ public interface SysOperateApi {
      */
     @RequestMapping(value = "/sysOperate/selectById", method = RequestMethod.GET)
     ResponseModel<SysOperateBO> selectById(@RequestParam("id") Long id);
+
+    /**
+     * 更新操作员信息
+     *
+     * @param ao
+     * @return
+     */
+    @RequestMapping(value = "/sysOperate/update", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    ResponseModel update(@RequestBody SysOperateAO ao);
 }

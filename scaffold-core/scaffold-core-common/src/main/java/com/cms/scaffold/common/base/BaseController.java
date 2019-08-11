@@ -29,6 +29,10 @@ public class BaseController<T> {
      * @param message
      * @return
      */
+    public ResponseModel<T> errorMessage(String message, String title) {
+        return new ResponseModel<>(ResponseModel.STATUS_CODE.FAIL.getStatusCode(), message, title, null);
+    }
+
     public ResponseModel<T> errorMessage(String message) {
         return new ResponseModel<>(ResponseModel.STATUS_CODE.FAIL.getStatusCode(), message, null);
     }

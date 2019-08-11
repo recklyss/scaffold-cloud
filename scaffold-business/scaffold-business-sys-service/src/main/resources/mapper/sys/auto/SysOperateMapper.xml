@@ -13,10 +13,9 @@
     <result column="login_ip" jdbcType="VARCHAR" property="loginIp" />
     <result column="login_time" jdbcType="TIMESTAMP" property="loginTime" />
     <result column="status" jdbcType="INTEGER" property="status" />
-    <result column="openid" jdbcType="VARCHAR" property="openid" />
   </resultMap>
   <sql id="sql_columns">
-    id,user_name,real_name,pwd,mobile_phone,add_time,update_time,partner_id,login_ip,login_time,status,openid
+    id,user_name,real_name,pwd,mobile_phone,add_time,update_time,partner_id,login_ip,login_time,status
   </sql>
   <sql id="sql_where">
     <where>
@@ -31,7 +30,6 @@
           <if test="null != loginIp and '' != loginIp">and login_ip = #{loginIp}</if>
           <if test="null != loginTime and '' != loginTime">and login_time = #{loginTime}</if>
           <if test="null != status and '' != status or 0 ==status">and status = #{status}</if>
-          <if test="null != openid and '' != openid">and openid = #{openid}</if>
 	</where>
   </sql>
   <sql id="sql_map_where">
@@ -77,7 +75,6 @@
 	  <if test="null != item.loginIp"> login_ip,</if>
 	  <if test="null != item.loginTime"> login_time,</if>
 	  <if test="null != item.status"> status,</if>
-	  <if test="null != item.openid"> openid,</if>
 	</trim>
   </sql>
   <sql id="sql_insert_values">
@@ -92,7 +89,6 @@
 	  <if test="null != item.loginIp"> #{item.loginIp},</if>
 	  <if test="null != item.loginTime"> #{item.loginTime},</if>
 	  <if test="null != item.status"> #{item.status},</if>
-	  <if test="null != item.openid"> #{item.openid},</if>
 	</trim>
   </sql>
   <insert id="insert" keyProperty="item.id" useGeneratedKeys="true">
@@ -115,7 +111,6 @@
       <if test="null != item.loginIp">, login_ip = #{item.loginIp}</if>
       <if test="null != item.loginTime">, login_time = #{item.loginTime}</if>
       <if test="null != item.status">, status = #{item.status}</if>
-      <if test="null != item.openid">, openid = #{item.openid}</if>
 	where id = #{item.id}
   </sql>
   <sql id="sql_update_all">
@@ -130,7 +125,6 @@
 	  , login_ip = #{item.loginIp}
 	  , login_time = #{item.loginTime}
 	  , status = #{item.status}
-	  , openid = #{item.openid}
 	where id = #{item.id}
   </sql>
   <update id="update">

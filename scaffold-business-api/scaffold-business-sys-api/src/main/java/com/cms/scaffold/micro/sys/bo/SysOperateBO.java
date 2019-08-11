@@ -47,4 +47,9 @@ public class SysOperateBO extends BaseEntity {
      * 状态
      **/
     private Long status;
+
+    /**
+     * 角色名称
+     */
+    private String roleName;
 }

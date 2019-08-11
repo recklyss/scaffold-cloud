@@ -1,6 +1,6 @@
 <#assign base=request.contextPath />
 <html>
-    <#include "public/head_login.ftl">
+<#include "public/head_login.ftl">
 <body>
 <div class="box">
 
@@ -20,7 +20,8 @@
                         <div class="col-xs-10 col-xs-offset-1">
                             <div class="input-group">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-                                <input type="text" id="username" name="username" class="form-control" placeholder="<@spring.message "sys.username"/>">
+                                <input type="text" id="username" name="username" class="form-control"
+                                       placeholder="<@spring.message "sys.username"/>">
                             </div>
                         </div>
                     </div>
@@ -28,7 +29,8 @@
                         <div class="col-xs-10 col-xs-offset-1">
                             <div class="input-group">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-                                <input type="password" id="password" name="password" class="form-control" placeholder="<@spring.message "sys.password"/>">
+                                <input type="password" id="password" name="password" class="form-control"
+                                       placeholder="<@spring.message "sys.password"/>">
                             </div>
                         </div>
                     </div>
@@ -44,10 +46,10 @@
                         </div>
                     </div>
                     <div class="form-group" style="text-align: center">
-                        <a href="javascript:void(0)"  data-toggle="topjui-menubutton" class="btn btn-sm"
-                           data-options="iconCls:'fa fa-language'" onclick="changeLanguage('zh_CN')" >中文</a>
-                        <a href="javascript:void(0)"  data-toggle="topjui-menubutton" class="btn btn-sm"
-                           data-options="iconCls:'fa fa-language'" onclick="changeLanguage('en_US')" >English</a>
+                        <a href="javascript:void(0)" data-toggle="topjui-menubutton" class="btn btn-sm"
+                           data-options="iconCls:'fa fa-language'" onclick="changeLanguage('zh_CN')">中文</a>
+                        <a href="javascript:void(0)" data-toggle="topjui-menubutton" class="btn btn-sm"
+                           data-options="iconCls:'fa fa-language'" onclick="changeLanguage('en_US')">English</a>
                         <#--<a href="javascript:void(0)"  data-toggle="topjui-menubutton" class="btn btn-sm"
                            data-options="iconCls:'fa fa-language'" onclick="changeLanguage('in_ID')" >印尼</a>-->
                     </div>
@@ -87,21 +89,21 @@
 
         function submitForm() {
             if (navigator.appName == "Microsoft Internet Explorer" &&
-                    (navigator.appVersion.split(";")[1].replace(/[ ]/g, "") == "MSIE6.0" ||
-                            navigator.appVersion.split(";")[1].replace(/[ ]/g, "") == "MSIE7.0" ||
-                            navigator.appVersion.split(";")[1].replace(/[ ]/g, "") == "MSIE8.0")
+                (navigator.appVersion.split(";")[1].replace(/[ ]/g, "") == "MSIE6.0" ||
+                    navigator.appVersion.split(";")[1].replace(/[ ]/g, "") == "MSIE7.0" ||
+                    navigator.appVersion.split(";")[1].replace(/[ ]/g, "") == "MSIE8.0")
             ) {
 
             } else {
                 $.ajax({
                     type: 'POST',
-                    url:  _ctx + '/login/check?username='+$("#username").val()+"&password="+$("#password").val(),
+                    url: _ctx + '/login/check?username=' + $("#username").val() + "&password=" + $("#password").val(),
                     contentType: "application/json; charset=utf-8",
                     success: function (data) {
                         if (data.statusCode === 200) {
-                            location.href = _ctx +  '/index';
+                            location.href = _ctx + '/index';
                         } else {
-                            $.iMessager.alert(data.title,data.message,'error');
+                            $.iMessager.alert(data.title, data.message, 'error');
                         }
                     },
                     error: function () {
@@ -112,23 +114,22 @@
         }
 
 
-
-
         $("#reset").on("click", function () {
             $("#username").val("");
             $("#password").val("");
         });
     });
-    function changeLanguage(lang){
+
+    function changeLanguage(lang) {
         $.ajax({
             type: 'POST',
-            url:  _ctx + '/lang/changeLanguage?lang='+lang,
+            url: _ctx + '/lang/changeLanguage?lang=' + lang,
             contentType: "application/json; charset=utf-8",
             success: function (data) {
                 if (data.statusCode === 200) {
                     window.location.reload();
                 } else {
-                    $.iMessager.alert(data.title,data.message,'info');
+                    $.iMessager.alert(data.title, data.message, 'info');
                 }
             },
             error: function () {

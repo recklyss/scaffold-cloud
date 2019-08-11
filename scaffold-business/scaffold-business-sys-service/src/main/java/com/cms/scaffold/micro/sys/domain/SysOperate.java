@@ -38,7 +38,4 @@ public class SysOperate extends BaseEntity {
 
     /** 状态**/
     private Long status;
-
-    /** 钉钉系统用户id**/
-    private String openid;
 }

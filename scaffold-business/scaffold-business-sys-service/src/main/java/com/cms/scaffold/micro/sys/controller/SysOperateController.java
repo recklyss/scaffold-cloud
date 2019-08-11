@@ -8,10 +8,16 @@ import com.cms.scaffold.micro.sys.ao.SysOperateAO;
 import com.cms.scaffold.micro.sys.api.SysOperateApi;
 import com.cms.scaffold.micro.sys.bo.SysOperateBO;
 import com.cms.scaffold.micro.sys.domain.SysOperate;
+import com.cms.scaffold.micro.sys.domain.SysRoleOperate;
 import com.cms.scaffold.micro.sys.service.SysOperateService;
+import com.cms.scaffold.micro.sys.service.SysRoleOperateService;
+import com.cms.scaffold.micro.sys.service.SysRoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 /**
  * @author zhang
@@ -20,6 +26,10 @@ import org.springframework.web.bind.annotation.RestController;
 public class SysOperateController extends BaseController<SysOperateBO> implements SysOperateApi {
     @Autowired
     SysOperateService sysOperateService;
+    @Autowired
+    private SysRoleService sysRoleService;
+    @Autowired
+    private SysRoleOperateService sysRoleOperateService;
 
     @Override
     public ResponseModel<SysOperateBO> findByUserName(String username) {
@@ -31,20 +41,31 @@ public class SysOperateController extends BaseController<SysOperateBO> implement
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public ResponseModel<SysOperateBO> insert(SysOperateAO sysOperate) {
+    public ResponseModel<SysOperateBO> insert(@RequestBody SysOperateAO sysOperate) {
         final SysOperate operate = Builder.build(sysOperate, SysOperate.class);
-        sysOperateService.insert(operate);
+        sysOperateService.insertOneAndRole(operate, sysOperate.getRoleId());
         return successData(Builder.build(operate, SysOperateBO.class));
     }
 
     @Override
-    public ResponsePageModel<SysOperateBO> findOperatePage(SysOperateAO operateAo) {
+    public ResponsePageModel<SysOperateBO> findOperatePage(@RequestBody SysOperateAO operateAo) {
         ResponsePageModel<SysOperate> page = sysOperateService.findPage(Builder.build(operateAo, SysOperate.class));
-        return new ResponsePageModel<>(Builder.buildList(page.getRows(), SysOperateBO.class), page.getTotal());
+        List<SysOperateBO> sysOperateBOS = Builder.buildList(page.getRows(), SysOperateBO.class);
+        sysOperateBOS.forEach(o->{
+            SysRoleOperate sysRoleOperate = sysRoleOperateService.selectByOperateId(o.getId());
+            o.setRoleName(sysRoleService.selectById(sysRoleOperate.getRoleId()).getName());
+        });
+        return new ResponsePageModel<>(sysOperateBOS, page.getTotal());
     }
 
     @Override
     public ResponseModel<SysOperateBO> selectById(Long id) {
         return successData(Builder.build(sysOperateService.selectById(id), SysOperateBO.class));
+    }
+
+    @Override
+    public ResponseModel update(@RequestBody SysOperateAO ao) {
+        sysOperateService.update(Builder.build(ao, SysOperate.class));
+        return success();
     }
 }
