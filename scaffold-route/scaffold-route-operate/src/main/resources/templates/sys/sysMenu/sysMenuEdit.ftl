@@ -1,6 +1,9 @@
 <#import "../../spring.ftl" as spring/>
 <div data-toggle="topjui-layout" data-options="fit:true">
     <div class="topjui-fluid">
+        <fieldset>
+            <legend>新增/编辑菜单</legend>
+        </fieldset>
         <div class="topjui-row" style="padding-top: 20px">
             <div class="topjui-col-sm6">
                 <label class="topjui-form-label"><@spring.message "sys.parent"/></label>
@@ -71,14 +74,14 @@
             </div>
         </div>
         <div class="topjui-row">
-            <div class="topjui-col-sm8">
+            <div class="topjui-col-sm6">
                 <label class="topjui-form-label"><@spring.message "sys.url"/></label>
                 <div class="topjui-input-block">
                     <input type="text" name="url" data-toggle="topjui-textbox" value="${sysMenu.url!''}"
                            data-options="prompt:'<@spring.message "sys.url"/>'">
                 </div>
             </div>
-            <div class="topjui-col-sm4">
+            <div class="topjui-col-sm6">
                 <label class="topjui-form-label"><@spring.message "sys.sort"/></label>
                 <div class="topjui-input-block">
                     <input type="text" name="sort" data-toggle="topjui-numberspinner" value="${sysMenu.sort!''}"

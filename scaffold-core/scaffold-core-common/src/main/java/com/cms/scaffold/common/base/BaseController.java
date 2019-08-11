@@ -2,6 +2,8 @@ package com.cms.scaffold.common.base;
 
 import com.cms.scaffold.common.response.ResponseModel;
 
+import java.util.List;
+
 /**
  * @Author zhangjiaheng
  * @Description 控制类基类
@@ -36,6 +38,16 @@ public class BaseController<T> {
      * @return 成功
      */
     public ResponseModel<T> successData(T data) {
+        return new ResponseModel<>(data);
+    }
+
+    /**
+     * 返回列表数据
+     *
+     * @param data
+     * @return
+     */
+    public ResponseModel<List<T>> successData(List<T> data) {
         return new ResponseModel<>(data);
     }
 }

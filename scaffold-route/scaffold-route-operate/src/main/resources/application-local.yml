@@ -3,7 +3,7 @@ eureka:
     serviceUrl:
       defaultZone: http://localhost:8761/eureka/
     eureka-server-read-timeout-seconds: 8
-    eureka-server-connect-timeout-seconds: 20
+    eureka-server-connect-timeout-seconds: 50
 
 server:
   port: 8750

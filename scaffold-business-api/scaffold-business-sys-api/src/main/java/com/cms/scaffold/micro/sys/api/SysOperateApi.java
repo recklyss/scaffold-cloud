@@ -1,6 +1,7 @@
 package com.cms.scaffold.micro.sys.api;
 
 import com.cms.scaffold.common.response.ResponseModel;
+import com.cms.scaffold.common.response.ResponsePageModel;
 import com.cms.scaffold.micro.sys.ao.SysOperateAO;
 import com.cms.scaffold.micro.sys.bo.SysOperateBO;
 import org.springframework.http.MediaType;
@@ -30,4 +31,22 @@ public interface SysOperateApi {
      */
     @RequestMapping(value = "/sysOperate/findByUserName", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
     ResponseModel<SysOperateBO> insert(@RequestBody SysOperateAO sysOperate);
+
+    /**
+     * 分页查询操作员
+     *
+     * @param operateAo
+     * @return
+     */
+    @RequestMapping(value = "/sysOperate/findOperatePage", method = RequestMethod.POST)
+    ResponsePageModel<SysOperateBO> findOperatePage(SysOperateAO operateAo);
+
+    /**
+     * 根据ID查询
+     *
+     * @param id
+     * @return
+     */
+    @RequestMapping(value = "/sysOperate/selectById", method = RequestMethod.GET)
+    ResponseModel<SysOperateBO> selectById(@RequestParam("id") Long id);
 }

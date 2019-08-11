@@ -86,7 +86,6 @@
             <div id="mm4" style="width:74px;">
                 <div data-options="iconCls:'fa fa-language'" onclick="changeLanguage('zh_CN')">中文</div>
                 <div data-options="iconCls:'fa fa-language'" onclick="changeLanguage('en_US')">English</div>
-                <div data-options="iconCls:'fa fa-language'" onclick="changeLanguage('in_ID')">印尼文</div>
             </div>
            <a href="javascript:void(0)" id="mb3" data-toggle="topjui-menubutton"
               data-options="menu:'#mm3',iconCls:'fa fa-cog',hasDownArrow:true" style="color:#fff;"><@spring.message "sys.set"/></a>
@@ -99,7 +98,7 @@
             <a href="javascript:void(0)" id="mb2" data-toggle="topjui-menubutton"
                data-options="menu:'#mm2',iconCls:'fa fa-tree',hasDownArrow:true" style="color:#fff;"><@spring.message "sys.theme"/></a>|
             <div id="mm2" style="width:180px;">
-                <div data-options="iconCls:'fa fa-language blue'" onclick="changeTheme('blue')"><@spring.message "sys.default"/></div>
+                <div data-options="iconCls:'fa fa-language blue'" onclick="changeTheme('black')"><@spring.message "sys.default"/></div>
                 <div data-options="iconCls:'fa fa-tree'" onclick="changeTheme('black')"><@spring.message "sys.black"/></div>
                 <div data-options="iconCls:'fa fa-tree'" onclick="changeTheme('blacklight')"><@spring.message "sys.black"/>-<@spring.message "sys.light"/></div>
                 <div data-options="iconCls:'fa fa-tree red'" onclick="changeTheme('red')"><@spring.message "sys.red"/></div>
@@ -210,8 +209,8 @@
         var $editDialog = $('<form></form>');
         $editDialog.iDialog({
             title: '<@spring.message "sys.change"/><@spring.message "sys.password"/>',
-            width: 800,
-            height: 800,
+            width: 550,
+            height: 350,
             closed: false,
             cache: false,
             href: _ctx+'/sys/sysOperate/editOperatePwdPage?operateId='+ id,
@@ -245,7 +244,6 @@
             ]
 
         });
-        $("#themeStyle").after("<div id =\"ijhioh\"></div>");
     }
 
     function changeLanguage(lang){
@@ -253,12 +251,9 @@
             type: 'POST',
             url:  _ctx + '/lang/changeLanguage?lang='+lang,
             contentType: "application/json; charset=utf-8",
-            /*         data: JSON.stringify(formData),*/
             success: function (data) {
                 if (data.statusCode === 200) {
                     window.location.reload();
-                    //location.href = _ctx +  '/index';
-                    /*location.href = data.referer;*/
                 } else {
                     $.iMessager.alert(data.title,data.message,'info');
                 }

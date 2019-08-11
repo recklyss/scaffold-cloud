@@ -66,9 +66,9 @@
             },
             dialog: {
                 title:'<@spring.message "sys.edit"/>',
-                href: _ctx+'/sys/sysOperate/editOperatePage?operateId={id}',
+                href: _ctx+'/sys/sysOperate/editOperatePage?id={id}',
                 width:700,
-                height:500,
+                height:300,
                 buttonsGroup: [
                     {
                         text: '<@spring.message "sys.update"/>',
@@ -79,41 +79,6 @@
                     }
                 ]
             }"><@spring.message "sys.edit"/></a>
-
-    <a href="javascript:void(0)"
-       data-toggle="topjui-menubutton"
-       data-options="method: 'openDialog',
-            extend: '#userDatagridId-toolbar',
-            iconCls: 'fa fa-pencil',
-            btnCls: 'topjui-btn-purple',
-            grid: {
-                type: 'datagrid',
-                id: 'userDatagridId'
-            },
-            dialog: {
-                title:'<@spring.message "sys.editpassword"/>',
-                href: _ctx+'/sys/sysOperate/editOperatePwdPage?operateId={id}',
-                width:700,
-                height:500,
-                buttonsGroup: [
-                    {
-                        text: '<@spring.message "sys.update"/>',
-                        url: _ctx+'/sys/sysOperate/updateOperatePwd',
-                        iconCls: 'fa fa-save',
-                        handler: 'ajaxForm',
-                        btnCls: 'topjui-btn-green'
-                    }
-                ]
-            }"><@spring.message "sys.editpassword"/></a>
-
-    <a href="javascript:void(0)"
-       data-toggle="topjui-menubutton"
-       data-options="method:'doAjax',
-       extend: '#userDatagridId-toolbar',
-       btnCls:'topjui-btn-brown',
-       iconCls:'fa fa-trash',
-       url: _ctx+'/sys/sysOperate/resetPwd',
-       grid: {uncheckedMsg:'<@spring.message "sys.pleasecheckrow"/>',param:'operateId:id'}"><@spring.message "sys.reset"/></a>
 
     <!--查询条件表单&ndash;&gt;-->
     <form id="queryForm" class="search-box">
@@ -137,7 +102,3 @@
 </div>
 </body>
 </html>
-<script type="text/javascript">
-
-
-</script>

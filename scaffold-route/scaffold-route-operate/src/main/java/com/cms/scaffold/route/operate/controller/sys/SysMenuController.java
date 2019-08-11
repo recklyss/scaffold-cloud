@@ -6,9 +6,7 @@ import com.cms.scaffold.common.response.ResponseModel;
 import com.cms.scaffold.feign.sys.SysMenuFeign;
 import com.cms.scaffold.feign.sys.SysOperateFeign;
 import com.cms.scaffold.micro.sys.ao.SysMenuAO;
-import com.cms.scaffold.micro.sys.ao.SysOperateAO;
 import com.cms.scaffold.micro.sys.bo.SysMenuBO;
-import com.cms.scaffold.micro.sys.bo.SysOperateBO;
 import com.cms.scaffold.route.operate.response.SysMenuResp;
 import com.cms.scaffold.route.operate.shiro.ShiroService;
 import com.cms.scaffold.route.operate.util.UserUtil;
@@ -43,7 +41,7 @@ public class SysMenuController extends BaseController {
         return ftlPath + "sysMenuIndex";
     }
 
-    @GetMapping("/SysMenuEdit")
+    @GetMapping("/sysMenuEdit")
     public String SysMenuEdit(Model model, SysMenuAO sysMenu) {
         SysMenuResp sysMenuResp;
         if (null == sysMenu.getId()) {
@@ -53,8 +51,7 @@ public class SysMenuController extends BaseController {
             sysMenuResp = Builder.build(resp.getData(), SysMenuResp.class);
         }
         model.addAttribute("sysMenu", sysMenuResp);
-        shiroService.updatePermission();
-        return ftlPath + "SysMenuEdit";
+        return ftlPath + "sysMenuEdit";
     }
 
     @PostMapping("/saveOrUpdate")
@@ -91,21 +88,5 @@ public class SysMenuController extends BaseController {
         return Builder.buildList(menuBOS, SysMenuResp.class);
     }
 
-    @RequestMapping("/test")
-    @ResponseBody
-    public ResponseModel test(Long a){
 
-        SysMenuAO menu = new SysMenuAO();
-        menu.setName("test");
-        menu.setPid(1L);
-        menu.setRemark("权威测试");
-        final ResponseModel responseModel1 = sysMenuFeign.saveOrUpdate(menu);
-        System.out.println(responseModel1);
-        SysOperateAO sysOperate = new SysOperateAO();
-        sysOperate.setRealName("test");
-        final ResponseModel<SysOperateBO> responseModel2 = sysOperateFeign.insert(sysOperate);
-        System.out.println(responseModel2);
-        System.out.println(1/a);
-        return success();
-    }
 }
