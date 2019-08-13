@@ -19,7 +19,7 @@ public class SysOperateServiceImpl extends BaseServiceImpl<SysOperateMapper, Sys
     private SysRoleOperateService sysRoleOperateService;
 
     @Override
-    public int insertOneAndRole(SysOperate operate, Long roleId) {
+    public int insertOneAndRole(SysOperate operate, Long roleId){
         int col = dao.insert(operate);
         SysRoleOperate sysRoleOperate = new SysRoleOperate();
         sysRoleOperate.setOperateId(operate.getId());

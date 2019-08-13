@@ -13,7 +13,6 @@ import com.cms.scaffold.micro.sys.service.SysOperateService;
 import com.cms.scaffold.micro.sys.service.SysRoleOperateService;
 import com.cms.scaffold.micro.sys.service.SysRoleService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -40,7 +39,6 @@ public class SysOperateController extends BaseController<SysOperateBO> implement
     }
 
     @Override
-    @Transactional(rollbackFor = Exception.class)
     public ResponseModel<SysOperateBO> insert(@RequestBody SysOperateAO sysOperate) {
         final SysOperate operate = Builder.build(sysOperate, SysOperate.class);
         sysOperateService.insertOneAndRole(operate, sysOperate.getRoleId());

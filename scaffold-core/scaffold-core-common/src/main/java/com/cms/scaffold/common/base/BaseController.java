@@ -20,7 +20,7 @@ public class BaseController<T> {
      * @return 操作失败
      */
     public ResponseModel<T> error() {
-        return new ResponseModel<>(ResponseModel.STATUS_CODE.FAIL);
+        return new ResponseModel<>(BaseStatusCode.FAIL);
     }
 
     /**
@@ -30,11 +30,11 @@ public class BaseController<T> {
      * @return
      */
     public ResponseModel<T> errorMessage(String message, String title) {
-        return new ResponseModel<>(ResponseModel.STATUS_CODE.FAIL.getStatusCode(), message, title, null);
+        return new ResponseModel<>(BaseStatusCode.FAIL.getCode(), message, title, null);
     }
 
     public ResponseModel<T> errorMessage(String message) {
-        return new ResponseModel<>(ResponseModel.STATUS_CODE.FAIL.getStatusCode(), message, null);
+        return new ResponseModel<>(BaseStatusCode.FAIL.getCode(), message, null);
     }
 
     /**

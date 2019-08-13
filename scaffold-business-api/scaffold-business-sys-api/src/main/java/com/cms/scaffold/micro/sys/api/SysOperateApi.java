@@ -29,7 +29,7 @@ public interface SysOperateApi {
      * @param sysOperate
      * @return
      */
-    @RequestMapping(value = "/sysOperate/findByUserName", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @RequestMapping(value = "/sysOperate/insert", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
     ResponseModel<SysOperateBO> insert(@RequestBody SysOperateAO sysOperate);
 
     /**
