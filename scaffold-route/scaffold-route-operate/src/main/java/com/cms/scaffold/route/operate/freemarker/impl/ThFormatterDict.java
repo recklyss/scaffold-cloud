@@ -1,7 +1,7 @@
 package com.cms.scaffold.route.operate.freemarker.impl;
 
 import com.cms.scaffold.common.response.ResponseModel;
-import com.cms.scaffold.common.tool.SpringContextHolder;
+import com.cms.scaffold.code.config.commonly.SpringContextHolder;
 import com.cms.scaffold.feign.sys.SysDictFeign;
 import com.cms.scaffold.micro.sys.bo.SysDictBO;
 import com.cms.scaffold.route.operate.freemarker.factory.ThFormatterInterface;

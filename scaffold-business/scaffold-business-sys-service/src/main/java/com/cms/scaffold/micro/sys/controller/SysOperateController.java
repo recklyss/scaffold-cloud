@@ -48,12 +48,12 @@ public class SysOperateController extends BaseController<SysOperateBO> implement
     @Override
     public ResponsePageModel<SysOperateBO> findOperatePage(@RequestBody SysOperateAO operateAo) {
         ResponsePageModel<SysOperate> page = sysOperateService.findPage(Builder.build(operateAo, SysOperate.class));
-        List<SysOperateBO> sysOperateBOS = Builder.buildList(page.getRows(), SysOperateBO.class);
-        sysOperateBOS.forEach(o->{
+        List<SysOperateBO> sysOperateBoList = Builder.buildList(page.getRows(), SysOperateBO.class);
+        sysOperateBoList.forEach(o->{
             SysRoleOperate sysRoleOperate = sysRoleOperateService.selectByOperateId(o.getId());
             o.setRoleName(sysRoleService.selectById(sysRoleOperate.getRoleId()).getName());
         });
-        return new ResponsePageModel<>(sysOperateBOS, page.getTotal());
+        return new ResponsePageModel<>(sysOperateBoList, page.getTotal());
     }
 
     @Override

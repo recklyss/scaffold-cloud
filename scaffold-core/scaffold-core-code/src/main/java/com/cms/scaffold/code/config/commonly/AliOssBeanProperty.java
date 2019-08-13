@@ -1,4 +1,4 @@
-package com.cms.scaffold.code.bean;
+package com.cms.scaffold.code.config.commonly;
 
 import com.aliyun.oss.OSSClient;
 import lombok.Getter;

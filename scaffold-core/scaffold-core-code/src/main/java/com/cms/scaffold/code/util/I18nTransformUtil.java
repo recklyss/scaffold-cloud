@@ -1,8 +1,8 @@
-package com.cms.scaffold.common.util;
+package com.cms.scaffold.code.util;
 
 import cn.hutool.core.util.ReflectUtil;
 import cn.hutool.core.util.StrUtil;
-import com.cms.scaffold.common.tool.SpringContextHolder;
+import com.cms.scaffold.code.config.commonly.SpringContextHolder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.MessageSource;
@@ -78,9 +78,6 @@ public class I18nTransformUtil {
     public static String transFormString(String i18nName){
         MessageSource messageSource = SpringContextHolder.getBean("messageSource");
         String source = messageSource.getMessage(i18nName, null, LocaleContextHolder.getLocale());
-        if(null == source){
-            return "";
-        }
         if(source.equals(i18nName)){
             logger.warn("i18n:{}对应的国际化配置在数据库不存在，请检查！", i18nName);
         }

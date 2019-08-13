@@ -1,4 +1,4 @@
-package com.cms.scaffold.common.tool;
+package com.cms.scaffold.code.config.commonly;
 
 import org.apache.commons.lang3.Validate;
 import org.slf4j.Logger;
@@ -9,8 +9,8 @@ import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
 
 /**
- * 
- * ClassName: SpringContextHolder 
+ *
+ * ClassName: SpringContextHolder
  * @Description: 以静态变量保存Spring ApplicationContext, 可在任何代码任何地方任何时候取出ApplicaitonContext.
  * @author zjh
  * @date 2016-10-13
@@ -62,10 +62,10 @@ public class SpringContextHolder implements ApplicationContextAware, DisposableB
 	 */
 	@Override
 	public void setApplicationContext(ApplicationContext applicationContext) {
-//		logger.debug("注入ApplicationContext到SpringContextHolder:{}", applicationContext);
-//		if (SpringContextHolder.applicationContext != null) {
-//			logger.info("SpringContextHolder中的ApplicationContext被覆盖, 原有ApplicationContext为:" + SpringContextHolder.applicationContext);
-//		}
+		logger.debug("注入ApplicationContext到SpringContextHolder:{}", applicationContext);
+		if (SpringContextHolder.applicationContext != null) {
+			logger.info("SpringContextHolder中的ApplicationContext被覆盖, 原有ApplicationContext为:" + SpringContextHolder.applicationContext);
+		}
 		SpringContextHolder.applicationContext = applicationContext;
 	}
 

@@ -1,7 +1,8 @@
-package com.cms.scaffold.common.util;
+package com.cms.scaffold.code.util;
 
 import cn.hutool.core.util.StrUtil;
-import com.cms.scaffold.common.tool.SpringContextHolder;
+import com.cms.scaffold.code.config.commonly.SpringContextHolder;
+import com.cms.scaffold.common.util.JsonSerializerUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.CollectionUtils;

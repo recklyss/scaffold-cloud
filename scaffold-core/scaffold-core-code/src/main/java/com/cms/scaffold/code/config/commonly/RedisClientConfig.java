@@ -1,4 +1,4 @@
-package com.cms.scaffold.code.config;
+package com.cms.scaffold.code.config.commonly;
 
 import cn.hutool.log.Log;
 import cn.hutool.log.LogFactory;
@@ -10,6 +10,9 @@ import org.springframework.context.annotation.PropertySource;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
 
+/**
+ * @author Administrator
+ */
 @Configuration
 @EnableCaching
 @PropertySource(ignoreResourceNotFound = true, value = "classpath:code.properties")

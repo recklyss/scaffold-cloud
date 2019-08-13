@@ -12,8 +12,10 @@ import org.springframework.scheduling.annotation.EnableAsync;
 /**
  * @author zhangjiaheng
  */
-@SpringBootApplication(scanBasePackages = {"com.cms.scaffold.route.operate"}, exclude =
-        {DataSourceAutoConfiguration.class})
+@SpringBootApplication(scanBasePackages = {
+        "com.cms.scaffold.route.operate",
+        "com.cms.scaffold.code.config.commonly"
+}, exclude = {DataSourceAutoConfiguration.class})
 @EnableAsync
 @EnableEurekaClient
 @EnableFeignClients(basePackages = "com.cms.scaffold.feign.*")

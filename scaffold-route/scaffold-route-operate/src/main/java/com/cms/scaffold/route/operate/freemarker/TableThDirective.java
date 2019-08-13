@@ -1,7 +1,7 @@
 package com.cms.scaffold.route.operate.freemarker;
 
 import cn.hutool.core.util.StrUtil;
-import com.cms.scaffold.common.util.I18nTransformUtil;
+import com.cms.scaffold.code.util.I18nTransformUtil;
 import com.cms.scaffold.route.operate.freemarker.factory.ThFormatterFactory;
 import com.cms.scaffold.route.operate.freemarker.factory.ThFormatterInterface;
 import com.cms.scaffold.route.operate.freemarker.model.TableThTag;
@@ -20,7 +20,9 @@ import java.io.Writer;
 import java.util.Map;
 
 /**
- * Created by zjh on 2018/4/16.
+ *
+ * @author zjh
+ * @date 2018/4/16
  */
 
 @Component
@@ -80,7 +82,6 @@ public class TableThDirective implements TemplateDirectiveModel {
         Writer out = environment.getOut();
         out.write(html.toString());
 
-        //environment.setVariable("th", getBeansWrapper().wrap(html.toString()));
         if(templateDirectiveBody !=null){
             templateDirectiveBody.render(environment.getOut());
         }

@@ -1,6 +1,6 @@
 package com.cms.scaffold.micro.executor;
 
-import com.cms.scaffold.common.tool.SpringContextHolder;
+import com.cms.scaffold.code.config.commonly.SpringContextHolder;
 import com.cms.scaffold.micro.job.domain.JobInfo;
 import com.cms.scaffold.micro.job.tool.InvokeTool;
 import org.quartz.Job;

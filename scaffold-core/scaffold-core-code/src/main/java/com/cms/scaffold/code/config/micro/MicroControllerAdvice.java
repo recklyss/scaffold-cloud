@@ -1,4 +1,4 @@
-package com.cms.scaffold.code.config;
+package com.cms.scaffold.code.config.micro;
 
 import cn.hutool.log.Log;
 import cn.hutool.log.LogFactory;

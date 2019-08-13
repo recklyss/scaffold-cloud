@@ -1,4 +1,4 @@
-package com.cms.scaffold.code.config;
+package com.cms.scaffold.code.config.commonly;
 
 import com.cms.scaffold.common.exception.BusinessException;
 import org.slf4j.Logger;

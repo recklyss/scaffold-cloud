@@ -1,4 +1,4 @@
-package com.cms.scaffold.code.config;
+package com.cms.scaffold.code.config.micro;
 
 import org.springframework.aop.aspectj.AspectJExpressionPointcutAdvisor;
 import org.springframework.context.annotation.Bean;
