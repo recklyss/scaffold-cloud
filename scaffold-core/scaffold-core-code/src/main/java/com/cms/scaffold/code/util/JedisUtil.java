@@ -24,8 +24,7 @@ public class JedisUtil {
 
     private static JedisPool jedisPool = null;
 
-    private JedisUtil() {
-    }
+    private JedisUtil() {}
 
     /**
      * 获取缓存

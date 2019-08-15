@@ -2,29 +2,34 @@
 package com.cms.scaffold.common.builder;
 
 import cn.hutool.core.util.ReflectUtil;
-import org.apache.commons.beanutils.BeanUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.cglib.beans.BeanCopier;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * 属性拷贝工具类
+ *
+ * @author Administrator
+ */
 public class Builder<T, M> {
 
     private static Logger logger = LoggerFactory.getLogger(Builder.class);
 
     public static <T, M> List<T> buildList(List<M> list, Class<T> clazz) {
 
-        return buildList(list,clazz,null);
+        return buildList(list, clazz, null);
     }
 
     public static <T, M> T build(M object, Class<T> clazz) {
-        return build(object,clazz,null);
+        return build(object, clazz, null);
     }
 
-    public static <T,M> List<T> buildList(List<M> list, Class<T> clazz,Map map){
+    public static <T, M> List<T> buildList(List<M> list, Class<T> clazz, Map map) {
         if (list == null) {
             return null;
         }
@@ -36,23 +41,24 @@ public class Builder<T, M> {
         return resultList;
     }
 
-    public static <T, M> T build(M object, Class<T> clazz,Map map) {
+    public static <T, M> T build(M object, Class<T> clazz, Map map) {
         try {
             T t = clazz.newInstance();
-            if(object == null){
+            if (object == null) {
                 return null;
             }
-
-            BeanUtils.copyProperties(t, object);
+            // 使用cglib.BeanCopier完成对象属性的拷贝
+            final BeanCopier copier = BeanCopier.create(object.getClass(), clazz, false);
+            copier.copy(object, t, null);
 
             //判断是否需要进行转义
-            if(map == null){
+            if (map == null) {
                 return t;
             }
 
             //进行转义
             Iterator<Map.Entry<String, Map>> it = map.entrySet().iterator();
-            while(it.hasNext()){
+            while (it.hasNext()) {
                 Map.Entry<String, Map> entry = it.next();
                 //需转义字段名
                 String key = entry.getKey();
@@ -66,7 +72,7 @@ public class Builder<T, M> {
 
             return t;
         } catch (Exception e) {
-            logger.warn(e.getMessage(),e);
+            logger.warn(e.getMessage(), e);
             //do nothing
         }
         return null;

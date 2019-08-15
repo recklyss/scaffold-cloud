@@ -2,6 +2,7 @@ package com.cms.scaffold.code.config.commonly;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
@@ -14,6 +15,7 @@ import org.springframework.context.annotation.PropertySource;
 @PropertySource(ignoreResourceNotFound = true, value = "classpath:code.properties")
 @Getter
 @Setter
+@ToString
 public class AliOnsMqConfig {
 
     @Value("${rocket.mq.topic}")
