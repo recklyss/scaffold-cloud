@@ -87,6 +87,4 @@ public class SysMenuController extends BaseController {
         List<SysMenuBO> menuBOS = sysMenuFeign.findByPidAndOperateId(pid, UserUtil.getOperatorId()).getData();
         return Builder.buildList(menuBOS, SysMenuResp.class);
     }
-
-
 }
