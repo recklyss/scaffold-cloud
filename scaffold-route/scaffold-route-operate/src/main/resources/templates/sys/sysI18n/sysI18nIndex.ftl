@@ -7,7 +7,7 @@
     <div  data-options="region:'center',iconCls:'icon-reload',title:'',fit:false,split:true,border:false,bodyCls:'border_left_right'">
         <table data-toggle="topjui-datagrid"
                data-options="id:'sysI18nDatagridId',
-                             url: _ctx+'/sys/sysI18n/sysI18nIndexList'"">
+                             url: _ctx+'/sys/sysI18n/listSysI18nPage'"">
         <thead>
         <tr>
             <th data-options="field:'id',title:'id'"></th>
@@ -16,7 +16,6 @@
             <th data-options="field:'text',title:'<@spring.message "sys.default"/>'"></th>
             <th data-options="field:'zhCn',title:'<@spring.message "sys.chinese"/>'"></th>
             <th data-options="field:'enUs',title:'<@spring.message "sys.english"/>'"></th>
-            <th data-options="field:'inId',title:'<@spring.message "sys.indonesian"/>'"></th>
         </tr>
         </thead>
         </table>

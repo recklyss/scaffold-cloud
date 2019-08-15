@@ -11,6 +11,13 @@
         treeField:'name',
         singleSelect:true,
         url: _ctx+'/sys/sysMenu/findSysMenuByPid?parentId=0',
+        onSelect:function(row){
+            if(row.resourceType==='menu'){
+                $('#menuAddButton').iMenubutton('enable');
+            }else{
+              $('#menuAddButton').iMenubutton('disable');
+            }
+        },
         expandUrl: _ctx+'/sys/sysMenu/findSysMenuByPid?parentId={id}'">
     <thead>
     <tr>
@@ -58,7 +65,7 @@
            parentIdField:'pid'
        }" style="display:none">
 
-    <a href="javascript:void(0)"
+    <a href="javascript:void(0)" id="menuAddButton"
        data-toggle="topjui-menubutton"
        data-options="method:'openDialog',
            extend:'#menuTreegrid-toolbar',

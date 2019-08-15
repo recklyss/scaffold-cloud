@@ -3,9 +3,11 @@ package com.cms.scaffold.micro.sys.controller;
 import com.cms.scaffold.common.base.BaseController;
 import com.cms.scaffold.common.builder.Builder;
 import com.cms.scaffold.common.response.ResponseModel;
+import com.cms.scaffold.common.response.ResponsePageModel;
 import com.cms.scaffold.micro.sys.ao.SysI18nAO;
 import com.cms.scaffold.micro.sys.bo.SysI18nBO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import com.cms.scaffold.micro.sys.api.SysI18nApi;
 import com.cms.scaffold.micro.sys.domain.SysI18n;
@@ -37,5 +39,11 @@ public class SysI18nController extends BaseController implements SysI18nApi {
         List<SysI18n> list = sysI18nService.findList(Builder.build(sysI18nAO, SysI18n.class));
         return successData(Builder.buildList(list, SysI18nBO.class));
 
+    }
+
+    @Override
+    public ResponsePageModel<SysI18nBO> findPage(@RequestBody SysI18nAO ao) {
+        ResponsePageModel<SysI18n> page = sysI18nService.findPage(Builder.build(ao, SysI18n.class));
+        return new ResponsePageModel<>(Builder.buildList(page.getRows(), SysI18nBO.class), page.getTotal());
     }
 }
