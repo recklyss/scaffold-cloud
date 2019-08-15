@@ -65,8 +65,6 @@
                     }
                 ]
             }"><@spring.message "sys.edit"/></a>
-
-
     <!--查询条件表单&ndash;&gt;-->
     <form id="queryForm" class="search-box" >
         <input type="text" name="name" data-toggle="topjui-textbox"
