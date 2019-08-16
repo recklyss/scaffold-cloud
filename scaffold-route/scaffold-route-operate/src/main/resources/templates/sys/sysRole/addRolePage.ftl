@@ -19,5 +19,6 @@
                 </div>
             </div>
         </div>
+        <input type="hidden" name="status" value="1"<#-- 启用 -->/>
     </div>
 </div>

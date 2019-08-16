@@ -18,8 +18,6 @@ public interface SysDictMapper extends BaseMapper<SysDict> {
     @Select("select * from sys_dict where pid=#{pid} order by sort asc")
     List<SysDict> listByPid(Long pid);
 
-    @Select("select t.nid,t.value,t.name,t.statusCode,t.java_type ,t.i18n_nid from sys_dict t where t.type=2 and t.status =" +
-            " 1 and  t.nid = #{nid} order by t.sort")
     List<SysDict> findByPartnerNid(@Param("nid") String nid);
 
     @Select("select * from sys_dict where nid = #{nid} and type=2 and status = 1 order by sort")

@@ -19,7 +19,7 @@ public class ThFormatterDict implements ThFormatterInterface {
     @Override
     public String buildFormatterHtml(String nid) {
         SysDictFeign sysDictFeign = SpringContextHolder.getBean(SysDictFeign.class);
-        ResponseModel<List<SysDictBO>> sysDictModelList = sysDictFeign.findByNid(nid);
+        ResponseModel<List<SysDictBO>> sysDictModelList = sysDictFeign.findByPartnerNid(nid);
         List<SysDictBO> list = sysDictModelList.getData();
         StringBuilder dictHtml = new StringBuilder();
         dictHtml.append("formatter: function(value,row,index){ ");

@@ -16,8 +16,8 @@ import com.cms.scaffold.micro.sys.service.SysI18nService;
 import java.util.List;
 
 /**
-* @author zhangjiaheng
-*/
+ * @author zhangjiaheng
+ */
 @RestController
 public class SysI18nController extends BaseController implements SysI18nApi {
 
@@ -25,9 +25,9 @@ public class SysI18nController extends BaseController implements SysI18nApi {
     SysI18nService sysI18nService;
 
     /**
-    * @param id 主键
-    * @return 根据主键查询
-    */
+     * @param id 主键
+     * @return 根据主键查询
+     */
     @Override
     public ResponseModel selectById(Long id) {
         final SysI18n sysI18n = sysI18nService.selectById(id);
@@ -35,7 +35,7 @@ public class SysI18nController extends BaseController implements SysI18nApi {
     }
 
     @Override
-    public ResponseModel<List<SysI18nBO>> findList(SysI18nAO sysI18nAO) {
+    public ResponseModel<List<SysI18nBO>> findList(@RequestBody SysI18nAO sysI18nAO) {
         List<SysI18n> list = sysI18nService.findList(Builder.build(sysI18nAO, SysI18n.class));
         return successData(Builder.buildList(list, SysI18nBO.class));
 
@@ -45,5 +45,15 @@ public class SysI18nController extends BaseController implements SysI18nApi {
     public ResponsePageModel<SysI18nBO> findPage(@RequestBody SysI18nAO ao) {
         ResponsePageModel<SysI18n> page = sysI18nService.findPage(Builder.build(ao, SysI18n.class));
         return new ResponsePageModel<>(Builder.buildList(page.getRows(), SysI18nBO.class), page.getTotal());
+    }
+
+    @Override
+    public ResponseModel save(@RequestBody SysI18nAO ao) {
+        if (null == ao.getId()) {
+            sysI18nService.insert(Builder.build(ao, SysI18n.class));
+        } else {
+            sysI18nService.update(Builder.build(ao, SysI18n.class));
+        }
+        return success();
     }
 }

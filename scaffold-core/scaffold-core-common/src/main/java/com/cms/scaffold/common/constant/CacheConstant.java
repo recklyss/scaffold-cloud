@@ -40,4 +40,19 @@ public class CacheConstant {
      * 消息中间件:防重复消费唯一KEY
      */
     public static final String MQ_CONSUMER_KEY = "mq:consumer:key:%s";
+
+    /**
+     * 参数配置
+     */
+    public static final String KEY_PREFIX_CONFIG_CODE = "sys:config:code:";
+
+    /**
+     * 字典类型
+     */
+    public static final String SYS_DICT_NID = "sys:dict:nid";
+
+    /**
+     * 字典名称-key
+     */
+    public static final String SYS_DICT_NID_NAME = "sys:dict:nid:%s";
 }

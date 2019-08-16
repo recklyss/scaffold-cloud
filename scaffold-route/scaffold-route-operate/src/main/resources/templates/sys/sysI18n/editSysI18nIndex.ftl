@@ -45,14 +45,6 @@
                            data-options="required:true,prompt:'<@spring.message "sys.english"/>'">
                 </div>
             </div>
-            <div class="topjui-col-sm6">
-                <label class="topjui-form-label"><@spring.message "sys.indonesian"/></label>
-                <div class="topjui-input-block">
-                    <input type="text" name="inId" data-toggle="topjui-textbox" value="${sysI18n.inId!''}"
-                           data-options="required:true,prompt:'<@spring.message "sys.indonesian"/>'">
-                </div>
-
-            </div>
         </div>
 
 

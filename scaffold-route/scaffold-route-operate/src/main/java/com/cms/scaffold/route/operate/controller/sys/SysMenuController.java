@@ -2,11 +2,16 @@ package com.cms.scaffold.route.operate.controller.sys;
 
 import com.cms.scaffold.common.base.BaseController;
 import com.cms.scaffold.common.builder.Builder;
+import com.cms.scaffold.common.constant.BasicsConstant;
 import com.cms.scaffold.common.response.ResponseModel;
 import com.cms.scaffold.feign.sys.SysMenuFeign;
 import com.cms.scaffold.feign.sys.SysOperateFeign;
+import com.cms.scaffold.feign.sys.SysRoleFeign;
+import com.cms.scaffold.feign.sys.SysRoleMenuFeign;
 import com.cms.scaffold.micro.sys.ao.SysMenuAO;
 import com.cms.scaffold.micro.sys.bo.SysMenuBO;
+import com.cms.scaffold.micro.sys.bo.SysRoleBO;
+import com.cms.scaffold.micro.sys.bo.SysRoleMenuBO;
 import com.cms.scaffold.route.operate.response.SysMenuResp;
 import com.cms.scaffold.route.operate.shiro.ShiroService;
 import com.cms.scaffold.route.operate.util.UserUtil;
@@ -18,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -34,7 +40,11 @@ public class SysMenuController extends BaseController {
     @Resource
     SysOperateFeign sysOperateFeign;
     @Resource
+    SysRoleFeign sysRoleFeign;
+    @Resource
     ShiroService shiroService;
+    @Resource
+    SysRoleMenuFeign sysRoleMenuFeign;
 
     @GetMapping("/sysMenuIndex")
     public String sysMenuIndex() {
@@ -86,5 +96,28 @@ public class SysMenuController extends BaseController {
     public List<SysMenuResp> rightMenus(Long pid) {
         List<SysMenuBO> menuBOS = sysMenuFeign.findByPidAndOperateId(pid, UserUtil.getOperatorId()).getData();
         return Builder.buildList(menuBOS, SysMenuResp.class);
+    }
+
+    @RequestMapping(value = "/allMenus")
+    @ResponseBody
+    public List<SysMenuResp> allMenus(Long id, Long roleId) {
+        if (id == null) {
+            id = 0L;
+        }
+        if (roleId == null) {
+            return new ArrayList<>();
+        }
+        List<SysMenuBO> voList = sysMenuFeign.listMenuByPid(id).getData();
+        List<SysMenuResp> sysMenuRespList = Builder.buildList(voList, SysMenuResp.class);
+        final SysRoleBO sysRole = sysRoleFeign.selectById(roleId).getData();
+        for (SysMenuResp sysMenu : sysMenuRespList) {
+            SysRoleMenuBO sysRoleMenu = sysRoleMenuFeign.selectByRoleIdAndMenuId(sysRole.getId(), sysMenu.getId()).getData();
+            if (sysRoleMenu != null) {
+                sysMenu.setAutoStatus(BasicsConstant.BASICS_USE_STATUS_ENABLE);
+            } else {
+                sysMenu.setAutoStatus(BasicsConstant.BASICS_USE_STATUS_DISABLE);
+            }
+        }
+        return sysMenuRespList;
     }
 }

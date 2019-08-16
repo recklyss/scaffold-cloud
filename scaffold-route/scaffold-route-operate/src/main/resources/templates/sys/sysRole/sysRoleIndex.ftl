@@ -11,7 +11,7 @@
         <table data-toggle="topjui-datagrid"
                data-options="id:'userDg',
                     idField:'id',
-                    url: _ctx+'/sys/sysRole/sysRoleIndex',
+                    url: _ctx+'/sys/sysRole/listSysRolePage',
                     childGrid:{
                         param:'roleId:id',
                         grid:[
@@ -109,7 +109,7 @@
                     formatter:function(value,row,index){
                         if (value == '1') {
                             return '<@spring.message "sys.authorized"/>';
-                        }else if(value=='0'){
+                        }else if(value=='2'){
                             return '<@spring.message "sys.unauthorized"/>';
                         }
                       }"

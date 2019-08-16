@@ -23,29 +23,29 @@
 <script>
     $(function () {
         $('#ulMenu>li').hover(
-                function () {
-                    var m = $(this).data('menu');
-                    if (!m) {
-                        m = $(this).find('ul').clone();
-                        m.appendTo(document.body);
-                        $(this).data('menu', m);
-                        var of = $(this).offset();
-                        m.css({left: of.left, top: of.top + this.offsetHeight});
-                        m.hover(function () {
-                            clearTimeout(m.timer);
-                        }, function () {
-                            m.hide()
-                        });
-                    }
-                    m.show();
-                }, function () {
-                    var m = $(this).data('menu');
-                    if (m) {
-                        m.timer = setTimeout(function () {
-                            m.hide();
-                        }, 100);//延时隐藏，时间自定义，100ms
-                    }
+            function () {
+                var m = $(this).data('menu');
+                if (!m) {
+                    m = $(this).find('ul').clone();
+                    m.appendTo(document.body);
+                    $(this).data('menu', m);
+                    var of = $(this).offset();
+                    m.css({left: of.left, top: of.top + this.offsetHeight});
+                    m.hover(function () {
+                        clearTimeout(m.timer);
+                    }, function () {
+                        m.hide()
+                    });
                 }
+                m.show();
+            }, function () {
+                var m = $(this).data('menu');
+                if (m) {
+                    m.timer = setTimeout(function () {
+                        m.hide();
+                    }, 100);//延时隐藏，时间自定义，100ms
+                }
+            }
         );
     });
 </script>
@@ -55,23 +55,24 @@
         <table style="float:left;border-spacing:0px;">
             <tr>
                 <td class="webname">
-                    <span class="fa fa-envira" style="font-size:26px; padding-right:8px;"></span><@spring.message "sys.houtaiguanli"/>
+                    <span class="fa fa-envira"
+                          style="font-size:26px; padding-right:8px;"></span><@spring.message "sys.houtaiguanli"/>
                 </td>
                 <td class="collapseMenu" style="text-align: center;cursor: pointer;">
                     <span class="fa fa-chevron-circle-left" style="font-size: 18px;"></span>
                 </td>
                 <td>
                     <table id="topmenucontent" cellpadding="0" cellspacing="0">
-                    <#list menus as item>
-                        <td id="${item.id}" title="${item.name}" class="topmenu selected systemName">
-                            <a class="l-btn-text bannerMenu" href="javascript:void(0)">
-                                <p>
-                                    <lable class="fa fa-hand-pointer-o"></lable>
-                                </p>
-                                <p><span style="white-space:nowrap;">${item.name}</span></p>
-                            </a>
-                        </td>
-                    </#list>
+                        <#list menus as item>
+                            <td id="${item.id}" title="${item.name}" class="topmenu selected systemName">
+                                <a class="l-btn-text bannerMenu" href="javascript:void(0)">
+                                    <p>
+                                        <lable class="fa fa-hand-pointer-o"></lable>
+                                    </p>
+                                    <p><span style="white-space:nowrap;">${item.name}</span></p>
+                                </a>
+                            </td>
+                        </#list>
                     </table>
                 </td>
             </tr>
@@ -82,38 +83,56 @@
                style="color:#fff;">${sysOperate.realName}</a>|
 
             <a href="javascript:void(0)" id="mb4" data-toggle="topjui-menubutton"
-                       data-options="menu:'#mm4',iconCls:'fa fa-language',hasDownArrow:true" style="color:#fff;"><@spring.message "sys.change"/><@spring.message "sys.language"/></a>|</a>
+               data-options="menu:'#mm4',iconCls:'fa fa-language',hasDownArrow:true"
+               style="color:#fff;"><@spring.message "sys.change"/><@spring.message "sys.language"/></a>|</a>
             <div id="mm4" style="width:74px;">
                 <div data-options="iconCls:'fa fa-language'" onclick="changeLanguage('zh_CN')">中文</div>
                 <div data-options="iconCls:'fa fa-language'" onclick="changeLanguage('en_US')">English</div>
             </div>
            <a href="javascript:void(0)" id="mb3" data-toggle="topjui-menubutton"
-              data-options="menu:'#mm3',iconCls:'fa fa-cog',hasDownArrow:true" style="color:#fff;"><@spring.message "sys.set"/></a>
+              data-options="menu:'#mm3',iconCls:'fa fa-cog',hasDownArrow:true"
+              style="color:#fff;"><@spring.message "sys.set"/></a>
             <div id="mm3" style="width:74px;">
-                <div data-options="iconCls:'fa fa-info-circle'" onclick="openUpdatePwd(${sysOperate.id})"><@spring.message "sys.change"/><@spring.message "sys.password"/></div>
+                <div data-options="iconCls:'fa fa-info-circle'"
+                     onclick="openUpdatePwd(${sysOperate.id})"><@spring.message "sys.change"/><@spring.message "sys.password"/></div>
                 <div class="menu-sep"></div>
             </div>
 
 
             <a href="javascript:void(0)" id="mb2" data-toggle="topjui-menubutton"
-               data-options="menu:'#mm2',iconCls:'fa fa-tree',hasDownArrow:true" style="color:#fff;"><@spring.message "sys.theme"/></a>|
+               data-options="menu:'#mm2',iconCls:'fa fa-tree',hasDownArrow:true"
+               style="color:#fff;"><@spring.message "sys.theme"/></a>|
             <div id="mm2" style="width:180px;">
-                <div data-options="iconCls:'fa fa-language blue'" onclick="changeTheme('black')"><@spring.message "sys.default"/></div>
-                <div data-options="iconCls:'fa fa-tree'" onclick="changeTheme('black')"><@spring.message "sys.black"/></div>
-                <div data-options="iconCls:'fa fa-tree'" onclick="changeTheme('blacklight')"><@spring.message "sys.black"/>-<@spring.message "sys.light"/></div>
-                <div data-options="iconCls:'fa fa-tree red'" onclick="changeTheme('red')"><@spring.message "sys.red"/></div>
-                <div data-options="iconCls:'fa fa-tree red'" onclick="changeTheme('redlight')"><@spring.message "sys.red"/>-<@spring.message "sys.light"/></div>
-                <div data-options="iconCls:'fa fa-tree green'" onclick="changeTheme('green')"><@spring.message "sys.green"/></div>
-                <div data-options="iconCls:'fa fa-tree green'" onclick="changeTheme('greenlight')"><@spring.message "sys.green"/>-<@spring.message "sys.light"/></div>
-                <div data-options="iconCls:'fa fa-tree purple'" onclick="changeTheme('purple')"><@spring.message "sys.purple"/></div>
-                <div data-options="iconCls:'fa fa-tree purple'" onclick="changeTheme('purplelight')"><@spring.message "sys.purple"/>-<@spring.message "sys.light"/></div>
-                <div data-options="iconCls:'fa fa-tree blue'" onclick="changeTheme('blue')"><@spring.message "sys.blue"/></div>
-                <div data-options="iconCls:'fa fa-tree blue'" onclick="changeTheme('bluelight')"><@spring.message "sys.blue"/>-<@spring.message "sys.light"/></div>
-                <div data-options="iconCls:'fa fa-tree orange'" onclick="changeTheme('yellow')"><@spring.message "sys.yellow"/></div>
-                <div data-options="iconCls:'fa fa-tree orange'" onclick="changeTheme('yellowlight')"><@spring.message "sys.yellow"/>-<@spring.message "sys.light"/></div>
+                <div data-options="iconCls:'fa fa-language blue'"
+                     onclick="changeTheme('black')"><@spring.message "sys.default"/></div>
+                <div data-options="iconCls:'fa fa-tree'"
+                     onclick="changeTheme('black')"><@spring.message "sys.black"/></div>
+                <div data-options="iconCls:'fa fa-tree'"
+                     onclick="changeTheme('blacklight')"><@spring.message "sys.black"/>-<@spring.message "sys.light"/></div>
+                <div data-options="iconCls:'fa fa-tree red'"
+                     onclick="changeTheme('red')"><@spring.message "sys.red"/></div>
+                <div data-options="iconCls:'fa fa-tree red'"
+                     onclick="changeTheme('redlight')"><@spring.message "sys.red"/>-<@spring.message "sys.light"/></div>
+                <div data-options="iconCls:'fa fa-tree green'"
+                     onclick="changeTheme('green')"><@spring.message "sys.green"/></div>
+                <div data-options="iconCls:'fa fa-tree green'"
+                     onclick="changeTheme('greenlight')"><@spring.message "sys.green"/>-<@spring.message "sys.light"/></div>
+                <div data-options="iconCls:'fa fa-tree purple'"
+                     onclick="changeTheme('purple')"><@spring.message "sys.purple"/></div>
+                <div data-options="iconCls:'fa fa-tree purple'"
+                     onclick="changeTheme('purplelight')"><@spring.message "sys.purple"/>-<@spring.message "sys.light"/></div>
+                <div data-options="iconCls:'fa fa-tree blue'"
+                     onclick="changeTheme('blue')"><@spring.message "sys.blue"/></div>
+                <div data-options="iconCls:'fa fa-tree blue'"
+                     onclick="changeTheme('bluelight')"><@spring.message "sys.blue"/>-<@spring.message "sys.light"/></div>
+                <div data-options="iconCls:'fa fa-tree orange'"
+                     onclick="changeTheme('yellow')"><@spring.message "sys.yellow"/></div>
+                <div data-options="iconCls:'fa fa-tree orange'"
+                     onclick="changeTheme('yellowlight')"><@spring.message "sys.yellow"/>-<@spring.message "sys.light"/></div>
             </div>
             <a href="javascript:void(0)" onclick="logout()" data-toggle="topjui-menubutton"
-               data-options="iconCls:'fa fa-sign-out',hasDownArrow:false" style="color:#fff;"><@spring.message "sys.logout"/></a>
+               data-options="iconCls:'fa fa-sign-out',hasDownArrow:false"
+               style="color:#fff;"><@spring.message "sys.logout"/></a>
         </span>
     </div>
 
@@ -213,7 +232,7 @@
             height: 350,
             closed: false,
             cache: false,
-            href: _ctx+'/sys/sysOperate/editOperatePwdPage?operateId='+ id,
+            href: _ctx + '/sys/sysOperate/editOperatePwdPage?operateId=' + id,
             modal: true,
             buttons: [
                 {
@@ -221,22 +240,22 @@
                     iconCls: 'fa fa-save',
                     btnCls: 'topjui-btn-brown',
                     handler: function () {
-                        var obj=$editDialog.serializeObject();
+                        var obj = $editDialog.serializeObject();
                         console.log(obj);
                         $.ajax({
                             type: 'POST',
-                            url: _ctx+'/sys/sysOperate/updateOperatePwd',
+                            url: _ctx + '/sys/sysOperate/updateOperatePwd',
                             data: obj,
                             success: function (data) {
                                 if (data.statusCode === 200) {
                                     $editDialog.iDialog('close');
                                     $('#userDatagridId').iDatagrid('reload');
                                 } else {
-                                    $.iMessager.alert(data.title,data.message,'info');
+                                    $.iMessager.alert(data.title, data.message, 'error');
                                 }
                             },
                             error: function () {
-                                $.iMessager.alert('<@spring.message "sys.promptMessage"/>','<@spring.message "sys.networkError"/>','error');
+                                $.iMessager.alert('<@spring.message "sys.promptMessage"/>', '<@spring.message "sys.networkError"/>', 'error');
                             }
                         });
                     }
@@ -246,16 +265,16 @@
         });
     }
 
-    function changeLanguage(lang){
+    function changeLanguage(lang) {
         $.ajax({
             type: 'POST',
-            url:  _ctx + '/lang/changeLanguage?lang='+lang,
+            url: _ctx + '/lang/changeLanguage?lang=' + lang,
             contentType: "application/json; charset=utf-8",
             success: function (data) {
                 if (data.statusCode === 200) {
                     window.location.reload();
                 } else {
-                    $.iMessager.alert(data.title,data.message,'info');
+                    $.iMessager.alert(data.title, data.message, 'info');
                 }
             },
             error: function () {

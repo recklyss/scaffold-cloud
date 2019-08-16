@@ -25,7 +25,7 @@ public interface SysI18nApi {
      * @return
      */
     @RequestMapping(value = "/sysI18n/selectById", method = RequestMethod.GET)
-    ResponseModel selectById(@RequestParam(value = "id") Long id);
+    ResponseModel<SysI18nBO> selectById(@RequestParam(value = "id") Long id);
 
     /**
      * 根据条件查询列表
@@ -42,6 +42,17 @@ public interface SysI18nApi {
      * @param ao
      * @return
      */
-    @RequestMapping(value = "/sysI18n/findPage", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @RequestMapping(value = "/sysI18n/findPage", method = RequestMethod.POST, consumes =
+            MediaType.APPLICATION_JSON_UTF8_VALUE)
     ResponsePageModel<SysI18nBO> findPage(@RequestBody SysI18nAO ao);
+
+    /**
+     * 新增或者更新
+     *
+     * @param ao
+     * @return
+     */
+    @RequestMapping(value = "/sysI18n/save", method = RequestMethod.POST, consumes =
+            MediaType.APPLICATION_JSON_UTF8_VALUE)
+    ResponseModel save(@RequestBody SysI18nAO ao);
 }

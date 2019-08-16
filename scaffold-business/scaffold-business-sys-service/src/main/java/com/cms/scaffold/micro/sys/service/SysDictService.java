@@ -14,9 +14,38 @@ public interface SysDictService extends BaseService<SysDict> {
      */
     List<SysDict> findByNid(String nid);
 
-    /**根据pid查询
+    /**
+     * 根据pid查询
+     *
      * @param parentId
      * @return
      */
     List<SysDict> findSysDictByPid(Long parentId);
+
+    /**
+     * == findByNid 但从缓存查找
+     *
+     * @param nid
+     * @return
+     */
+    List<SysDict> findByPartnerNid(String nid);
+
+    /**
+     * 缓存字典到redis
+     */
+    void loadDictIntoRedis();
+
+    /**
+     * 新增或者更新
+     *
+     * @param sysDict
+     * @return
+     */
+    int save(SysDict sysDict);
+
+    /**
+     * @param id
+     * @return
+     */
+    String findFatherIds(Long id);
 }

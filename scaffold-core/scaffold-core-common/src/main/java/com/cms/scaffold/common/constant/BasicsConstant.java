@@ -2,8 +2,9 @@ package com.cms.scaffold.common.constant;
 
 /**
 * Created by auto on 2019-07-28 18:45:29
-*/
-public class basicsConstant {
+ * @author Administrator
+ */
+public class BasicsConstant {
 
 
     /*********************** 基础配置start **************************************/

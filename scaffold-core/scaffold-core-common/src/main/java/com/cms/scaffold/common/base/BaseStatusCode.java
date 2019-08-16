@@ -19,7 +19,12 @@ public enum BaseStatusCode {
     /**
      * 参数异常（参数不正确、不符合格式要求等）
      */
-    PARAM_ERROR(-101, "参数异常");
+    PARAM_ERROR(-101, "参数异常"),
+
+    /**
+     * 父级ID不一致
+     */
+    DICT_PID_ERROR(-102, "父级ID不一致");
 
     BaseStatusCode(Integer code, String message) {
         this.code = code;

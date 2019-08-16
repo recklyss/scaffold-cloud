@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cms.scaffold.micro.sys.dao.SysDictMapper">
+    <select id="findByPartnerNid" resultMap="BaseResultMap">
+       select t.nid,t.value,t.name,t.code,t.java_type ,t.i18n_nid from sys_dict t
+        where t.type=2 and t.status = 1
+        <if test="null != nid and '' != nid "> and  t.nid = #{nid} </if>
+          order by t.sort
+    </select>
+</mapper>

@@ -63,7 +63,8 @@ public interface SysMenuApi {
      * @param menu
      * @return
      */
-    @RequestMapping(value = "/sysMenu/saveOrUpdate", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @RequestMapping(value = "/sysMenu/saveOrUpdate", method = RequestMethod.POST, consumes =
+            MediaType.APPLICATION_JSON_UTF8_VALUE)
     ResponseModel saveOrUpdate(@RequestBody SysMenuAO menu);
 
     /**
