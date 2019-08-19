@@ -63,7 +63,7 @@ public class SysOperateController extends BaseController<SysOperateBO> implement
 
     @Override
     public ResponseModel update(@RequestBody SysOperateAO ao) {
-        sysOperateService.update(Builder.build(ao, SysOperate.class));
+        sysOperateService.updateOperate(Builder.build(ao, SysOperate.class), ao.getRoleId());
         return success();
     }
 }

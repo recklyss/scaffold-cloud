@@ -13,6 +13,7 @@ import com.cms.scaffold.micro.sys.ao.SysRoleAO;
 import com.cms.scaffold.micro.sys.bo.SysOperateBO;
 import com.cms.scaffold.micro.sys.bo.SysRoleBO;
 import com.cms.scaffold.micro.sys.bo.SysRoleOperateBO;
+import com.cms.scaffold.route.operate.constant.SysConstants;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -100,6 +101,15 @@ public class SysOperateController extends BaseController {
         SysOperateAO ao = new SysOperateAO();
         ao.setId(id);
         ao.setPwd(MD5Util.encode(password).toUpperCase());
+        return sysOperateFeign.update(ao);
+    }
+
+    @ResponseBody
+    @RequestMapping("/resetPwd")
+    public ResponseModel resetPwd(Long id){
+        SysOperateAO ao = new SysOperateAO();
+        ao.setId(id);
+        ao.setPwd(MD5Util.encode(SysConstants.DEFAULT_PASSWORD).toUpperCase());
         return sysOperateFeign.update(ao);
     }
 

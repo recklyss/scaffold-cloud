@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<#include "../../public/head_index.ftl"/>
+    <#include "../../public/head_index.ftl"/>
 </head>
 
 <body>
@@ -137,9 +137,9 @@
        btnCls: 'topjui-btn-green',
        dialog:{
            id:'userAddDialog',
-           href:_ctx+'/sys/sysRole/addRole',
+           href:_ctx+'/sys/sysRole/addRolePage',
            width:500,
-           height:400,
+           height:200,
            buttonsGroup:[
                {text:'<@spring.message "sys.save"/>',url:'saveRole',iconCls:'fa fa-plus',handler:'ajaxForm',btnCls:'topjui-btn-brown'}
            ]
@@ -166,7 +166,7 @@
 	   	   id:'orgnizationDatagrid',
            parentIdField:'id',
            uncheckedMsg:'<@spring.message "sys.pleasecheckrow"/>',
-	   }" ><@spring.message "sys.setauthorized"/></a>
+	   }"><@spring.message "sys.setauthorized"/></a>
 
 
     <a href="javascript:void(0)" data-toggle="topjui-menubutton" data-options="method:'doAjax',

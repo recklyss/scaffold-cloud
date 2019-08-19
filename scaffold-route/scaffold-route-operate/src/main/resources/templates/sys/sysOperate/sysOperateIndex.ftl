@@ -36,6 +36,7 @@
         type:'datagrid',
         id:'userDatagridId'
      }" class="topjui-toolbar">
+
     <a href="javascript:void(0)"
        data-toggle="topjui-menubutton"
        data-options="method:'openDialog',
@@ -79,6 +80,20 @@
                     }
                 ]
             }"><@spring.message "sys.edit"/></a>
+
+    <a href="javascript:void(0)"
+       data-toggle="topjui-menubutton"
+       data-options="method:'doAjax',
+       extend: '#userDatagridId-toolbar',
+       btnCls:'topjui-btn-brown',
+       iconCls:'fa fa-trash',
+       url: _ctx+'/sys/sysOperate/resetPwd',
+       confirmMsg: '<@spring.message "sys.confirmmsg"/>',
+       grid: {uncheckedMsg:
+            '<@spring.message "sys.pleasecheckrow"/>',
+            param:'id:id'
+       }">
+        重置密码</a>
 
     <!--查询条件表单&ndash;&gt;-->
     <form id="queryForm" class="search-box">

@@ -27,4 +27,14 @@ public class SysOperateServiceImpl extends BaseServiceImpl<SysOperateMapper, Sys
         sysRoleOperateService.insert(sysRoleOperate);
         return col;
     }
+
+    @Override
+    public int updateOperate(SysOperate operate, Long roleId) {
+        if (roleId != null) {
+            final SysRoleOperate roleOperate = sysRoleOperateService.selectByOperateId(operate.getId());
+            roleOperate.setRoleId(roleId);
+            sysRoleOperateService.update(roleOperate);
+        }
+        return dao.update(operate);
+    }
 }
