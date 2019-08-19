@@ -53,7 +53,7 @@
            extend:'#dictTreegrid-toolbar',
            iconCls: 'fa fa-plus',
            btnCls:'topjui-btn-green',
-           parentGrid:{
+           grid:{
                type:'treegrid',
                id:'dictTreegrid',
                unselectedMsg:'<@spring.message "sys.pleasecheckrow"/>'
@@ -74,7 +74,7 @@
            extend:'#dictTreegrid-toolbar',
            iconCls:'fa fa-pencil',
            btnCls: 'topjui-btn-red',
-           parentGrid:{
+           grid:{
                type:'treegrid',
                id:'dictTreegrid',
                unselectedMsg:'<@spring.message "sys.pleasecheckrow"/>'

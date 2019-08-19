@@ -70,7 +70,7 @@
        data-options="method:'openDialog',
            extend:'#menuTreegrid-toolbar',
            btnCls:'topjui-btn-green',
-           parentGrid:{
+           grid:{
                type:'treegrid',
                id:'menuTreegrid',
                unselectedMsg:'<@spring.message "sys.pleasecheckrow"/>'
@@ -89,7 +89,7 @@
            extend:'#menuTreegrid-toolbar',
            iconCls:'fa fa-pencil',
            btnCls:'topjui-btn-blue',
-           parentGrid:{
+           grid:{
                type:'treegrid',
                id:'menuTreegrid',
                unselectedMsg:'<@spring.message "sys.pleasecheckrow"/>'
