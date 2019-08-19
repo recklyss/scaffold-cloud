@@ -1,6 +1,6 @@
 <h1 align="center"><a href="https://github.com/Fatezhang" target="_blank">scaffold-cloud</a></h1>
-<p align="center">一个适用于开发学习的Spring-cloud项目脚手架，技术栈包括但不限于spring-boot,mybatis,pagehelper,flyway-db,mybatis-genarator,eureka,spring-cloud,feign,ribbon,redis,rocketmq... ...</p>
----
+<p align="center">一个适用于开发学习的Spring-cloud项目脚手架，技术栈包括但不限于spring-boot,mybatis,pagehelper,flyway-db,mybatis-genarator,eureka,spring-cloud,feign,ribbon,redis,rocketmq,ali-oss,TX-LCN分布式事务... ...</p>
+
 <p align="center">
   <a href="http://zhangjiaheng.cn"><img alt="author" src="https://img.shields.io/badge/author-Fatezhang-blue.svg"/></a>
   <a href="https://www.oracle.com/technetwork/java/javase/downloads/index.html"><img alt="JDK" src="https://img.shields.io/badge/JDK-1.8.0_171-orange.svg"/></a>
@@ -17,6 +17,24 @@
 
 ## scaffold-cloud项目说明
 ![登录页面](demo.png)
+![菜单管理页面](demo2.png)
+### 快速开始
+```java
+// 下载/克隆项目到本地 
+git clone https://github.com/Fatezhang/scaffold-cloud
+```
+- 安装MySql数据库并启动
+- 创建数据库scaffold_cloud_base，建议设置字符集为UTF-8
+- 修改scaffold-business中微服务的数据库链接配置，本地运行只需要修改application-local.yml
+- 安装redis服务并启动，修改scaffold-core-code配置文件中的配置，同样只需要修改local中的
+- 安装Rocket MQ服务，同样修改配置
+- 如果有需要，注册阿里OSS，并修改配置中的配置
+- 启动EurekaApplication注册中心
+- 启动TxlcnApplication分布式事务协调服务
+- 启动SysServiceApplication，加载数据库字典等配置到缓存、提供后台管理微服务（权限、操作员、角色、国际化配置等）
+- 启动RouteOperateApplication服务，默认端口为8750
+- 访问http://localhost:8750/operate
+- 默认账号密码为admin/123456
 
 ## scaffold-cloud 项目结构：
 - scaffold-business [业务服务提供者](#) 端口从8850 - 8860
@@ -32,6 +50,7 @@
     - scaffold-core-common [工具类模块，公共代码](#)
     - scaffold-core-plugin [自动代码生成插件模块](#)
 - scaffold-eureka [注册中心Eureka](#) 端口 8761
+- scaffold-tx-manager [分布式事务协调服务](#) 端口7970 
 - scaffold-feign [Feign模块](#)
     - scaffold-feign-sys [feign-sys模块](#)
     - scaffold-feign-job [feign-job模块](#)
