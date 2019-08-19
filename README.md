@@ -1,36 +1,41 @@
-## scaffold-cloud项目说明
-> 为Java学习而诞生的spring-cloud脚手架项目
+<h1 align="center"><a href="https://github.com/Fatezhang" target="_blank">scaffold-cloud</a></h1>
+<p align="center">一个适用于开发学习的Spring-cloud项目脚手架，技术栈包括但不限于spring-boot,mybatis,pagehelper,flyway-db,mybatis-genarator,eureka,spring-cloud,feign,ribbon,redis,rocketmq... ...</p>
+---
+<p align="center">
+  <a href="http://zhangjiaheng.cn"><img alt="author" src="https://img.shields.io/badge/author-Fatezhang-blue.svg"/></a>
+  <a href="https://www.oracle.com/technetwork/java/javase/downloads/index.html"><img alt="JDK" src="https://img.shields.io/badge/JDK-1.8.0_171-orange.svg"/></a>
+  <a href="https://docs.spring.io/spring-boot/docs/2.0.3.RELEASE/reference/html/"><img alt="Spring Boot" src="https://img.shields.io/badge/Spring Boot-2.0.3.RELEASE-brightgreen.svg"/></a>
+  <a href="https://github.com/Fatezhang/scaffold-cloud/blob/master/LICENSE"><img alt="LICENSE" src="https://img.shields.io/github/license/Fatezhang/scaffold-cloud.svg"/></a>  
+</p>
 
-**登录页：**
+
+<p align="center">
+  <a href="https://github.com/Fatezhang/scaffold-cloud/stargazers"><img alt="star" src="https://img.shields.io/github/stars/Fatezhang/scaffold-cloud.svg?label=Stars&style=social"/></a>
+  <a href="https://github.com/Fatezhang/scaffold-cloud/network/members"><img alt="star" src="https://img.shields.io/github/forks/Fatezhang/scaffold-cloud.svg?label=Fork&style=social"/></a>
+  <a href="https://github.com/Fatezhang/scaffold-cloud/watchers"><img alt="star" src="https://img.shields.io/github/watchers/Fatezhang/scaffold-cloud.svg?label=Watch&style=social"/></a>
+</p>
+
+## scaffold-cloud项目说明
 ![登录页面](demo.png)
 
 ## scaffold-cloud 项目结构：
----
-### scaffold-business [业务服务提供者](#) 端口从8850 - 8860
-#### scaffold-business-sys-service [系统业务微服务-业务模块](#) 端口 8850
-#### scaffold-business-job-service [定时任务微服务-业务模块](#) 端口 8851
-#### scaffold-business-thirdparty-service [第三方业务微服务-业务模块](#) 端口 8852
----
-### scaffold-business-api [业务API包 用于接口与实现分离](#)
-#### scaffold-business-sys-api [系统资源、菜单、权限等API封装](#)
-#### scaffold-business-job-api [定时任务API封装](#)
-#### scaffold-business-thirdparty-api [第三方服务API封装](#)
----
-### scaffold-core [工具类以及各种公共代码](#)
-#### scaffold-core-code [每个模块都会用到的公共代码，Bean，config等](#)
-#### scaffold-core-common [工具类模块，公共代码](#)
-#### scaffold-core-plugin [自动代码生成插件模块](#)
----
-### scaffold-eureka [注册中心Eureka](#) 端口 8761
----
-### scaffold-feign [Feign模块](#)
-#### scaffold-feign-sys [feign-sys模块](#)
-#### scaffold-feign-job [feign-job模块](#)
-#### scaffold-feign-thirdparty [feign-thirdparty模块](#)
----
-### scaffold-route [主业务消费者](#) 端口从8750 - 8760
-#### scaffold-route-operate [后台管理接口及页面](#) 端口 8750
-#### scaffold-route-app [APP客户端接口](#) 端口 8751
----
-## 查看非SpringCloud的[scaffold](https://github.com/Fatezhang/scaffold) 
-> SpringBoot脚手架，用于快速开发后台管理及其他简单的系统
+- scaffold-business [业务服务提供者](#) 端口从8850 - 8860
+    - scaffold-business-sys-service [系统业务微服务-业务模块](#) 端口 8850
+    - scaffold-business-job-service [定时任务微服务-业务模块](#) 端口 8851
+    - scaffold-business-thirdparty-service [第三方业务微服务-业务模块](#) 端口 8852
+- scaffold-business-api [业务API包 用于接口与实现分离](#)
+    - scaffold-business-sys-api [系统资源、菜单、权限等API封装](#)
+    - scaffold-business-job-api [定时任务API封装](#)
+    - scaffold-business-thirdparty-api [第三方服务API封装](#)
+- scaffold-core [工具类以及各种公共代码](#)
+    - scaffold-core-code [每个模块都会用到的公共代码，Bean，config等](#)
+    - scaffold-core-common [工具类模块，公共代码](#)
+    - scaffold-core-plugin [自动代码生成插件模块](#)
+- scaffold-eureka [注册中心Eureka](#) 端口 8761
+- scaffold-feign [Feign模块](#)
+    - scaffold-feign-sys [feign-sys模块](#)
+    - scaffold-feign-job [feign-job模块](#)
+    - scaffold-feign-thirdparty [feign-thirdparty模块](#)
+- scaffold-route [主业务消费者](#) 端口从8750 - 8760
+    - scaffold-route-operate [后台管理接口及页面](#) 端口 8750
+    - scaffold-route-app [APP客户端接口](#) 端口 8751
