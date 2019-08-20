@@ -10,6 +10,8 @@ server:
   servlet:
     context-path: /operate
 spring:
+  main:
+    allow-bean-definition-overriding: true
   application:
     name: scaffold-route-operate
   jackson:

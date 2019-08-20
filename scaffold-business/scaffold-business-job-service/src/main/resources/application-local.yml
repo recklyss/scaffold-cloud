@@ -24,7 +24,7 @@ spring:
       test-on-return: false
       time-between-eviction-runs-millis: 15000
       default-auto-commit: true
-    driver-class-name: com.mysql.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
 pagehelper:
   offset-as-page-num: true
   row-bounds-with-count: true

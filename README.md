@@ -1,10 +1,11 @@
-<h1 align="center"><a href="https://github.com/Fatezhang" target="_blank">scaffold-cloud</a></h1>
+<h1 align="center"><a href="https://github.com/Fatezhang/scaffold-cloud" target="_blank">scaffold-cloud</a></h1>
 <p align="center">一个适用于开发学习的Spring-cloud项目脚手架，技术栈包括但不限于spring-boot,mybatis,pagehelper,flyway-db,mybatis-genarator,eureka,spring-cloud,feign,ribbon,redis,rocketmq,ali-oss,TX-LCN分布式事务... ...</p>
 
 <p align="center">
-  <a href="http://zhangjiaheng.cn"><img alt="author" src="https://img.shields.io/badge/author-Fatezhang-blue.svg"/></a>
-  <a href="https://www.oracle.com/technetwork/java/javase/downloads/index.html"><img alt="JDK" src="https://img.shields.io/badge/JDK-1.8.0_171-orange.svg"/></a>
-  <a href="https://docs.spring.io/spring-boot/docs/2.0.3.RELEASE/reference/html/"><img alt="Spring Boot" src="https://img.shields.io/badge/Spring Boot-2.0.3.RELEASE-brightgreen.svg"/></a>
+  <a href="http://zhangjiaheng.cn"><img alt="author" src="https://img.shields.io/badge/作者-ZhangJiaheng_Blog-blue.svg"/></a>
+  <a href="https://www.oracle.com/technetwork/java/javase/downloads/index.html"><img alt="JDK" src="https://img.shields.io/badge/JDK-1.8+-orange.svg"/></a>
+  <a href="https://docs.spring.io/spring-boot/docs/2.0.3.RELEASE/reference/html/"><img alt="Spring Boot" src="https://img.shields.io/badge/Spring Boot-2.1.4.RELEASE-brightgreen.svg"/></a>
+  <a href="https://docs.spring.io/spring-boot/docs/2.0.3.RELEASE/reference/html/"><img alt="Spring Cloud" src="https://img.shields.io/badge/Spring Cloud-Greenwich.SR1-black.svg"/></a>
   <a href="https://github.com/Fatezhang/scaffold-cloud/blob/master/LICENSE"><img alt="LICENSE" src="https://img.shields.io/github/license/Fatezhang/scaffold-cloud.svg"/></a>  
 </p>
 
@@ -13,6 +14,9 @@
   <a href="https://github.com/Fatezhang/scaffold-cloud/stargazers"><img alt="star" src="https://img.shields.io/github/stars/Fatezhang/scaffold-cloud.svg?label=Stars&style=social"/></a>
   <a href="https://github.com/Fatezhang/scaffold-cloud/network/members"><img alt="star" src="https://img.shields.io/github/forks/Fatezhang/scaffold-cloud.svg?label=Fork&style=social"/></a>
   <a href="https://github.com/Fatezhang/scaffold-cloud/watchers"><img alt="star" src="https://img.shields.io/github/watchers/Fatezhang/scaffold-cloud.svg?label=Watch&style=social"/></a>
+  <a href='https://gitee.com/chennianfenglou/scaffold-cloud/stargazers'>
+  	  <img src='https://gitee.com/chennianfenglou/scaffold-cloud/badge/star.svg?theme=white' alt='star'></img>
+  	</a>
 </p>
 
 ## scaffold-cloud项目说明
@@ -34,7 +38,7 @@ git clone https://github.com/Fatezhang/scaffold-cloud
 - 启动SysServiceApplication，加载数据库字典等配置到缓存、提供后台管理微服务（权限、操作员、角色、国际化配置等）
 - 启动RouteOperateApplication服务，默认端口为8750
 - 访问http://localhost:8750/operate
-- 默认账号密码为admin/123456
+- 默认账号密码为admin/admin123
 
 ## scaffold-cloud 项目结构：
 - scaffold-business [业务服务提供者](#) 端口从8850 - 8860

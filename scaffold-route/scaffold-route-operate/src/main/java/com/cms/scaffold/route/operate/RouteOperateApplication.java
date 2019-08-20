@@ -25,6 +25,4 @@ public class RouteOperateApplication {
     public static void main(String[] args) {
         SpringApplication.run(RouteOperateApplication.class, args);
     }
-
-
 }

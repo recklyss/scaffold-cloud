@@ -2,12 +2,16 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://localhost:8761/eureka/
+    eureka-server-read-timeout-seconds: 8
+    eureka-server-connect-timeout-seconds: 500
 
 server:
   port: 8750
   servlet:
     context-path: /operate
 spring:
+  main:
+    allow-bean-definition-overriding: true
   application:
     name: scaffold-route-operate
   jackson:
@@ -32,9 +36,12 @@ spring:
 
 feign:
   hystrix:
-    enabled: true
+    enabled: false
 
 logging:
   config: classpath:config/@environment@/logback-spring.xml
   path: /scaffold/log
   file: ${spring.application.name:scaffold-route-operate}
+tx-lcn:
+  client:
+    manager-address: 127.0.0.1:8890
