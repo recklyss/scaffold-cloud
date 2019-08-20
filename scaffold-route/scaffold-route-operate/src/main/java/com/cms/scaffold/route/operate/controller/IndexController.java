@@ -1,5 +1,6 @@
 package com.cms.scaffold.route.operate.controller;
 
+import com.cms.scaffold.code.util.I18nTransformUtil;
 import com.cms.scaffold.common.base.BaseController;
 import com.cms.scaffold.common.response.ResponseModel;
 import com.cms.scaffold.feign.sys.SysMenuFeign;
@@ -29,7 +30,9 @@ public class IndexController extends BaseController {
             return "login";
         }
         final ResponseModel<List<SysMenuBO>> responseModel = sysMenuFeign.findByPidAndOperateId(1L, operate.getId());
-        model.addAttribute("menus", responseModel.getData());
+        final List<SysMenuBO> data = responseModel.getData();
+        I18nTransformUtil.transFormList(data, "name");
+        model.addAttribute("menus", data);
         model.addAttribute("sysOperate", operate);
         return "index";
     }

@@ -9,10 +9,9 @@ import freemarker.core.Environment;
 import freemarker.ext.beans.BeansWrapper;
 import freemarker.ext.beans.BeansWrapperBuilder;
 import freemarker.template.*;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -27,9 +26,9 @@ import java.util.Map;
 
 @Component
 @org.springframework.context.annotation.Configuration
+@Slf4j
 public class TableThDirective implements TemplateDirectiveModel {
 
-    Logger logger = LoggerFactory.getLogger(getClass().getName());
 
     /**
      * select下拉框FreeMarker自定义指令
@@ -52,7 +51,7 @@ public class TableThDirective implements TemplateDirectiveModel {
                 throw new IllegalArgumentException("nid,type必须有一个不为空");
             }
         } catch (Exception e) {
-            logger.error("数据转化异常",e);
+            log.error("数据转化异常",e);
         }
 
 
@@ -65,14 +64,14 @@ public class TableThDirective implements TemplateDirectiveModel {
                 title = tmpTitle;
             }
         }
-        html.append("\t\t\t\t\t<th data-options=\"field:'"+tableThTag.getField()+"'"+",title:'"+title+"',");
+        html.append("\t\t\t\t\t<th data-options=\"field:'").append(tableThTag.getField()).append("'").append(",title:'").append(title).append("',");
         if(!StringUtils.isEmpty(tableThTag.getWidth())){
-            html.append("width:'"+tableThTag.getWidth()+"',");
+            html.append("width:'").append(tableThTag.getWidth()).append("',");
         }
 
         ThFormatterInterface thFormatterInterface = ThFormatterFactory.createThFormatter(tableThTag.getType());
         if(thFormatterInterface != null){
-            html.append("dict:'"+tableThTag.getNid()+"',");
+            html.append("dict:'").append(tableThTag.getNid()).append("',");
             String dictHtml = thFormatterInterface.buildFormatterHtml(tableThTag.getNid());
             html.append(dictHtml);
         }

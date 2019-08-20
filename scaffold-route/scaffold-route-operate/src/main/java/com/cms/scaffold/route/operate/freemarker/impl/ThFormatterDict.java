@@ -1,5 +1,6 @@
 package com.cms.scaffold.route.operate.freemarker.impl;
 
+import com.cms.scaffold.code.util.I18nTransformUtil;
 import com.cms.scaffold.common.response.ResponseModel;
 import com.cms.scaffold.code.config.commonly.SpringContextHolder;
 import com.cms.scaffold.feign.sys.SysDictFeign;
@@ -21,6 +22,7 @@ public class ThFormatterDict implements ThFormatterInterface {
         SysDictFeign sysDictFeign = SpringContextHolder.getBean(SysDictFeign.class);
         ResponseModel<List<SysDictBO>> sysDictModelList = sysDictFeign.findByPartnerNid(nid);
         List<SysDictBO> list = sysDictModelList.getData();
+        I18nTransformUtil.transFormList(list, "name");
         StringBuilder dictHtml = new StringBuilder();
         dictHtml.append("formatter: function(value,row,index){ ");
         for (SysDictBO sysDict : list) {

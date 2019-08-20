@@ -77,8 +77,7 @@ public class ShiroConfig {
 
         Map<String, String> filterChainDefinitionManager = new LinkedHashMap<String, String>();
         ResponseModel<List<SysMenuBO>> responseModel = sysMenuFeign.findAll();
-        final List<SysMenuBO> menuList = responseModel.getData();
-
+        List<SysMenuBO> menuList = responseModel.getData();
         if (CollectionUtil.isNotEmpty(menuList)) {
             for (SysMenuBO menu : menuList) {
                 if (StrUtil.isNotEmpty(menu.getUrl())) {

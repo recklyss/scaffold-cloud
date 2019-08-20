@@ -3,6 +3,7 @@ package com.cms.scaffold.route.operate.controller.sys;
 import cn.hutool.core.util.StrUtil;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.cms.scaffold.code.util.I18nTransformUtil;
 import com.cms.scaffold.common.base.BaseController;
 import com.cms.scaffold.common.base.BaseStatusCode;
 import com.cms.scaffold.common.builder.Builder;
@@ -65,7 +66,9 @@ public class SysDictController extends BaseController {
     @RequestMapping("/findSysDictByPid")
     @ResponseBody
     public List<SysDictBO> findSysDictByPid(Long parentId){
-        return sysDictFeign.findSysDictByPid(parentId).getData();
+        List<SysDictBO> data = sysDictFeign.findSysDictByPid(parentId).getData();
+        I18nTransformUtil.transFormList(data, "name");
+        return data;
     }
 
     @RequestMapping("/sysDictSave")
@@ -80,6 +83,8 @@ public class SysDictController extends BaseController {
         JSONArray jsonArray = new JSONArray();
         if (StrUtil.isNotBlank(selectName)) {
             List<SysDictBO> sysDicts = sysDictFeign.findByPartnerNid(selectName).getData();
+            // 转换国际化字段
+            I18nTransformUtil.transFormList(sysDicts, "name");
             if (CollectionUtils.isNotEmpty(sysDicts)) {
                 if (StrUtil.isNotBlank(q)) {
                     sysDicts = sysDicts.stream().filter(sysDict -> sysDict.getName().contains(q)).collect(Collectors.toList());

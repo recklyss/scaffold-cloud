@@ -1,5 +1,6 @@
 package com.cms.scaffold.route.operate.controller.sys;
 
+import com.cms.scaffold.code.util.I18nTransformUtil;
 import com.cms.scaffold.common.base.BaseController;
 import com.cms.scaffold.common.builder.Builder;
 import com.cms.scaffold.common.constant.BasicsConstant;
@@ -75,7 +76,9 @@ public class SysMenuController extends BaseController {
     @RequestMapping("/findSysMenuByPid")
     @ResponseBody
     public List<SysMenuBO> listMenuByPid(Long parentId) {
-        return sysMenuFeign.listMenuByPid(parentId).getData();
+        List<SysMenuBO> data = sysMenuFeign.listMenuByPid(parentId).getData();
+        I18nTransformUtil.transFormList(data, "name");
+        return data;
     }
 
     @GetMapping("/selectById")
@@ -95,6 +98,7 @@ public class SysMenuController extends BaseController {
     @ResponseBody
     public List<SysMenuResp> rightMenus(Long pid) {
         List<SysMenuBO> menuBOS = sysMenuFeign.findByPidAndOperateId(pid, UserUtil.getOperatorId()).getData();
+        I18nTransformUtil.transFormList(menuBOS, "name");
         return Builder.buildList(menuBOS, SysMenuResp.class);
     }
 
@@ -109,6 +113,7 @@ public class SysMenuController extends BaseController {
         }
         List<SysMenuBO> voList = sysMenuFeign.listMenuByPid(id).getData();
         List<SysMenuResp> sysMenuRespList = Builder.buildList(voList, SysMenuResp.class);
+        I18nTransformUtil.transFormList(sysMenuRespList, "name");
         final SysRoleBO sysRole = sysRoleFeign.selectById(roleId).getData();
         for (SysMenuResp sysMenu : sysMenuRespList) {
             SysRoleMenuBO sysRoleMenu = sysRoleMenuFeign.selectByRoleIdAndMenuId(sysRole.getId(), sysMenu.getId()).getData();
