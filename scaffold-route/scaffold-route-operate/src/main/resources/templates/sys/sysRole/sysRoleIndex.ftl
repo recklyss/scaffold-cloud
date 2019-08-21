@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <#include "../../public/head_index.ftl"/>
+    <#include "../../public/head_tab.ftl"/>
 </head>
 
 <body>
