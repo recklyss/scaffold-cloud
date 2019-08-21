@@ -1,7 +1,6 @@
 package com.cms.scaffold.code.config.commonly;
 
-import cn.hutool.log.Log;
-import cn.hutool.log.LogFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
@@ -16,9 +15,8 @@ import redis.clients.jedis.JedisPoolConfig;
 @Configuration
 @EnableCaching
 @PropertySource(ignoreResourceNotFound = true, value = "classpath:code.properties")
+@Slf4j
 public class RedisClientConfig {
-
-    private static final Log logger = LogFactory.get(RedisClientConfig.class);
 
     @Value("${spring.redis.host}")
     private String host;
@@ -49,7 +47,7 @@ public class RedisClientConfig {
         jedisPoolConfig.setMaxWaitMillis(maxWaitMillis);
 
         JedisPool jedisPool = new JedisPool(jedisPoolConfig, host, port, timeout, password, database, null, false);
-        logger.info("JedisPool注入成功！！ host={},port={},database={}", host, port, database);
+        log.info("JedisPool注入成功！！ host={},port={},database={}", host, port, database);
         return jedisPool;
     }
 }
