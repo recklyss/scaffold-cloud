@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<#include "../../public/head_index.ftl"/>
+<#include "../../public/head_tab.ftl"/>
 <body>
 <div data-toggle="topjui-layout" data-options="fit:true">
     <div  data-options="region:'center',iconCls:'icon-reload',title:'',fit:false,split:true,border:false,bodyCls:'border_left_right'">
