@@ -14,6 +14,7 @@
     <modules>
         <module>scaffold-route-operate</module>
         <module>scaffold-route-app</module>
+        <module>scaffold-route-openapi</module>
     </modules>
 
     <dependencies>

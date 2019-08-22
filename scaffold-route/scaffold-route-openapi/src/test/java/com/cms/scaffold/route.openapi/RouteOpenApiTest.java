@@ -1,4 +1,4 @@
-package com.cms.scaffold.route.operate;
+package com.cms.scaffold.route.openapi;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,7 +12,7 @@ import static org.junit.Assert.assertTrue;
  */
 @SpringBootTest
 @RunWith(SpringRunner.class)
-public class TestRouteOperate {
+public class RouteOpenApiTest {
 
     @Test
     public void shouldAnswerWithTrue() {
