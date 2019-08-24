@@ -46,7 +46,7 @@
         </commentGenerator>
         <!-- 数据库连接属性 -->
         <!--数据库链接URL，用户名、密码 -->
-        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+        <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
                         connectionURL="${generator.connectionUrl}" userId="${generator.connectionUserId}"
                         password="${generator.connectionPwd}"/>
 
@@ -68,15 +68,15 @@
 
         <!-- 生成实体类配置 -->
         <javaModelGenerator targetPackage="${generator.javaModelTargetPackage}"
-                            targetProject="${generator.path}${generator.javaModelTargetProject}">
+                            targetProject="D:\\workspace${generator.javaModelTargetProject}">
             <property name="rootClass" value="BaseEntity"/>
         </javaModelGenerator>
         <!-- 生成映射文件配置 -->
         <sqlMapGenerator targetPackage="${generator.sqlMapTargetPackage}"
-                         targetProject="${generator.path}${generator.sqlMapTargetProject}"/>
+                         targetProject="D:\\workspace${generator.sqlMapTargetProject}"/>
         <!-- 生成映射接口配置 -->
         <javaClientGenerator targetPackage="${generator.javaClientTargetPackage}"
-                             targetProject="${generator.path}${generator.javaClientTargetProject}" type="XMLMAPPER"/>
+                             targetProject="D:\\workspace${generator.javaClientTargetProject}" type="XMLMAPPER"/>
         <table tableName="${generator.tableName}" domainObjectName="${generator.domainObjectName}">
             <!--mysql 配置 -->
             <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
@@ -102,7 +102,7 @@
         </commentGenerator>
         <!-- 数据库连接属性 -->
         <!--数据库链接URL，用户名、密码 -->
-        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+        <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
                         connectionURL="${generator.connectionUrl}" userId="${generator.connectionUserId}"
                         password="${generator.connectionPwd}"/>
         <javaTypeResolver type="com.cms.scaffold.plugin.mybatis.generator.types.JavaTypeResolverDefaultImpl">
@@ -110,7 +110,7 @@
         </javaTypeResolver>
         <!-- 生成实体类配置 -->
         <javaModelGenerator targetPackage="${generator.BO.javaModelTargetPackage}"
-                            targetProject="${generator.path}${generator.api.javaModelTargetProject}">
+                            targetProject="D:\\workspace${generator.api.javaModelTargetProject}">
             <property name="rootClass" value="BaseEntity"/>
         </javaModelGenerator>
         <table tableName="${generator.tableName}" domainObjectName="${generator.BO.domainObjectName}">
@@ -139,7 +139,7 @@
         </commentGenerator>
         <!-- 数据库连接属性 -->
         <!--数据库链接URL，用户名、密码 -->
-        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+        <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
                         connectionURL="${generator.connectionUrl}" userId="${generator.connectionUserId}"
                         password="${generator.connectionPwd}"/>
         <javaTypeResolver type="com.cms.scaffold.plugin.mybatis.generator.types.JavaTypeResolverDefaultImpl">
@@ -147,7 +147,7 @@
         </javaTypeResolver>
         <!-- 生成实体类配置 -->
         <javaModelGenerator targetPackage="${generator.AO.javaModelTargetPackage}"
-                            targetProject="${generator.path}${generator.api.javaModelTargetProject}">
+                            targetProject="D:\\workspace${generator.api.javaModelTargetProject}">
             <property name="rootClass" value="BaseEntity"/>
         </javaModelGenerator>
         <table tableName="${generator.tableName}" domainObjectName="${generator.AO.domainObjectName}">

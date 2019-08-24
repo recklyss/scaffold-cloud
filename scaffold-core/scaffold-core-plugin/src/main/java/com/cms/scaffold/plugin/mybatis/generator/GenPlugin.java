@@ -86,7 +86,7 @@ public class GenPlugin extends PluginAdapter {
         // 数据库表名
         String tableName = introspectedTable.getFullyQualifiedTableNameAtRuntime();
         // 主键
-        IntrospectedColumn pkColumn = introspectedTable.getPrimaryKeyColumns().get(0);
+        IntrospectedColumn pkColumn = introspectedTable.getBaseColumns().get(0);
 
         // 公共字段
         StringBuilder columnSQL = new StringBuilder();
