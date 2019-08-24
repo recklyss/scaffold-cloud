@@ -10,6 +10,7 @@ import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
+import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.servlet.ModelAndView;
@@ -25,6 +26,7 @@ import java.util.Map;
  * @author zhang
  */
 @Aspect
+@Component
 @Slf4j
 public class SysOperateLogAop {
 
@@ -34,7 +36,7 @@ public class SysOperateLogAop {
     private static final String[] LOG_METHOD_NAMES =
             {"update", "insert", "save", "add", "remove", "change", "edit", "delete"};
 
-    @Pointcut(value = "execution(* com.cms.scaffold.route.operate.controller.*.*(..))")
+    @Pointcut(value = "execution(* com.cms.scaffold.route.operate.controller.*.*.*(..))")
     public void pointCut() {
     }
 

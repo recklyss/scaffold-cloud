@@ -8,4 +8,4 @@ import org.springframework.stereotype.Component;
  * @Description
  **/
 @Component
-public class SysServiceListener extends BaseMqMessageListener {}
+public class SysOperateLogListener extends BaseMqMessageListener {}

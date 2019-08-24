@@ -26,7 +26,7 @@ public class IndexController extends BaseController {
     @GetMapping("/index")
     public String index(Model model){
         SysOperateBO operate = UserUtil.getOperatorFromSession();
-        if (null == operate) {
+        if (null == operate.getId()) {
             return "login";
         }
         final ResponseModel<List<SysMenuBO>> responseModel = sysMenuFeign.findByPidAndOperateId(1L, operate.getId());
