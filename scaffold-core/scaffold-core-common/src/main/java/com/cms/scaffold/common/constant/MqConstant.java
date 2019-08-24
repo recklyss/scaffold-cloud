@@ -14,4 +14,9 @@ public class MqConstant {
      * key = TAG:类名:业务标识
      */
     public static final String ROCKETMQ_MESSAGE_KEY = "%s:%s:%s";
+
+    /**
+     * 后台管理系统操作日志tag
+     */
+    public static final String ROCKETMQ_TAG_OPERATE_LOG = "sys_operate_log_message";
 }
