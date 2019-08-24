@@ -39,7 +39,7 @@ public class LoginController extends BaseController {
             final Subject subject = SecurityUtils.getSubject();
             if (subject.isRemembered()) {
                 final SysOperateBO operator = UserUtil.getOperatorFromSession();
-                if (null != operator) {
+                if (null != operator && null != operator.getId()) {
                     logger.info("当前登陆用户为：{}， 跳转到Index", operator.getRealName());
                     subject.getSession().setAttribute(SysConstants.SESSION_ATTRIBUTE_KEY_OPERATOR, operator);
                 }

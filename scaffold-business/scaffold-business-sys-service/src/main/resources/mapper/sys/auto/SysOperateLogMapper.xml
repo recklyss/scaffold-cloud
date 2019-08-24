@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cms.scaffold.micro.sys.dao.SysOperateLogMapper">
+  <resultMap id="BaseResultMap" type="com.cms.scaffold.micro.sys.domain.SysOperateLog">
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="trace_id" jdbcType="VARCHAR" property="traceId" />
+    <result column="class_name" jdbcType="VARCHAR" property="className" />
+    <result column="request_url" jdbcType="VARCHAR" property="requestUrl" />
+    <result column="request_method" jdbcType="VARCHAR" property="requestMethod" />
+    <result column="operate_id" jdbcType="INTEGER" property="operateId" />
+    <result column="operate_name" jdbcType="VARCHAR" property="operateName" />
+    <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
+    <result column="request_param" jdbcType="LONGVARCHAR" property="requestParam" />
+    <result column="response_param" jdbcType="LONGVARCHAR" property="responseParam" />
+  </resultMap>
+  <sql id="sql_columns">
+    id,trace_id,class_name,request_url,request_method,operate_id,operate_name,add_time,request_param,response_param
+  </sql>
+  <sql id="sql_where">
+    <where>
+          <if test="null != id and '' != id or 0 ==id">and id = #{id}</if>
+          <if test="null != traceId and '' != traceId">and trace_id = #{traceId}</if>
+          <if test="null != className and '' != className">and class_name = #{className}</if>
+          <if test="null != requestUrl and '' != requestUrl">and request_url = #{requestUrl}</if>
+          <if test="null != requestMethod and '' != requestMethod">and request_method = #{requestMethod}</if>
+          <if test="null != operateId and '' != operateId or 0 ==operateId">and operate_id = #{operateId}</if>
+          <if test="null != operateName and '' != operateName">and operate_name = #{operateName}</if>
+          <if test="null != addTime and '' != addTime">and add_time = #{addTime}</if>
+          <if test="null != requestParam and '' != requestParam">and request_param = #{requestParam}</if>
+          <if test="null != responseParam and '' != responseParam">and response_param = #{responseParam}</if>
+	</where>
+  </sql>
+  <sql id="sql_map_where">
+    <where>
+	  <foreach collection="map.keys" item="k" separator="and">
+ 	      <if test="null != map[k]">
+	          a.${k} = #{map[${k}]}
+	      </if>
+	  </foreach>
+	</where>
+  </sql>
+  <select id="selectById" resultMap="BaseResultMap">
+    select <include refid="sql_columns" /> from sys_operate_log where id = #{id}
+  </select>
+  <select id="selectCacheById" resultMap="BaseResultMap">
+    select <include refid="sql_columns" /> from sys_operate_log where id = #{id}
+  </select>
+  <select id="selectLockById" resultMap="BaseResultMap">
+    select <include refid="sql_columns" /> from sys_operate_log where id = #{id} for update
+  </select>
+  <select id="selectOne" resultMap="BaseResultMap">
+    select <include refid="sql_columns" /> from sys_operate_log <include refid="sql_where" />
+  </select>
+  <select id="findList" resultMap="BaseResultMap">
+    select <include refid="sql_columns" /> from sys_operate_log <include refid="sql_where" />
+  </select>
+  <select id="selectMap" resultMap="BaseResultMap">
+    select <include refid="sql_columns" /> from sys_operate_log <include refid="sql_map_where" />
+  </select>
+  <select id="count" resultType="java.lang.Integer">
+    select count(1) from sys_operate_log <include refid="sql_where" />
+  </select>
+  <sql id="sql_insert_columns">
+    insert into sys_operate_log
+	 <trim prefix="(" suffix=")" suffixOverrides=",">
+	  <if test="null != item.traceId"> trace_id,</if>
+	  <if test="null != item.className"> class_name,</if>
+	  <if test="null != item.requestUrl"> request_url,</if>
+	  <if test="null != item.requestMethod"> request_method,</if>
+	  <if test="null != item.operateId"> operate_id,</if>
+	  <if test="null != item.operateName"> operate_name,</if>
+	  <if test="null != item.addTime"> add_time,</if>
+	  <if test="null != item.requestParam"> request_param,</if>
+	  <if test="null != item.responseParam"> response_param,</if>
+	</trim>
+  </sql>
+  <sql id="sql_insert_values">
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+	  <if test="null != item.traceId"> #{item.traceId},</if>
+	  <if test="null != item.className"> #{item.className},</if>
+	  <if test="null != item.requestUrl"> #{item.requestUrl},</if>
+	  <if test="null != item.requestMethod"> #{item.requestMethod},</if>
+	  <if test="null != item.operateId"> #{item.operateId},</if>
+	  <if test="null != item.operateName"> #{item.operateName},</if>
+	  <if test="null != item.addTime"> #{item.addTime},</if>
+	  <if test="null != item.requestParam"> #{item.requestParam},</if>
+	  <if test="null != item.responseParam"> #{item.responseParam},</if>
+	</trim>
+  </sql>
+  <insert id="insert" keyProperty="item.id" useGeneratedKeys="true">
+    <include refid="sql_insert_columns" /><include refid="sql_insert_values" />
+  </insert>
+  <insert id="batchInsert">
+    <foreach close="" collection="list" index="index" item="item" open="" separator=";">
+	  <include refid="sql_insert_columns" /><include refid="sql_insert_values" />
+	</foreach>
+  </insert>
+  <sql id="sql_update">
+    update sys_operate_log set id = #{item.id}
+      <if test="null != item.traceId">, trace_id = #{item.traceId}</if>
+      <if test="null != item.className">, class_name = #{item.className}</if>
+      <if test="null != item.requestUrl">, request_url = #{item.requestUrl}</if>
+      <if test="null != item.requestMethod">, request_method = #{item.requestMethod}</if>
+      <if test="null != item.operateId">, operate_id = #{item.operateId}</if>
+      <if test="null != item.operateName">, operate_name = #{item.operateName}</if>
+      <if test="null != item.addTime">, add_time = #{item.addTime}</if>
+      <if test="null != item.requestParam">, request_param = #{item.requestParam}</if>
+      <if test="null != item.responseParam">, response_param = #{item.responseParam}</if>
+	where id = #{item.id}
+  </sql>
+  <sql id="sql_update_all">
+    update sys_operate_log set id = #{item.id}
+	  , trace_id = #{item.traceId}
+	  , class_name = #{item.className}
+	  , request_url = #{item.requestUrl}
+	  , request_method = #{item.requestMethod}
+	  , operate_id = #{item.operateId}
+	  , operate_name = #{item.operateName}
+	  , add_time = #{item.addTime}
+	  , request_param = #{item.requestParam}
+	  , response_param = #{item.responseParam}
+	where id = #{item.id}
+  </sql>
+  <update id="update">
+    <include refid="sql_update" />
+  </update>
+  <update id="batchUpdate">
+    <foreach close="" collection="list" index="index" item="item" open="" separator=";">
+	  <include refid="sql_update" />
+	</foreach>
+  </update>
+  <update id="updateAll">
+    <include refid="sql_update_all" />
+  </update>
+  <update id="updateCompare" />
+  <delete id="delArray">
+    delete from sys_operate_log where id in
+	<foreach close=")" collection="array" index="index" item="item" open="(" separator=",">#{item}</foreach>
+  </delete>
+  <delete id="delList">
+    delete from sys_operate_log where id in
+	<foreach close=")" collection="list" index="index" item="item" open="(" separator=",">#{item}</foreach>
+  </delete>
+  <resultMap id="BaseResultMap" type="com.cms.scaffold.micro.sys.domain.SysOperateLog">
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="trace_id" jdbcType="VARCHAR" property="traceId" />
+    <result column="class_name" jdbcType="VARCHAR" property="className" />
+    <result column="request_url" jdbcType="VARCHAR" property="requestUrl" />
+    <result column="request_method" jdbcType="VARCHAR" property="requestMethod" />
+    <result column="operate_id" jdbcType="INTEGER" property="operateId" />
+    <result column="operate_name" jdbcType="VARCHAR" property="operateName" />
+    <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
+    <result column="request_param" jdbcType="LONGVARCHAR" property="requestParam" />
+    <result column="response_param" jdbcType="LONGVARCHAR" property="responseParam" />
+  </resultMap>
+  <sql id="sql_columns">
+    id,trace_id,class_name,request_url,request_method,operate_id,operate_name,add_time,request_param,response_param
+  </sql>
+  <sql id="sql_where">
+    <where>
+          <if test="null != id and '' != id or 0 ==id">and id = #{id}</if>
+          <if test="null != traceId and '' != traceId">and trace_id = #{traceId}</if>
+          <if test="null != className and '' != className">and class_name = #{className}</if>
+          <if test="null != requestUrl and '' != requestUrl">and request_url = #{requestUrl}</if>
+          <if test="null != requestMethod and '' != requestMethod">and request_method = #{requestMethod}</if>
+          <if test="null != operateId and '' != operateId or 0 ==operateId">and operate_id = #{operateId}</if>
+          <if test="null != operateName and '' != operateName">and operate_name = #{operateName}</if>
+          <if test="null != addTime and '' != addTime">and add_time = #{addTime}</if>
+          <if test="null != requestParam and '' != requestParam">and request_param = #{requestParam}</if>
+          <if test="null != responseParam and '' != responseParam">and response_param = #{responseParam}</if>
+	</where>
+  </sql>
+  <sql id="sql_map_where">
+    <where>
+	  <foreach collection="map.keys" item="k" separator="and">
+ 	      <if test="null != map[k]">
+	          a.${k} = #{map[${k}]}
+	      </if>
+	  </foreach>
+	</where>
+  </sql>
+  <select id="selectById" resultMap="BaseResultMap">
+    select <include refid="sql_columns" /> from sys_operate_log where id = #{id}
+  </select>
+  <select id="selectCacheById" resultMap="BaseResultMap">
+    select <include refid="sql_columns" /> from sys_operate_log where id = #{id}
+  </select>
+  <select id="selectLockById" resultMap="BaseResultMap">
+    select <include refid="sql_columns" /> from sys_operate_log where id = #{id} for update
+  </select>
+  <select id="selectOne" resultMap="BaseResultMap">
+    select <include refid="sql_columns" /> from sys_operate_log <include refid="sql_where" />
+  </select>
+  <select id="findList" resultMap="BaseResultMap">
+    select <include refid="sql_columns" /> from sys_operate_log <include refid="sql_where" />
+  </select>
+  <select id="selectMap" resultMap="BaseResultMap">
+    select <include refid="sql_columns" /> from sys_operate_log <include refid="sql_map_where" />
+  </select>
+  <select id="count" resultType="java.lang.Integer">
+    select count(1) from sys_operate_log <include refid="sql_where" />
+  </select>
+  <sql id="sql_insert_columns">
+    insert into sys_operate_log
+	 <trim prefix="(" suffix=")" suffixOverrides=",">
+	  <if test="null != item.traceId"> trace_id,</if>
+	  <if test="null != item.className"> class_name,</if>
+	  <if test="null != item.requestUrl"> request_url,</if>
+	  <if test="null != item.requestMethod"> request_method,</if>
+	  <if test="null != item.operateId"> operate_id,</if>
+	  <if test="null != item.operateName"> operate_name,</if>
+	  <if test="null != item.addTime"> add_time,</if>
+	  <if test="null != item.requestParam"> request_param,</if>
+	  <if test="null != item.responseParam"> response_param,</if>
+	</trim>
+  </sql>
+  <sql id="sql_insert_values">
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+	  <if test="null != item.traceId"> #{item.traceId},</if>
+	  <if test="null != item.className"> #{item.className},</if>
+	  <if test="null != item.requestUrl"> #{item.requestUrl},</if>
+	  <if test="null != item.requestMethod"> #{item.requestMethod},</if>
+	  <if test="null != item.operateId"> #{item.operateId},</if>
+	  <if test="null != item.operateName"> #{item.operateName},</if>
+	  <if test="null != item.addTime"> #{item.addTime},</if>
+	  <if test="null != item.requestParam"> #{item.requestParam},</if>
+	  <if test="null != item.responseParam"> #{item.responseParam},</if>
+	</trim>
+  </sql>
+  <insert id="insert" keyProperty="item.id" useGeneratedKeys="true">
+    <include refid="sql_insert_columns" /><include refid="sql_insert_values" />
+  </insert>
+  <insert id="batchInsert">
+    <foreach close="" collection="list" index="index" item="item" open="" separator=";">
+	  <include refid="sql_insert_columns" /><include refid="sql_insert_values" />
+	</foreach>
+  </insert>
+  <sql id="sql_update">
+    update sys_operate_log set id = #{item.id}
+      <if test="null != item.traceId">, trace_id = #{item.traceId}</if>
+      <if test="null != item.className">, class_name = #{item.className}</if>
+      <if test="null != item.requestUrl">, request_url = #{item.requestUrl}</if>
+      <if test="null != item.requestMethod">, request_method = #{item.requestMethod}</if>
+      <if test="null != item.operateId">, operate_id = #{item.operateId}</if>
+      <if test="null != item.operateName">, operate_name = #{item.operateName}</if>
+      <if test="null != item.addTime">, add_time = #{item.addTime}</if>
+      <if test="null != item.requestParam">, request_param = #{item.requestParam}</if>
+      <if test="null != item.responseParam">, response_param = #{item.responseParam}</if>
+	where id = #{item.id}
+  </sql>
+  <sql id="sql_update_all">
+    update sys_operate_log set id = #{item.id}
+	  , trace_id = #{item.traceId}
+	  , class_name = #{item.className}
+	  , request_url = #{item.requestUrl}
+	  , request_method = #{item.requestMethod}
+	  , operate_id = #{item.operateId}
+	  , operate_name = #{item.operateName}
+	  , add_time = #{item.addTime}
+	  , request_param = #{item.requestParam}
+	  , response_param = #{item.responseParam}
+	where id = #{item.id}
+  </sql>
+  <update id="update">
+    <include refid="sql_update" />
+  </update>
+  <update id="batchUpdate">
+    <foreach close="" collection="list" index="index" item="item" open="" separator=";">
+	  <include refid="sql_update" />
+	</foreach>
+  </update>
+  <update id="updateAll">
+    <include refid="sql_update_all" />
+  </update>
+  <update id="updateCompare" />
+  <delete id="delArray">
+    delete from sys_operate_log where id in
+	<foreach close=")" collection="array" index="index" item="item" open="(" separator=",">#{item}</foreach>
+  </delete>
+  <delete id="delList">
+    delete from sys_operate_log where id in
+	<foreach close=")" collection="list" index="index" item="item" open="(" separator=",">#{item}</foreach>
+  </delete>
+</mapper>

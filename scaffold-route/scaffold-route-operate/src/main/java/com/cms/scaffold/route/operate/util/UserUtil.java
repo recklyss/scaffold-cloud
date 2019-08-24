@@ -56,10 +56,10 @@ public class UserUtil {
     public static SysOperateBO getOperatorFromSession() {
         if(getSession() != null){
             Object attribute = getSession().getAttribute(SysConstants.SESSION_ATTRIBUTE_KEY_OPERATOR);
-            return attribute == null ? null : (SysOperateBO) attribute;
+            return attribute == null ? new SysOperateBO() : (SysOperateBO) attribute;
         }
         logger.warn("当前系统session无登陆用户");
-        return  null;
+        return  new SysOperateBO();
     }
 
     /**
