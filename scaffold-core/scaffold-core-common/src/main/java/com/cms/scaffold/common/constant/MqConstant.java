@@ -8,7 +8,7 @@ public class MqConstant {
     /**
      * 主题
      */
-    public static final String ROCKETMQ_TOPIC = "rocket.mq.topic";
+    public static final String ROCKETMQ_TOPIC_KEY_NAME = "rocket.mq.topic";
 
     /**
      * key = TAG:类名:业务标识

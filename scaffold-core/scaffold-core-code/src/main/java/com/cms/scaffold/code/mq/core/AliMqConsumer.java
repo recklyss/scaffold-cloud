@@ -49,9 +49,9 @@ public class AliMqConsumer {
         String topic = aliOnsMqConfig.getRocketMqTopic();
         logger.info("topic:{}", topic);
         Properties properties = new Properties();
+        setProperties(aliOnsMqConfig, properties, tags);
         logger.info("----生成Consumer----ConsumerId:{}, config:{}", properties.getProperty(PropertyKeyConst.ConsumerId)
                 , aliOnsMqConfig);
-        setProperties(aliOnsMqConfig, properties, tags);
         Consumer consumer = ONSFactory.createConsumer(properties);
         consumer.subscribe(topic, tags, listener);
         logger.info("consumer:{}", consumer);

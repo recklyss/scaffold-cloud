@@ -1,5 +1,6 @@
 package com.cms.scaffold.code.mq.model.sys;
 
+import cn.hutool.core.util.StrUtil;
 import com.cms.scaffold.code.mq.model.MqBaseModel;
 import com.cms.scaffold.common.constant.MqConstant;
 import lombok.Getter;
@@ -19,6 +20,7 @@ public class SysOperateLogMqModel extends MqBaseModel {
     public SysOperateLogMqModel(SysOperateLogModel sysOperateLogModel) {
         super(MqConstant.ROCKETMQ_TAG_OPERATE_LOG, SPRING_BEAN, METHOD_NAME);
         this.sysOperateLogModel = sysOperateLogModel;
+        this.requestNo = StrUtil.uuid();
     }
 
     @Override

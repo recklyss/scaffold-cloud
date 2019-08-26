@@ -73,6 +73,7 @@ public class SysOperateLogAop {
             operateLog.setOperateId(UserUtil.getOperatorId());
             operateLog.setOperateName(UserUtil.getOperatorFromSession().getUserName());
             SysOperateLogMqModel model = new SysOperateLogMqModel(operateLog);
+            log.info("准备发送MQ消息，tag:{}", model.getTag());
             RocketMqSendUtil.sendMq(Collections.singletonList(model));
         }
     }
