@@ -13,6 +13,7 @@ import com.cms.scaffold.code.mq.model.MqBaseModel;
 import com.cms.scaffold.code.mq.model.MqRedisModel;
 import com.cms.scaffold.code.util.JedisUtil;
 import com.cms.scaffold.common.constant.CacheConstant;
+import com.cms.scaffold.common.constant.MqConstant;
 import com.cms.scaffold.common.dict.ExpireTime;
 import lombok.extern.slf4j.Slf4j;
 
@@ -24,6 +25,7 @@ import lombok.extern.slf4j.Slf4j;
 public class BaseMqMessageListener implements MessageListener {
     @Override
     public Action consume(Message message, ConsumeContext context) {
+        String modelClassName = message.getUserProperties(MqConstant.MODEL_CLASS_NAME);
         String body = new String(message.getBody());
         log.info("开始消费tag:{}, key:{}, msgId:{}, body:{}", message.getTag(), message.getKey(), message.getMsgID(), body);
         MqBaseModel model = JSONObject.parseObject(body, MqBaseModel.class);

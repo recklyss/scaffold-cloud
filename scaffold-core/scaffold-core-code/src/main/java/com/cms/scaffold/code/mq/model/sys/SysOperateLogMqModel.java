@@ -14,11 +14,12 @@ import lombok.Setter;
 @Setter
 public class SysOperateLogMqModel extends MqBaseModel {
     private SysOperateLogModel sysOperateLogModel;
-    public static final String SPRING_BEAN = "sysOperateLogService";
+    public static final String SPRING_BEAN = "sysOperateLogServiceImpl";
     public static final String METHOD_NAME = "insert";
+    public static final String MODEL_CLASS_NAME = "com.cms.scaffold.code.mq.model.sys.SysOperateLogMqModel";
 
     public SysOperateLogMqModel(SysOperateLogModel sysOperateLogModel) {
-        super(MqConstant.ROCKETMQ_TAG_OPERATE_LOG, SPRING_BEAN, METHOD_NAME);
+        super(MqConstant.ROCKETMQ_TAG_OPERATE_LOG, SPRING_BEAN, METHOD_NAME, MODEL_CLASS_NAME);
         this.sysOperateLogModel = sysOperateLogModel;
         this.requestNo = StrUtil.uuid();
     }

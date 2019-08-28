@@ -7,13 +7,13 @@ import com.alibaba.fastjson.annotation.JSONField;
 import com.aliyun.openservices.ons.api.Action;
 import com.aliyun.openservices.ons.api.Message;
 import com.cms.scaffold.code.config.commonly.AliOnsMqConfig;
-import com.cms.scaffold.code.config.commonly.SpringContextHolder;
 import com.cms.scaffold.code.mq.base.MqBaseInterface;
 import com.cms.scaffold.common.constant.MqConstant;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.util.Properties;
 
 /**
  * @Author zhangjiaheng
@@ -23,7 +23,7 @@ import java.io.Serializable;
 @Setter
 public class MqBaseModel implements MqBaseInterface, Serializable {
 
-    private static final AliOnsMqConfig ALI_ONS_MQ_CONFIG = SpringContextHolder.getBean(AliOnsMqConfig.class);
+    private static final AliOnsMqConfig ALI_ONS_MQ_CONFIG = new AliOnsMqConfig();
 
     /**
      * 消息主题
@@ -56,6 +56,13 @@ public class MqBaseModel implements MqBaseInterface, Serializable {
      */
     @JSONField(serialize = false)
     protected String methodName;
+
+    /**
+     * model全限定路径类名
+     */
+    @JSONField(serialize = false)
+    protected String modelClassName;
+
     /**
      * 子标题
      */
@@ -66,6 +73,8 @@ public class MqBaseModel implements MqBaseInterface, Serializable {
      * 请求流水号
      */
     protected String requestNo;
+
+    protected Object[] objs;
 
     /**
      * 无参构造方法
@@ -81,10 +90,11 @@ public class MqBaseModel implements MqBaseInterface, Serializable {
      * @param springBean
      * @param methodName
      */
-    public MqBaseModel(String tag, String springBean, String methodName) {
+    public MqBaseModel(String tag, String springBean, String methodName, String modelClassName) {
         this.tag = tag;
         this.springBean = springBean;
         this.methodName = methodName;
+        this.modelClassName = modelClassName;
     }
 
     /**
@@ -100,7 +110,9 @@ public class MqBaseModel implements MqBaseInterface, Serializable {
                 StrUtil.lowerFirst(this.getClass().getSimpleName()), getRequestNo());
         Assert.notNull(getKey(), "key");
         Message message = new Message(TOPIC, getTag(), getKey(), this.toString().getBytes());
-
+        Properties userProperties = new Properties();
+        userProperties.setProperty(MqConstant.MODEL_CLASS_NAME, modelClassName);
+        message.setUserProperties(userProperties);
         return message;
     }
 
