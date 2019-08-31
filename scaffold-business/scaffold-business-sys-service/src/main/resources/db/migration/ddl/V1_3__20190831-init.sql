@@ -1,4 +1,5 @@
 -- 创建MQ消息表
+DROP TABLE IF EXISTS `sys_message`;
 CREATE TABLE `sys_message` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `message_id` varchar(255) NOT NULL COMMENT '消息ID',
