@@ -11,7 +11,7 @@ spring:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
   datasource:
-    url: jdbc:mysql://localhost:3306/scaffold_cloud_base?useSSL=false&useUnicode=true&characterEncoding=utf8&autoReconnect=true&failOverReadOnly=false&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true
+    url: jdbc:mysql://localhost:3306/scaffold_cloud_base?useSSL=false&serverTimezone=UTC&useUnicode=true&characterEncoding=utf8&autoReconnect=true&failOverReadOnly=false&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true
     username: root
     password: 123456
     type: com.alibaba.druid.pool.DruidDataSource
@@ -46,3 +46,6 @@ mybatis:
     map-underscore-to-camel-case: true
     aggressive-lazy-loading: false
     cache-enabled: true
+tx-lcn:
+  client:
+    manager-address: 127.0.0.1:8890

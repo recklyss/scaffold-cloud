@@ -24,6 +24,10 @@
         </dependency>
         <dependency>
             <groupId>com.cms.scaffold</groupId>
+            <artifactId>scaffold-feign-thirdparty</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.cms.scaffold</groupId>
             <artifactId>scaffold-core-code</artifactId>
         </dependency>
 

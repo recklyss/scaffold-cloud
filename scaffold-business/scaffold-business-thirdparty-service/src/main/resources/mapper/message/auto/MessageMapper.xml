@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cms.scaffold.micro.message.dao.MessageMapper">
+  <resultMap id="BaseResultMap" type="com.cms.scaffold.micro.message.domain.Message">
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="message_id" jdbcType="VARCHAR" property="messageId" />
+    <result column="message_key" jdbcType="VARCHAR" property="messageKey" />
+    <result column="operate" jdbcType="VARCHAR" property="operate" />
+    <result column="request_no" jdbcType="VARCHAR" property="requestNo" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="request_param" jdbcType="VARCHAR" property="requestParam" />
+    <result column="response_param" jdbcType="VARCHAR" property="responseParam" />
+    <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="trigger_num" jdbcType="INTEGER" property="triggerNum" />
+    <result column="tags" jdbcType="VARCHAR" property="tags" />
+  </resultMap>
+  <sql id="sql_columns">
+    id,message_id,message_key,operate,request_no,status,request_param,response_param,add_time,update_time,trigger_num,tags
+  </sql>
+  <sql id="sql_where">
+    <where>
+          <if test="null != id and '' != id or 0 ==id">and id = #{id}</if>
+          <if test="null != messageId and '' != messageId">and message_id = #{messageId}</if>
+          <if test="null != messageKey and '' != messageKey">and message_key = #{messageKey}</if>
+          <if test="null != operate and '' != operate">and operate = #{operate}</if>
+          <if test="null != requestNo and '' != requestNo">and request_no = #{requestNo}</if>
+          <if test="null != status and '' != status or 0 ==status">and status = #{status}</if>
+          <if test="null != requestParam and '' != requestParam">and request_param = #{requestParam}</if>
+          <if test="null != responseParam and '' != responseParam">and response_param = #{responseParam}</if>
+          <if test="null != addTime and '' != addTime">and add_time = #{addTime}</if>
+          <if test="null != updateTime and '' != updateTime">and update_time = #{updateTime}</if>
+          <if test="null != triggerNum and '' != triggerNum or 0 ==triggerNum">and trigger_num = #{triggerNum}</if>
+          <if test="null != tags and '' != tags">and tags = #{tags}</if>
+	</where>
+  </sql>
+  <sql id="sql_map_where">
+    <where>
+	  <foreach collection="map.keys" item="k" separator="and">
+ 	      <if test="null != map[k]">
+	          a.${k} = #{map[${k}]}
+	      </if>
+	  </foreach>
+	</where>
+  </sql>
+  <select id="selectById" resultMap="BaseResultMap">
+    select <include refid="sql_columns" /> from sys_message where id = #{id}
+  </select>
+  <select id="selectCacheById" resultMap="BaseResultMap">
+    select <include refid="sql_columns" /> from sys_message where id = #{id}
+  </select>
+  <select id="selectLockById" resultMap="BaseResultMap">
+    select <include refid="sql_columns" /> from sys_message where id = #{id} for update
+  </select>
+  <select id="selectOne" resultMap="BaseResultMap">
+    select <include refid="sql_columns" /> from sys_message <include refid="sql_where" />
+  </select>
+  <select id="findList" resultMap="BaseResultMap">
+    select <include refid="sql_columns" /> from sys_message <include refid="sql_where" />
+  </select>
+  <select id="selectMap" resultMap="BaseResultMap">
+    select <include refid="sql_columns" /> from sys_message <include refid="sql_map_where" />
+  </select>
+  <select id="count" resultType="java.lang.Integer">
+    select count(1) from sys_message <include refid="sql_where" />
+  </select>
+  <sql id="sql_insert_columns">
+    insert into sys_message
+	 <trim prefix="(" suffix=")" suffixOverrides="," >
+	  <if test="null != item.messageId"> message_id,</if>
+	  <if test="null != item.messageKey"> message_key,</if>
+	  <if test="null != item.operate"> operate,</if>
+	  <if test="null != item.requestNo"> request_no,</if>
+	  <if test="null != item.status"> status,</if>
+	  <if test="null != item.requestParam"> request_param,</if>
+	  <if test="null != item.responseParam"> response_param,</if>
+	  <if test="null != item.addTime"> add_time,</if>
+	  <if test="null != item.updateTime"> update_time,</if>
+	  <if test="null != item.triggerNum"> trigger_num,</if>
+	  <if test="null != item.tags"> tags,</if>
+	</trim>
+  </sql>
+  <sql id="sql_insert_values">
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+	  <if test="null != item.messageId"> #{item.messageId},</if>
+	  <if test="null != item.messageKey"> #{item.messageKey},</if>
+	  <if test="null != item.operate"> #{item.operate},</if>
+	  <if test="null != item.requestNo"> #{item.requestNo},</if>
+	  <if test="null != item.status"> #{item.status},</if>
+	  <if test="null != item.requestParam"> #{item.requestParam},</if>
+	  <if test="null != item.responseParam"> #{item.responseParam},</if>
+	  <if test="null != item.addTime"> #{item.addTime},</if>
+	  <if test="null != item.updateTime"> #{item.updateTime},</if>
+	  <if test="null != item.triggerNum"> #{item.triggerNum},</if>
+	  <if test="null != item.tags"> #{item.tags},</if>
+	</trim>
+  </sql>
+  <insert id="insert" keyProperty="item.id" useGeneratedKeys="true">
+    <include refid="sql_insert_columns" /><include refid="sql_insert_values" />
+  </insert>
+  <insert id="batchInsert">
+    <foreach collection="list" index="index" item="item" open="" separator=";" close="">
+	  <include refid="sql_insert_columns" /><include refid="sql_insert_values" />
+	</foreach>
+  </insert>
+  <sql id="sql_update">
+    update sys_message set id = #{item.id}
+      <if test="null != item.messageId">, message_id = #{item.messageId}</if>
+      <if test="null != item.messageKey">, message_key = #{item.messageKey}</if>
+      <if test="null != item.operate">, operate = #{item.operate}</if>
+      <if test="null != item.requestNo">, request_no = #{item.requestNo}</if>
+      <if test="null != item.status">, status = #{item.status}</if>
+      <if test="null != item.requestParam">, request_param = #{item.requestParam}</if>
+      <if test="null != item.responseParam">, response_param = #{item.responseParam}</if>
+      <if test="null != item.addTime">, add_time = #{item.addTime}</if>
+      <if test="null != item.updateTime">, update_time = #{item.updateTime}</if>
+      <if test="null != item.triggerNum">, trigger_num = #{item.triggerNum}</if>
+      <if test="null != item.tags">, tags = #{item.tags}</if>
+	where id = #{item.id}
+  </sql>
+  <sql id="sql_update_all">
+    update sys_message set id = #{item.id}
+	  , message_id = #{item.messageId}
+	  , message_key = #{item.messageKey}
+	  , operate = #{item.operate}
+	  , request_no = #{item.requestNo}
+	  , status = #{item.status}
+	  , request_param = #{item.requestParam}
+	  , response_param = #{item.responseParam}
+	  , add_time = #{item.addTime}
+	  , update_time = #{item.updateTime}
+	  , trigger_num = #{item.triggerNum}
+	  , tags = #{item.tags}
+	where id = #{item.id}
+  </sql>
+  <update id="update">
+    <include refid="sql_update" />
+  </update>
+  <update id="batchUpdate">
+    <foreach collection="list" index="index" item="item" open="" separator=";" close="">
+	  <include refid="sql_update" />
+	</foreach>
+  </update>
+  <update id="updateAll">
+    <include refid="sql_update_all" />
+  </update>
+  <update id="updateCompare" />
+  <delete id="delArray">
+    delete from sys_message where id in
+	<foreach collection="array" index="index" item="item" open="(" separator="," close=")">#{item}</foreach>
+  </delete>
+  <delete id="delList">
+    delete from sys_message where id in
+	<foreach collection="list" index="index" item="item" open="(" separator="," close=")">#{item}</foreach>
+  </delete>
+</mapper>

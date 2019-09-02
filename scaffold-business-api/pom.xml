@@ -13,6 +13,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>scaffold-business-sys-api</module>
+        <module>scaffold-business-thirdparty-api</module>
     </modules>
     <dependencies>
         <dependency>

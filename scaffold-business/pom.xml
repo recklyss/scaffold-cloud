@@ -25,6 +25,10 @@
             <groupId>com.cms.scaffold</groupId>
             <artifactId>scaffold-business-sys-api</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.cms.scaffold</groupId>
+            <artifactId>scaffold-business-thirdparty-api</artifactId>
+        </dependency>
 
         <dependency>
             <groupId>org.flywaydb</groupId>
