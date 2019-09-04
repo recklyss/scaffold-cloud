@@ -31,7 +31,7 @@ public class MqRedisModel implements Serializable {
     /**
      * 状态
      */
-    private Integer status;
+    private Long status;
     /**
      * 请求参数
      */

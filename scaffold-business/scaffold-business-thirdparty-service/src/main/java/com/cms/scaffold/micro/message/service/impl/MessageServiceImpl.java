@@ -13,4 +13,8 @@ import org.springframework.stereotype.Service;
 @Service
 @Slf4j
 public class MessageServiceImpl extends BaseServiceImpl<MessageMapper, Message> implements MessageService {
+    @Override
+    public Message selectByKey(String key) {
+        return dao.selectByKey(key);
+    }
 }

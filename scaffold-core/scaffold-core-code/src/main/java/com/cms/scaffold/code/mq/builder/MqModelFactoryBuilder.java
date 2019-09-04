@@ -19,7 +19,7 @@ public class MqModelFactoryBuilder {
      * @param message
      * @return
      */
-    public static MqRedisModel buildMqRedisModel(MqBaseModel mqBaseModel, Integer status, Message message) {
+    public static MqRedisModel buildMqRedisModel(MqBaseModel mqBaseModel, Long status, Message message) {
         MqRedisModel mqRedisModel = new MqRedisModel();
 
         if (mqBaseModel != null) {

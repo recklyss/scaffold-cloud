@@ -42,7 +42,7 @@ public class MqNoTransactionSynchronizationAdapter {
                 }
                 //发送MQ消息
                 String messageId = RocketCoreUtil.sendRocketMsg(mqBaseModel.getMessage());
-                Integer status = StrUtil.isNotBlank(messageId) ? 0 : -1;
+                long status = StrUtil.isNotBlank(messageId) ? 0 : -1;
                 //构造中间消息内容
                 Message message = new Message();
                 message.setMsgID(messageId);
