@@ -14,6 +14,16 @@ public class CacheConstant {
      * 否
      */
     public static final String NO = "0";
+
+    /**
+     * 订阅通道:MQ消费失败
+     */
+    public static final String PUBLISH_MQ_CONSUMER_FAIL_CHANNEL = "mqConsumerFailChannel";
+
+    /**
+     * 订阅通道:MQ消费成功
+     */
+    public static final String PUBLISH_MQ_CONSUMER_SUCCESS_CHANNEL = "mqConsumerSuccessChannel";
     /**
      * 消息中间件:防重复生产唯一KEY
      */
