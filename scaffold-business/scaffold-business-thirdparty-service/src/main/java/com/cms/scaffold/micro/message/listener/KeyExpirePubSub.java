@@ -30,7 +30,7 @@ public class KeyExpirePubSub extends JedisPubSub {
     @Override
     public void onPMessage(String pattern, String channel, String message) {
         try {
-            log.info("监听到redis通道[{}]的消息：【{}】", channel, message);
+            log.info("监听到redis通道[{}]的消息：【{}】,pattern = [{}]", channel, message, pattern);
             if (StrUtil.isNotBlank(message)) {
                 if (message.contains(CacheConstant.MQ_REDISMODEL_EXPIRE_KEY_INDEX)) {
                     String key = message.replaceAll(CacheConstant.MQ_REDISMODEL_EXPIRE_KEY_INDEX, "");

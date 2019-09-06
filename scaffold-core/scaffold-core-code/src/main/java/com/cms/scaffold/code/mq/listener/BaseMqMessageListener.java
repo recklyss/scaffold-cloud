@@ -38,7 +38,7 @@ public class BaseMqMessageListener implements MessageListener {
         }
         JedisUtil.expire(mqConsumerKey, ExpireTime.ONE_HOUR.getTime());
         // mq状态
-        int status = 0;
+        long status = 0L;
         MqBaseInterface baseInterface = null;
         MqRedisModel redisModel = null;
         try {
@@ -54,7 +54,7 @@ public class BaseMqMessageListener implements MessageListener {
             if (null != baseInterface) {
                 final Object bean = SpringContextHolder.getBean(baseInterface.getSpringBean());
                 ReflectUtil.invoke(bean, baseInterface.getMethodName(), baseInterface.getObjs());
-                status = 1;
+                status = 1L;
             }
         } catch (Exception e) {
             log.error("消费异常：【{}】", e.getLocalizedMessage());
@@ -64,7 +64,7 @@ public class BaseMqMessageListener implements MessageListener {
                 JedisUtil.expire(mqConsumerKey, ExpireTime.ONE_HOUR.getTime());
                 return Action.ReconsumeLater;
             }
-            status = 2;
+            status = 2L;
             return Action.CommitMessage;
         } finally {
             redisModel = MqModelFactoryBuilder.buildMqRedisModel(baseInterface != null ?

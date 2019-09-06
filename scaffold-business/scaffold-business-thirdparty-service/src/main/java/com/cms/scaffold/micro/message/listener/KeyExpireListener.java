@@ -4,6 +4,7 @@ import com.cms.scaffold.micro.message.service.MessageService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
+import org.springframework.stereotype.Component;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 
@@ -15,6 +16,7 @@ import javax.annotation.Resource;
  * @author zhang
  */
 @Slf4j
+@Component
 public class KeyExpireListener implements InitializingBean {
 
     private static final String KEY_EXPIRED_CHANNEL = "__key*__:expired";
@@ -31,8 +33,9 @@ public class KeyExpireListener implements InitializingBean {
     public void afterPropertiesSet() {
         taskExecutor.execute(() -> {
             try {
-                Jedis resource = jedisPool.getResource();
-                resource.psubscribe(keyExpirePubSub, KEY_EXPIRED_CHANNEL);
+                log.info("开始监听redis KEY过期事件");
+                Jedis jedis = jedisPool.getResource();
+                jedis.psubscribe(keyExpirePubSub, KEY_EXPIRED_CHANNEL);
             } catch (Exception e) {
                 log.error("监听redis KEY过期事件出现错误" );
                 e.printStackTrace();
