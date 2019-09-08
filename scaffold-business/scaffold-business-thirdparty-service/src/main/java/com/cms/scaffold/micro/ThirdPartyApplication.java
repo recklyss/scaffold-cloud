@@ -11,7 +11,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
  * @Author zhangjiaheng
  * @Description 第三方任务模块
  **/
-@SpringBootApplication(scanBasePackages = {"com.cms.scaffold.micro"}, exclude = FlywayAutoConfiguration.class)
+@SpringBootApplication(scanBasePackages = {"com.cms.scaffold"}, exclude = FlywayAutoConfiguration.class)
 @EnableDiscoveryClient
 @MapperScan(basePackages = "com.cms.scaffold.micro.**.dao")
 @EnableDistributedTransaction

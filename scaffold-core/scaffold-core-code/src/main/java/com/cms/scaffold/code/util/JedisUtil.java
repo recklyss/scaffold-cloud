@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.util.CollectionUtils;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
+import redis.clients.jedis.JedisPubSub;
 import redis.clients.jedis.Tuple;
 import redis.clients.jedis.exceptions.JedisException;
 
@@ -16,6 +17,7 @@ import java.util.*;
 
 /**
  * Jedis Cache 工具类
+ *
  * @author zhangjiaheng
  */
 public class JedisUtil {
@@ -24,7 +26,8 @@ public class JedisUtil {
 
     private static JedisPool jedisPool = null;
 
-    private JedisUtil() {}
+    private JedisUtil() {
+    }
 
     /**
      * 获取缓存
@@ -1667,6 +1670,42 @@ public class JedisUtil {
             }
         } catch (Exception e) {
             logger.warn("zincr {} = {}", key, members, e);
+        } finally {
+            close(jedis);
+        }
+    }
+
+    /**
+     * 调用jedis的subscribe()方法
+     *
+     * @param jedisPubSub
+     * @param channels
+     */
+    public static void subscribe(JedisPubSub jedisPubSub, String... channels) {
+        Jedis jedis = null;
+        try {
+            jedis = getResource();
+            jedis.subscribe(jedisPubSub, channels);
+        } catch (Exception e) {
+            logger.warn("psubscribe channels==> {} exception==> {}", channels, e);
+        } finally {
+            close(jedis);
+        }
+    }
+
+    /**
+     * 调用jedis的psubscribe()方法
+     *
+     * @param jedisPubSub
+     * @param patterns
+     */
+    public static void psubscribe(JedisPubSub jedisPubSub, String... patterns) {
+        Jedis jedis = null;
+        try {
+            jedis = getResource();
+            jedis.psubscribe(jedisPubSub, patterns);
+        } catch (Exception e) {
+            logger.warn("psubscribe patterns==> {} exception==> {}", patterns, e);
         } finally {
             close(jedis);
         }

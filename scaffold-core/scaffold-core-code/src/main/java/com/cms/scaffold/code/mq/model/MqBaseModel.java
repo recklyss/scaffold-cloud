@@ -7,6 +7,7 @@ import com.alibaba.fastjson.annotation.JSONField;
 import com.aliyun.openservices.ons.api.Action;
 import com.aliyun.openservices.ons.api.Message;
 import com.cms.scaffold.code.config.commonly.AliOnsMqConfig;
+import com.cms.scaffold.code.config.commonly.SpringContextHolder;
 import com.cms.scaffold.code.mq.base.MqBaseInterface;
 import com.cms.scaffold.common.constant.MqConstant;
 import lombok.Getter;
@@ -23,7 +24,7 @@ import java.util.Properties;
 @Setter
 public class MqBaseModel implements MqBaseInterface, Serializable {
 
-    private static final AliOnsMqConfig ALI_ONS_MQ_CONFIG = new AliOnsMqConfig();
+    private static final AliOnsMqConfig ALI_ONS_MQ_CONFIG = SpringContextHolder.getBean(AliOnsMqConfig.class);
 
     /**
      * 消息主题
