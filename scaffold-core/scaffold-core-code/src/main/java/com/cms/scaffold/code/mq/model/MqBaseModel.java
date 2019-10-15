@@ -105,8 +105,8 @@ public class MqBaseModel implements MqBaseInterface, Serializable {
      */
     @JSONField(serialize = false)
     public Message getMessage() {
-        Assert.notNull(getTag(), "tag");
-        Assert.notNull(getRequestNo(), "requestNo");
+        Assert.notNull(getTag(), "tag cannot be null");
+        Assert.notNull(getRequestNo(), "requestNo cannot be null");
         this.key = String.format(MqConstant.ROCKETMQ_MESSAGE_KEY, tag,
                 StrUtil.lowerFirst(this.getClass().getSimpleName()), getRequestNo());
         Assert.notNull(getKey(), "key");
