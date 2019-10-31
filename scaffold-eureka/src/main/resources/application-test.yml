@@ -3,7 +3,7 @@ server:
 
 eureka:
   instance:
-    hostname: mydocker.zhang
+    hostname: localhost
   client:
     registerWithEureka: false
     fetchRegistry: false
