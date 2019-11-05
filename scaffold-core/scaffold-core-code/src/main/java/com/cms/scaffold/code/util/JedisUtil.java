@@ -1149,7 +1149,7 @@ public class JedisUtil {
      *
      * @param key
      * @return
-     * @author yangdeke@jianbing.com
+     * @author jiaheng
      * @date 2017-9-26
      */
     public static long ttl(String key) {

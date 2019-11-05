@@ -10,7 +10,7 @@ import java.util.List;
 
 /**
  * @description:
- * @author: suyb
+ * @author: jiaheng
  * @date: 2018/10/24 17:54
  */
 public class RocketMqSendUtil {

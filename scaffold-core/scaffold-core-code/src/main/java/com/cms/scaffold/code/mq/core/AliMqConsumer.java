@@ -17,7 +17,7 @@ import java.util.Properties;
 
 /**
  * @description: 消息中间件:创建消费者类
- * @author: yangdeke@jianbing.com
+ * @author: jiaheng
  * @date: 2018-09-01 22:05
  **/
 public class AliMqConsumer {

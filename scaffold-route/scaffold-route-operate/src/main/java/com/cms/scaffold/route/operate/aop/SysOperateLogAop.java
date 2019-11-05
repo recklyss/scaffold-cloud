@@ -10,11 +10,14 @@ import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Arrays;
 import java.util.Collections;
@@ -29,6 +32,9 @@ import java.util.Map;
 @Component
 @Slf4j
 public class SysOperateLogAop {
+
+    @Resource
+    ThreadPoolTaskExecutor taskExecutor;
 
     /**
      * 需要拦截的方法名
@@ -51,30 +57,33 @@ public class SysOperateLogAop {
         String methodName = joinPoint.getSignature().getName().toLowerCase();
         boolean match = Arrays.stream(LOG_METHOD_NAMES).anyMatch(methodName::contains);
         if (match) {
-            ServletRequestAttributes requestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
-            HttpServletRequest request = requestAttributes.getRequest();
-            String uri = request.getRequestURI();
-            String classType = joinPoint.getTarget().getClass().getName();
-            String param = null;
-            Map<String, String[]> parameterMap = request.getParameterMap();
-            if(parameterMap != null && parameterMap.size()>0 ){
-                param = JSON.toJSONString(parameterMap);
-            }
-            String returnParam = null;
-            if(retValue!=null){
-                returnParam = JSON.toJSONString(retValue);
-            }
-            SysOperateLogModel operateLog = new SysOperateLogModel();
-            operateLog.setClassName(classType);
-            operateLog.setRequestUrl(uri);
-            operateLog.setRequestParam(param);
-            operateLog.setResponseParam(returnParam);
-            operateLog.setRequestMethod(methodName);
-            operateLog.setOperateId(UserUtil.getOperatorId());
-            operateLog.setOperateName(UserUtil.getOperatorFromSession().getUserName());
-            SysOperateLogMqModel model = new SysOperateLogMqModel(operateLog);
-            log.info("准备发送MQ消息，tag:{}", model.getTag());
-            RocketMqSendUtil.sendMq(Collections.singletonList(model));
+            taskExecutor.execute(()->{
+                ServletRequestAttributes requestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+                HttpServletRequest request = requestAttributes.getRequest();
+                String uri = request.getRequestURI();
+                String classType = joinPoint.getTarget().getClass().getName();
+                String param = null;
+                Map<String, String[]> parameterMap = request.getParameterMap();
+                if(parameterMap != null && parameterMap.size()>0 ){
+                    param = JSON.toJSONString(parameterMap);
+                }
+                String returnParam = null;
+                if(retValue!=null){
+                    returnParam = JSON.toJSONString(retValue);
+                }
+                SysOperateLogModel operateLog = new SysOperateLogModel();
+                operateLog.setClassName(classType);
+                operateLog.setRequestUrl(uri);
+                operateLog.setRequestParam(param);
+                operateLog.setResponseParam(returnParam);
+                operateLog.setRequestMethod(methodName);
+                operateLog.setOperateId(UserUtil.getOperatorId());
+                operateLog.setOperateName(UserUtil.getOperatorFromSession().getUserName());
+                SysOperateLogMqModel model = new SysOperateLogMqModel(operateLog);
+                log.info("准备发送MQ消息，tag:{}", model.getTag());
+                RocketMqSendUtil.sendMq(Collections.singletonList(model));
+            });
+
         }
     }
 }

@@ -2,7 +2,7 @@
  * @Title: ShutdownHook.java
  * @Package com.gjj.p2p.common.mq
  *
- * @author yangdeke@jianbing.com
+ * @author jiaheng
  * @date 2017-7-7
  */
 package com.cms.scaffold.code.mq.core;
@@ -26,7 +26,7 @@ public class ShutdownHook extends Thread{
 
 	/**
 	 *
-	 * @author yangdeke@jianbing.com
+	 * @author jiaheng
 	 * @date 2017-7-7
 	 */
 	@Override
