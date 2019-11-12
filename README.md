@@ -20,8 +20,8 @@
 </p>
 
 ## scaffold-cloud项目说明
-![登录页面](demo.png)
-![菜单管理页面](demo2.png)
+![登录页面](images/demo.png)
+![菜单管理页面](images/demo2.png)
 ### 快速开始
 ```java
 // 下载/克隆项目到本地 

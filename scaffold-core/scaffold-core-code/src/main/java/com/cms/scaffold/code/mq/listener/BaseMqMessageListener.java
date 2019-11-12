@@ -42,8 +42,9 @@ public class BaseMqMessageListener implements MessageListener {
         MqBaseInterface baseInterface = null;
         MqRedisModel redisModel = null;
         try {
-            baseInterface = (MqBaseInterface) JSONObject.parseObject(body,
-                    SpringContextHolder.getBean(model.getOperate()).getClass());
+            // baseInterface = (MqBaseInterface) JSONObject.parseObject(body,Class.forName(modelClassName));
+            // 以上代码 拿到的反序列化后的对象 objs[]为空 导致执行方法的时候 如果没有该方法的无参重载 则报错找不到方法
+            baseInterface = (MqBaseInterface) JSONObject.parseObject(body,Class.forName(modelClassName));
         } catch (Exception e) {
             e.printStackTrace();
             log.error("构造MQ接口异常>>> {}", model.getOperate());

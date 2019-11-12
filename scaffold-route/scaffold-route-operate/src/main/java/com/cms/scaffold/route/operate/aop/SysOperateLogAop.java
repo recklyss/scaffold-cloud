@@ -57,8 +57,8 @@ public class SysOperateLogAop {
         String methodName = joinPoint.getSignature().getName().toLowerCase();
         boolean match = Arrays.stream(LOG_METHOD_NAMES).anyMatch(methodName::contains);
         if (match) {
+            ServletRequestAttributes requestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
             taskExecutor.execute(()->{
-                ServletRequestAttributes requestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
                 HttpServletRequest request = requestAttributes.getRequest();
                 String uri = request.getRequestURI();
                 String classType = joinPoint.getTarget().getClass().getName();
