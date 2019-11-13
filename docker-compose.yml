@@ -1,0 +1,31 @@
+version: "3.7"
+
+services:
+  dev:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    working_dir: /jars
+    ports:
+      - 8761:8761
+    environment:
+      JIAHENG: zhangjiaheng
+    networks:
+      - scaffold-cloud
+
+
+  mysql:
+    image: docker.io/mysql:5.7
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: test
+      MYSQL_ROOT_PASSWORD: 123456
+      MYSQL_ROOT_HOST: '%'
+    restart: always
+    networks:
+      - scaffold-cloud
+
+
+networks:
+  scaffold-cloud:
