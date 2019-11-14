@@ -1,28 +1,33 @@
 version: "3.7"
 
 services:
-  dev:
+  tx_namager:
+    container_name: scaffold_tx_manager
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: scaffold-tx-manager/Dockerfile
     working_dir: /jars
+    volumes:
+      - /scaffold_cloud/logs:/scaffold_cloud/logs
+      - /tmp:/tmp
+    depends_on:
+      - mysql
     ports:
-      - 8761:8761
-    environment:
-      JIAHENG: zhangjiaheng
+      - 8890:8890
+      - 7970:7970
     networks:
       - scaffold-cloud
 
 
   mysql:
-    image: docker.io/mysql:5.7
+    image: mysql/mysql-server:5.7
     container_name: mysql_5_7
     ports:
       - "3306:3306"
-    environment:
-      MYSQL_DATABASE: scaffold
-      MYSQL_ROOT_PASSWORD: 123456
-      MYSQL_ROOT_HOST: '%'
+    volumes:
+      - data:/var/lib/mysql
+      - ./mysql/config/my.cnf:/etc/my.cnf
+      - ./mysql/init:/docker-entrypoint-initdb.d/
     restart: always
     networks:
       - scaffold-cloud
@@ -33,3 +38,6 @@ networks:
     name:
       scaffold-cloud
     driver: bridge
+volumes:
+  data:
+    driver: local
