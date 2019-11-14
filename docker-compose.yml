@@ -16,10 +16,11 @@ services:
 
   mysql:
     image: docker.io/mysql:5.7
+    container_name: mysql_5_7
     ports:
       - "3306:3306"
     environment:
-      MYSQL_DATABASE: test
+      MYSQL_DATABASE: scaffold
       MYSQL_ROOT_PASSWORD: 123456
       MYSQL_ROOT_HOST: '%'
     restart: always
@@ -29,3 +30,6 @@ services:
 
 networks:
   scaffold-cloud:
+    name:
+      scaffold-cloud
+    driver: bridge
