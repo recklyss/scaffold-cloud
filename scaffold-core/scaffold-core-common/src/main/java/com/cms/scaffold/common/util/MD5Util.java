@@ -1,6 +1,6 @@
 package com.cms.scaffold.common.util;
 
-import sun.misc.BASE64Encoder;
+import cn.hutool.core.codec.Base64;
 
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
@@ -8,33 +8,33 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 public class MD5Util {
-    static final int S11 = 7;
-    static final int S12 = 12;
-    static final int S13 = 17;
-    static final int S14 = 22;
+    private static final int S11 = 7;
+    private static final int S12 = 12;
+    private static final int S13 = 17;
+    private static final int S14 = 22;
 
-    static final int S21 = 5;
-    static final int S22 = 9;
-    static final int S23 = 14;
-    static final int S24 = 20;
+    private static final int S21 = 5;
+    private static final int S22 = 9;
+    private static final int S23 = 14;
+    private static final int S24 = 20;
 
-    static final int S31 = 4;
-    static final int S32 = 11;
-    static final int S33 = 16;
-    static final int S34 = 23;
+    private static final int S31 = 4;
+    private static final int S32 = 11;
+    private static final int S33 = 16;
+    private static final int S34 = 23;
 
-    static final int S41 = 6;
-    static final int S42 = 10;
-    static final int S43 = 15;
-    static final int S44 = 21;
+    private static final int S41 = 6;
+    private static final int S42 = 10;
+    private static final int S43 = 15;
+    private static final int S44 = 21;
 
-    static final byte[] PADDING = {-128, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    private static final byte[] PADDING = {-128, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0};
     private static long[] state = new long[4];
     private static long[] count = new long[2];
     private static byte[] buffer = new byte[64];
-    public static String digestHexStr;
+    private static String digestHexStr = "";
     private static byte[] digest = new byte[16];
 
     public MD5Util() {
@@ -346,9 +346,8 @@ public class MD5Util {
         String newstr = "";
         try {
             md5 = MessageDigest.getInstance("MD5");
-            BASE64Encoder base64en = new BASE64Encoder();
             //加密后的字符串
-            newstr = base64en.encode(md5.digest(str.getBytes(StandardCharsets.UTF_8)));
+            newstr = Base64.encode(md5.digest(str.getBytes(StandardCharsets.UTF_8)));
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
