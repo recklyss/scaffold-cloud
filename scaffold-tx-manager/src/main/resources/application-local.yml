@@ -5,7 +5,7 @@ spring:
     name: tx-manager
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3309/tx_manager?characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&useSSL=true
+    url: jdbc:mysql://mysql:3306/tx_manager?characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&useSSL=true
     username: root
     password: 123456
   jpa:
@@ -13,7 +13,7 @@ spring:
       ddl-auto: update
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
   redis:
-    host: localhost
+    host: redis
     password: pwd8ok8
     port: 6379
     database: 3

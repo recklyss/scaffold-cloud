@@ -1,29 +1,40 @@
 version: "3.7"
 
 services:
-  tx_namager:
-    container_name: scaffold_tx_manager
+  eureka:
+    build:
+      context: .
+      dockerfile: scaffold-eureka/Dockerfile
+    working_dir: /scaffold_cloud
+    volumes:
+      - /tmp:/tmp
+    ports:
+      - 8761:8761
+    networks:
+      - scaffold-cloud
+
+  tx_manager:
     build:
       context: .
       dockerfile: scaffold-tx-manager/Dockerfile
-    working_dir: /jars
+    working_dir: /scaffold_cloud
     volumes:
-      - /scaffold_cloud/logs:/scaffold_cloud/logs
       - /tmp:/tmp
-    depends_on:
-      - mysql
     ports:
       - 8890:8890
       - 7970:7970
     networks:
       - scaffold-cloud
+    command: java -Djava.security.egd=file:/dev/./urandom -jar scaffold-txmanager-1.0-SNAPSHOT.jar
+    depends_on:
+      - mysql
+      - redis
 
 
   mysql:
     image: mysql/mysql-server:5.7
-    container_name: mysql_5_7
     ports:
-      - "3306:3306"
+      - 3306:3306
     volumes:
       - data:/var/lib/mysql
       - ./mysql/config/my.cnf:/etc/my.cnf
@@ -32,11 +43,19 @@ services:
     networks:
       - scaffold-cloud
 
+  redis:
+    image: redis:latest
+    restart: always
+    ports:
+      - 6379:6379
+    command: redis-server --requirepass pwd8ok8
+    networks:
+      - scaffold-cloud
+
 
 networks:
   scaffold-cloud:
-    name:
-      scaffold-cloud
+    name: scaffold-cloud
     driver: bridge
 volumes:
   data:
