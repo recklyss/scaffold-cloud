@@ -1,6 +1,26 @@
 version: "3.7"
 
 services:
+
+  micro_sys:
+    build:
+      context: .
+      dockerfile: scaffold-business/scaffold-business-sys-service/Dockerfile
+    working_dir: /scaffold_cloud
+    volumes:
+      - /tmp:/tmp
+    ports:
+      - 8850
+    networks:
+      - scaffold-cloud
+    depends_on:
+      - eureka
+      - mysql
+      - tx_manager
+      - redis
+    entrypoint: chmod +x /entrypoint.sh; /entrypoint.sh -d eureka:8761,mysql:3306,redis:6379,tx_manager:7970 -c 'echo "start web service now"';
+    command: java -Djava.security.egd=file:/dev/./urandom -jar scaffold-business-sys-service-1.0-SNAPSHOT.jar
+
   eureka:
     build:
       context: .

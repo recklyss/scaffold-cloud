@@ -1,7 +1,7 @@
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://localhost:8761/eureka/
+      defaultZone: http://eureka:8761/eureka/
 server:
   port: 8850
 spring:
@@ -11,7 +11,7 @@ spring:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
   datasource:
-    url: jdbc:mysql://localhost:3306/scaffold_cloud_base?useSSL=false&serverTimezone=UTC&useUnicode=true&characterEncoding=utf8&autoReconnect=true&failOverReadOnly=false&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true
+    url: jdbc:mysql://mysql:3306/scaffold_cloud_base?useSSL=false&serverTimezone=UTC&useUnicode=true&characterEncoding=utf8&autoReconnect=true&failOverReadOnly=false&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true
     username: root
     password: 123456
     type: com.alibaba.druid.pool.DruidDataSource
@@ -58,4 +58,4 @@ mybatis:
     log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl
 tx-lcn:
   client:
-    manager-address: 127.0.0.1:8890
+    manager-address: tx_manager:8890
