@@ -26,11 +26,14 @@ public class JobTool {
     @Resource
     private Scheduler scheduler;
 
-    /** 支持并发执行定时任务*/
+    /**
+     * 支持并发执行定时任务
+     */
     private static final Integer IS_CONCURRENT = 1;
 
     /**
      * 添加任务
+     *
      * @param job
      * @throws SchedulerException
      */
@@ -39,12 +42,12 @@ public class JobTool {
             return;
         }
 
-        logger.info("add scheduler:{}",scheduler.toString());
+        logger.info("add scheduler:{}", scheduler.toString());
 
-        TriggerKey triggerKey = TriggerKey.triggerKey(job.getJobName(),job.getJobGroup());
-        CronTrigger trigger = (CronTrigger)scheduler.getTrigger(triggerKey);
+        TriggerKey triggerKey = TriggerKey.triggerKey(job.getJobName(), job.getJobGroup());
+        CronTrigger trigger = (CronTrigger) scheduler.getTrigger(triggerKey);
         // 不存在，创建一个
-        if(trigger == null){
+        if (trigger == null) {
             Class clazz = IS_CONCURRENT.equals(job.getCouldConcurrent()) ?
                     TaskAllowConcurrentExecutor.class : TaskDisallowConcurrentExecutor.class;
 
@@ -54,16 +57,18 @@ public class JobTool {
 
             CronScheduleBuilder scheduleBuilder = CronScheduleBuilder.cronSchedule(job.getCronExpression());
 
-            trigger = TriggerBuilder.newTrigger().withIdentity(job.getJobName(), job.getJobGroup()).withSchedule(scheduleBuilder).build();
+            trigger =
+                    TriggerBuilder.newTrigger().withIdentity(job.getJobName(), job.getJobGroup()).withSchedule(scheduleBuilder).build();
 
             scheduler.scheduleJob(jobDetail, trigger);
-        }else{
+        } else {
             logger.info("rescheduleJob : {}", job.getJobName());
             // Trigger已存在，那么更新相应的定时设置
             // 增加：withMisfireHandlingInstructionDoNothing()方法
             // 1，不触发立即执行
             // 2，等待下次Cron触发频率到达时刻开始按照Cron频率依次执行
-            CronScheduleBuilder scheduleBuilder = CronScheduleBuilder.cronSchedule(job.getCronExpression()).withMisfireHandlingInstructionDoNothing();
+            CronScheduleBuilder scheduleBuilder =
+                    CronScheduleBuilder.cronSchedule(job.getCronExpression()).withMisfireHandlingInstructionDoNothing();
 
             // 按新的cronExpression表达式重新构建trigger
             trigger = trigger.getTriggerBuilder().withIdentity(triggerKey).withSchedule(scheduleBuilder).build();
@@ -159,12 +164,13 @@ public class JobTool {
 
     /**
      * 删除job根据list
+     *
      * @param jobs
      * @throws SchedulerException
      */
     public void deleteJobs(List<JobInfo> jobs) throws SchedulerException {
         List<JobKey> keys = new ArrayList<>();
-        for (JobInfo job:jobs) {
+        for (JobInfo job : jobs) {
             JobKey jobKey = JobKey.jobKey(job.getJobName(), job.getJobGroup());
             keys.add(jobKey);
         }
