@@ -1,4 +1,3 @@
-- steps:
-
-    - label: ":llama: demo pipeline"
-      command: ./scripts/demo.sh
+steps:
+  - label: ":llama: demo pipeline"
+    command: ./scripts/demo.sh
