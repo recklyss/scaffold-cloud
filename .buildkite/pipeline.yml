@@ -1,0 +1,4 @@
+- steps:
+
+    - label: ":postgres: demo pipeline"
+      command: ./scripts/demo.sh
