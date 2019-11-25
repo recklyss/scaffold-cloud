@@ -58,6 +58,7 @@
 
         <codingapi.txlcn.version>5.0.2.RELEASE</codingapi.txlcn.version>
         <jwt.version>0.9.1</jwt.version>
+        <logstash.encoder.version>6.2</logstash.encoder.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -245,6 +246,11 @@
                 <groupId>io.jsonwebtoken</groupId>
                 <artifactId>jjwt</artifactId>
                 <version>${jwt.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>net.logstash.logback</groupId>
+                <artifactId>logstash-logback-encoder</artifactId>
+                <version>${logstash.encoder.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
