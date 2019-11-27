@@ -20,6 +20,7 @@
         <module>scaffold-route</module>
         <module>scaffold-feign</module>
         <module>scaffold-tx-manager</module>
+        <module>scaffold-zuul</module>
     </modules>
     <packaging>pom</packaging>
 
