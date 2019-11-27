@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 
 /**
- * Zuul 网关
+ * Zuul 网关 默认路由规则：http://zuul-host:zuulpost/
  *
  * @author jiaheng.zhang
  */
