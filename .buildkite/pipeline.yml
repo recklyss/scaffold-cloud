@@ -8,7 +8,7 @@ steps:
   - label: ":llama: mvn package & recreate docker image"
     command: ./.scripts/recreate-docker-image.sh
 
-  -wait
+  - wait
 
   - label: ":docker: start docker-compose"
     command: ./.scripts/start-docker-service.sh
