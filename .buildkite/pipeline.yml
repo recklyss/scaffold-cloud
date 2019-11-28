@@ -1,3 +1,9 @@
 steps:
-  - label: ":llama: demo pipeline"
-    command: ./.scripts/demo.sh
+  - label: ":llama: check maven install and install when exist "
+      command: ./.scripts/install-maven.sh
+  - wait
+  - label: ":llama: mvn package & recreate docker image"
+      command: ./.scripts/recreate-docker-image.sh
+  -wait
+  - label: ":docker: start docker-compose"
+      command: ./.scripts/start-docker-service.sh

@@ -1,0 +1,82 @@
+version: "3.7"
+
+services:
+
+  micro_sys:
+    build:
+      context: .
+      dockerfile: scaffold-business/scaffold-business-sys-service/Dockerfile
+    working_dir: /scaffold_cloud
+    volumes:
+      - /tmp:/tmp
+    ports:
+      - 8850
+    networks:
+      - scaffold-cloud
+    depends_on:
+      - eureka
+      - mysql
+      - tx_manager
+      - redis
+    entrypoint: /entrypoint.sh -d eureka:8761,mysql:3306,redis:6379,tx_manager:7970 -c 'echo "start web service now"';
+    command: java -Djava.security.egd=file:/dev/./urandom -jar scaffold-business-sys-service-1.0-SNAPSHOT.jar
+
+  eureka:
+    build:
+      context: .
+      dockerfile: scaffold-eureka/Dockerfile
+    working_dir: /scaffold_cloud
+    volumes:
+      - /tmp:/tmp
+    ports:
+      - 8761:8761
+    networks:
+      - scaffold-cloud
+
+  tx_manager:
+    build:
+      context: .
+      dockerfile: scaffold-tx-manager/Dockerfile
+    working_dir: /scaffold_cloud
+    volumes:
+      - /tmp:/tmp
+    ports:
+      - 8890:8890
+      - 7970:7970
+    networks:
+      - scaffold-cloud
+    command: java -Djava.security.egd=file:/dev/./urandom -jar scaffold-txmanager-1.0-SNAPSHOT.jar
+    depends_on:
+      - mysql
+      - redis
+
+
+  mysql:
+    image: mysql/mysql-server:5.7
+    ports:
+      - 3306:3306
+    volumes:
+      - data:/var/lib/mysql
+      - ./mysql/config/my.cnf:/etc/my.cnf
+      - ./mysql/init:/docker-entrypoint-initdb.d/
+    restart: always
+    networks:
+      - scaffold-cloud
+
+  redis:
+    image: redis:latest
+    restart: always
+    ports:
+      - 6379:6379
+    command: redis-server --requirepass pwd8ok8
+    networks:
+      - scaffold-cloud
+
+
+networks:
+  scaffold-cloud:
+    name: scaffold-cloud
+    driver: bridge
+volumes:
+  data:
+    driver: local
