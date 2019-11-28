@@ -1,5 +1,5 @@
 steps:
-  -
+
   - label: ":llama: check maven install and install when exist "
     command: ./.scripts/install-maven.sh
 
