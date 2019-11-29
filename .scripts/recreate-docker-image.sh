@@ -1,7 +1,6 @@
 #!/bin/bash -eu
 
 echo "============start to package with maven and recreate docker image=============="
-cd ..
 
 SERVICE_FOLDERS=( scaffold-eureka scaffold-zuul )
 path=
