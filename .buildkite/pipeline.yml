@@ -1,6 +1,6 @@
 steps:
-  - label: "test which environment"
-    command: ./.scripts/demo.sh
+  - label: ":maven: install maven"
+    command: ./.scripts/install-maven.sh
 
   - wait
 
