@@ -1,0 +1,14 @@
+version: "3"
+services:
+  maven:
+    # Run pre-built maven image from docker library
+    image: maven
+    volumes:
+      # Cache maven dependencies
+      - $HOME/.m2:/root/.m2
+      # Mount the application source and target directories
+      - ..:/app
+    # Run maven inside the application directory
+    working_dir: /app
+volumes:
+  maven-repository:

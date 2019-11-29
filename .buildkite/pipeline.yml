@@ -1,7 +1,16 @@
 steps:
+  - label: "test which environment"
+    command: ./.scripts/demo.sh
 
-  - label: ":llama: mvn package & recreate docker image"
+  - wait
+
+  - label: ":maven: mvn package & recreate docker image"
     command: ./.scripts/recreate-docker-image.sh
+    artifact_paths: "target/*.jar"
+      plugins:
+        - docker-compose#v1.5.2:
+            run: maven
+            config: .buildkite/docker-compose.yml
 
   - wait
 
