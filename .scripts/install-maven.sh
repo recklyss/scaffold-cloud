@@ -6,10 +6,10 @@ else
     echo -e "Begin to install maven,Please waiting..."
     wget https://mirrors.tuna.tsinghua.edu.cn/apache/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.tar.gz
     tar zxvf apache-maven-3.6.3-bin.tar.gz
-    sudo mv apache-maven-3.6.3 /usr/local/maven
-    sudo echo "#MAVEN_HOME" >>/etc/profile
-    sudo echo "export MAVEN_HOME=/usr/local/maven" >>/etc/profile
-    sudo echo "export PATH=\$PATH:\$MAVEN_HOME/bin" >>/etc/profile
-    sudo source /etc/profile
+    cp -r apache-maven-3.6.3 /usr/local/maven
+    echo "#MAVEN_HOME" >>/etc/profile
+    echo "export MAVEN_HOME=/usr/local/maven" >>/etc/profile
+    echo "export PATH=\$PATH:\$MAVEN_HOME/bin" >>/etc/profile
+    source /etc/profile
     echo -e "Maven installation completed"
 fi
