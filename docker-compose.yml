@@ -2,7 +2,7 @@ version: "3.7"
 
 services:
   eureka:
-    image: scaffold-eureka:0.0.1-SNAPSHOT
+    image: scaffold-cloud/scaffold-eureka:1.0-SNAPSHOT
     volumes:
       - /tmp:/tmp
     ports:
@@ -10,14 +10,45 @@ services:
     networks:
       - scaffold-cloud
   zuul:
-    image: scaffold-zuul:0.0.1-SNAPSHOT
+    image: scaffold-cloud/scaffold-zuul:1.0-SNAPSHOT
     volumes:
       - /tmp:/tmp
     ports:
       - 8861:8861
     networks:
       - scaffold-cloud
-
+  tx_manager:
+    image: scaffold-cloud/scaffold-txmanager:1.0-SNAPSHOT
+    working_dir: /scaffold_cloud
+    volumes:
+      - /tmp:/tmp
+    ports:
+      - 8890:8890
+      - 7970:7970
+    networks:
+      - scaffold-cloud
+    depends_on:
+      - mysql
+      - redis
+  mysql:
+    image: mysql/mysql-server:5.7
+    ports:
+      - 3306:3306
+    volumes:
+      - ./mysql/data:/var/lib/mysql
+      - ./mysql/config/my.cnf:/etc/my.cnf
+      - ./mysql/init:/docker-entrypoint-initdb.d/
+    restart: always
+    networks:
+      - scaffold-cloud
+  redis:
+    image: redis:latest
+    restart: always
+    ports:
+      - 6379:6379
+    command: redis-server --requirepass pwd8ok8
+    networks:
+      - scaffold-cloud
 networks:
   scaffold-cloud:
     name: scaffold-cloud
