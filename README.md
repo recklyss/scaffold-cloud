@@ -55,7 +55,9 @@ git clone https://github.com/Fatezhang/scaffold-cloud
     - scaffold-core-common [工具类模块，公共代码](#)
     - scaffold-core-plugin [自动代码生成插件模块](#)
 - scaffold-eureka [注册中心Eureka](#) 端口 8761 - 8771
-- scaffold-zuul [网关服务](#) 端口 8861 - 8881
+- scaffold-zuul [网关服务](#) 端口 8861 - 8870
+- scaffold-config-server [配置服务端服务](#) 端口 8871 - 8881
+- scaffold-config-client [配置客户端服务](#) 端口 8880 - 8891
 - scaffold-tx-manager [分布式事务协调服务](#) 端口7970 
 - scaffold-feign [Feign模块](#)
     - scaffold-feign-sys [feign-sys模块](#)

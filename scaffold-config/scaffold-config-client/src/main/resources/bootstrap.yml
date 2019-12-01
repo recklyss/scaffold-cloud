@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: demo
+  cloud:
+    config:
+      uri: http://localhost:8871
+      name: demo
+      profile: prod
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/

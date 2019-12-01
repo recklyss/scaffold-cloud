@@ -21,6 +21,7 @@
         <module>scaffold-feign</module>
         <module>scaffold-tx-manager</module>
         <module>scaffold-zuul</module>
+        <module>scaffold-config</module>
     </modules>
     <packaging>pom</packaging>
 
