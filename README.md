@@ -1,8 +1,7 @@
-<h1 align="center"><a href="https://github.com/Fatezhang/scaffold-cloud" target="_blank">scaffold-cloud</a></h1>
+<h1 align="center"><a href="https://github.com/Fatezhang/scaffold-cloud" target="_blank">scaffold-cloud</a></h1>[![Build status](https://badge.buildkite.com/1998183af045348a6a203ab61378a8dce0ce6431b633f92e55.svg)](https://buildkite.com/zhang/scaffold-cloud)
 <p align="center">一个适用于开发学习的Spring-cloud项目脚手架，技术栈包括但不限于spring-boot,mybatis,pagehelper,flyway-db,mybatis-genarator,eureka,spring-cloud,feign,ribbon,redis,rocketmq,ali-oss,TX-LCN分布式事务... ...</p>
 
 <p align="center">
-  [![Build status](https://badge.buildkite.com/1998183af045348a6a203ab61378a8dce0ce6431b633f92e55.svg)](https://buildkite.com/zhang/scaffold-cloud)
   <a href="http://zhangjiaheng.cn"><img alt="author" src="https://img.shields.io/badge/作者-ZhangJiaheng_Blog-blue.svg"/></a>
   <a href="https://www.oracle.com/technetwork/java/javase/downloads/index.html"><img alt="JDK" src="https://img.shields.io/badge/JDK-1.8+-orange.svg"/></a>
   <a href="https://docs.spring.io/spring-boot/docs/2.0.3.RELEASE/reference/html/"><img alt="Spring Boot" src="https://img.shields.io/badge/Spring Boot-2.1.4.RELEASE-brightgreen.svg"/></a>
