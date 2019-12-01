@@ -1,6 +1,31 @@
 version: "3.7"
 
 services:
+  micro-sys:
+    image: scaffold-cloud/scaffold-business-sys-service:1.0-SNAPSHOT
+    volumes:
+      - /tmp:/tmp
+    ports:
+      - 8750:8750
+    networks:
+      - scaffold-cloud
+    depends_on:
+      - redis
+      - eureka
+      - mysql
+      - rmqbroker
+      - rmqnamesrv
+      - tx_manager
+  route-operate:
+    image: scaffold-cloud/scaffold-route-operate:1.0-SNAPSHOT
+    volumes:
+      - /tmp:/tmp
+    ports:
+      - 8850:8850
+    networks:
+      - scaffold-cloud
+    depends_on:
+      - micro-sys
   eureka:
     image: scaffold-cloud/scaffold-eureka:1.0-SNAPSHOT
     volumes:
@@ -47,6 +72,47 @@ services:
     ports:
       - 6379:6379
     command: redis-server --requirepass pwd8ok8
+    networks:
+      - scaffold-cloud
+  rmqnamesrv:
+    image: foxiswho/rocketmq:server-4.5.2
+    container_name: rmqnamesrv
+    ports:
+      - 9876:9876
+    volumes:
+      - ./rmq/logs:/opt/logs
+      - ./rmq/store:/opt/store
+    environment:
+      JAVA_OPT_EXT: "-Duser.home=/opt -Xms128m -Xmx128m -Xmn128m"
+    networks:
+      - scaffold-cloud
+  rmqbroker:
+    image: foxiswho/rocketmq:broker-4.5.2
+    container_name: rmqbroker
+    ports:
+      - 10909:10909
+      - 10911:10911
+    volumes:
+      - ./rmq/logs:/opt/logs
+      - ./rmq/store:/opt/store
+      - ./rmq/brokerconf/broker.conf:/etc/rocketmq/broker.conf
+    environment:
+      JAVA_OPT_EXT: "-Duser.home=/opt -server -Xms128m -Xmx128m -Xmn128m"
+    command: ["/bin/bash","mqbroker","-c","/etc/rocketmq/broker.conf","-n","rmqnamesrv:9876","autoCreateTopicEnable=true"]
+    depends_on:
+      - rmqnamesrv
+    networks:
+      - scaffold-cloud
+
+  rmqconsole:
+    image: styletang/rocketmq-console-ng
+    container_name: rmqconsole
+    ports:
+      - 8180:8080
+    environment:
+      JAVA_OPTS: "-Drocketmq.namesrv.addr=rmqnamesrv:9876 -Dcom.rocketmq.sendMessageWithVIPChannel=false"
+    depends_on:
+      - rmqnamesrv
     networks:
       - scaffold-cloud
 networks:

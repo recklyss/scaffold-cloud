@@ -28,3 +28,5 @@ nbdist/
 /scaffold-core/scaffold-core-code/src/test/
 /home/
 /mysql/data/
+/rmq/logs/
+/rmq/store/
