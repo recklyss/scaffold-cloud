@@ -43,6 +43,9 @@ tx-lcn:
     dtx-time: 8000
     admin-key: admin
     dtx-lock-time: 10000
+    # docker 中只能使用0.0.0.0 因为docker中scoket不能绑定宿主机IP，
+    # 如果绑定宿主机IP，scoket注册后又关闭，造成LCN的TxClient连接不上TxManager
+    host: 0.0.0.0
   logger:
-    enabled: false
+    enabled: true
 
