@@ -24,10 +24,13 @@
 ![登录页面](images/demo.png)
 ![菜单管理页面](images/demo2.png)
 ### 快速开始
-```java
-// 下载/克隆项目到本地 
-git clone https://github.com/Fatezhang/scaffold-cloud
-```
+#### 本地启动
+
+- 下载/克隆项目到本地 
+
+    ```java
+    git clone https://github.com/Fatezhang/scaffold-cloud
+    ```
 - 安装MySql数据库并启动
 - 创建数据库scaffold_cloud_base，建议设置字符集为UTF-8
 - 修改scaffold-business中微服务的数据库链接配置，本地运行只需要修改application-local.yml
@@ -40,6 +43,14 @@ git clone https://github.com/Fatezhang/scaffold-cloud
 - 启动RouteOperateApplication服务，默认端口为8750
 - 访问http://localhost:8750/operate
 - 默认账号密码为admin/admin123
+
+#### docker 启动 (Linux 或者 Mac 下使用如下脚本 Windows 环境自行按照脚本中的示例执行 `mvn clean package docker:build -Pdocker`)
+
+    1. 进入项目所在目录
+    2. 执行 `./.scripts/recreate-docker-image.sh` 创建 docker 镜像
+    3. 执行 `./.scripts/start-docker-service.sh` 即使用 docker-compose 启动
+    
+    > 目前这种方式存在问题，容器之间有依赖关系的会启动失败，这时候把启动失败的重新start下，这个问题我后面再修复，现在没时间
 
 ## scaffold-cloud 项目结构：
 - scaffold-business [业务服务提供者](#) 端口从8850 - 8860

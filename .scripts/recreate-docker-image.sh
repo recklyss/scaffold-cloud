@@ -17,9 +17,9 @@ path=
 for (( i = 0; i < ${#SERVICE_FOLDERS[@]}; i++ )); do
     path=${SERVICE_FOLDERS[${i}]}
     echo "进入目录 >>>> cd ${path}"
-    cd "${path}"
+    cd "${path}" || exit
     pwd
     mvn clean package docker:build -Pdocker
-    cd -
+    cd - || exit
 done
 echo "============                      create end                     =============="
