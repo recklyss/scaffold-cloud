@@ -318,15 +318,9 @@
             </activation>
         </profile>
         <profile>
-            <id>test</id>
+            <id>docker</id>
             <properties>
-                <environment>test</environment>
-            </properties>
-        </profile>
-        <profile>
-            <id>prod</id>
-            <properties>
-                <environment>prod</environment>
+                <environment>docker</environment>
             </properties>
         </profile>
     </profiles>

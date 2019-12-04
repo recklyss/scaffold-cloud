@@ -9,7 +9,7 @@
             </encoder>
         </appender>
     </springProfile>
-    <springProfile name="default,prod">
+    <springProfile name="docker">
         <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
             <encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
                 <providers>

@@ -19,7 +19,7 @@ for (( i = 0; i < ${#SERVICE_FOLDERS[@]}; i++ )); do
     echo "进入目录 >>>> cd ${path}"
     cd "${path}"
     pwd
-    mvn clean package docker:build -Pprod
+    mvn clean package docker:build -Pdocker
     cd -
 done
 echo "============                      create end                     =============="

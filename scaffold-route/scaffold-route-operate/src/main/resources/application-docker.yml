@@ -7,8 +7,6 @@ eureka:
 
 server:
   port: 8750
-  servlet:
-    context-path: /operate
 spring:
   main:
     allow-bean-definition-overriding: true
