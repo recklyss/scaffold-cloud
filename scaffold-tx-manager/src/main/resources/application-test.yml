@@ -45,4 +45,5 @@ tx-lcn:
     dtx-lock-time: 10000
   logger:
     enabled: false
-
+logging:
+  config: classpath:logback-spring.xml

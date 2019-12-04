@@ -285,18 +285,17 @@
             <resource>
                 <directory>src/main/resources</directory>
                 <filtering>true</filtering>
-                <excludes>
-                    <exclude>**/*.woff</exclude>
-                    <exclude>**/*.woff2</exclude>
-                    <exclude>**/*.ttf</exclude>
-                    <exclude>**/*.eot</exclude>
-                    <exclude>**/*.svg</exclude>
-                    <exclude>static/**/*</exclude>
-                </excludes>
+            </resource>
+            <resource>
+                <directory>src/main/resources/config/${environment}</directory>
+                <includes>
+                    <include>**/*</include>
+                </includes>
+                <filtering>true</filtering>
             </resource>
             <resource>
                 <directory>src/main/resources</directory>
-                <filtering>false</filtering>
+                <filtering>true</filtering>
                 <includes>
                     <include>**/*.woff</include>
                     <include>**/*.woff2</include>
@@ -305,41 +304,6 @@
                     <include>**/*.svg</include>
                     <include>static/**/*</include>
                 </includes>
-            </resource>
-            <resource>
-                <directory>src/main/resources</directory>
-                <includes>
-                    <include>**/*.*</include>
-                </includes>
-                <filtering>false</filtering>
-            </resource>
-            <resource>
-                <directory>src/main/java</directory>
-                <includes>
-                    <include>**/*.yml</include>
-                    <include>**/*.properties</include>
-                    <include>**/*.xml</include>
-                    <include>**/*.tld</include>
-                    <include>**/*.xls</include>
-                    <include>**/*.xlsx</include>
-                </includes>
-                <filtering>false</filtering>
-            </resource>
-            <resource>
-                <directory>src/main/resources</directory>
-                <excludes>
-                    <exclude>config/test/*</exclude>
-                    <exclude>config/prod/*</exclude>
-                    <exclude>config/local/*</exclude>
-                </excludes>
-            </resource>
-            <resource>
-                <directory>src/main/resources/config/${environment}</directory>
-                <includes>
-                    <include>**/*.yml</include>
-                    <include>**/*.properties</include>
-                </includes>
-                <filtering>true</filtering>
             </resource>
         </resources>
     </build>

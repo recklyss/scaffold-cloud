@@ -13,3 +13,6 @@ eureka:
 spring:
   application:
     name: eureka
+
+logging:
+  config: classpath:logback-spring.xml

@@ -48,4 +48,5 @@ tx-lcn:
     host: 0.0.0.0
   logger:
     enabled: true
-
+logging:
+  config: classpath:logback-spring.xml

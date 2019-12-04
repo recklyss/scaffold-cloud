@@ -34,7 +34,7 @@ pagehelper:
   support-methods-arguments: false
 
 logging:
-  config: classpath:config/@environment@/logback-spring.xml
+  config: classpath:logback-spring.xml
   path: /scaffold/log
   file: ${spring.application.name:scaffold-sys-service}
 

@@ -10,3 +10,5 @@ spring:
           uri: https://github.com/Fatezhang/scaffold-config.git
           username: Fatezhang
           password: zhangjiaheng521
+logging:
+  config: classpath:logback-spring.xml
