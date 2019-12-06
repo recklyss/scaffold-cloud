@@ -2,13 +2,17 @@ server:
   port: 8761
 
 eureka:
+  server:
+    enable-self-preservation: false
   instance:
     hostname: localhost
+    lease-renewal-interval-in-seconds: 20
+    lease-expiration-duration-in-seconds: 20
   client:
-    registerWithEureka: false
-    fetchRegistry: false
+    registerWithEureka: true
+    fetchRegistry: true
     serviceUrl:
-      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+      defaultZone: http://${eureka.instance.hostname}:8761/eureka/,http://${eureka.instance.hostname}:8762/eureka/
 
 spring:
   application:
