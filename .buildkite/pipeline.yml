@@ -1,14 +1,13 @@
 steps:
   - label: ":maven: :llama: install maven"
     command: ./.scripts/install-maven.sh
-#    command: ./.scripts/install-maven.sh
-#
-#  - wait
-#
-#  - label: ":maven: mvn package & recreate docker image"
-#    command: ./.scripts/recreate-docker-image.sh
-#
-#  - wait
-#
-#  - label: ":docker: start docker-compose"
-#    command: ./.scripts/start-docker-service.sh
+
+  - wait
+
+  - label: ":maven: mvn package & recreate docker image"
+    command: ./.scripts/recreate-docker-image.sh
+
+  - wait
+
+  - label: ":docker: start docker-compose"
+    command: ./.scripts/start-docker-service.sh
