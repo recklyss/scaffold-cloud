@@ -2,9 +2,11 @@ version: "3.7"
 
 services:
   micro-sys:
+    entrypoint: ./wait-for-it.sh tx_manager:7970 'java -jar scaffold-business-sys-service-1.0-SNAPSHOT.jar'
     image: scaffold-cloud/scaffold-business-sys-service:1.0-SNAPSHOT
     volumes:
       - /tmp:/tmp
+      - ./.scripts/wait-for-it.sh:/wait-for-it.sh
     ports:
       - 8750:8750
     networks:
@@ -17,9 +19,11 @@ services:
       - rmqnamesrv
       - tx_manager
   route-operate:
+    entrypoint: ./wait-for-it.sh micro-sys:8750 'java -jar scaffold-route-operate-1.0-SNAPSHOT.jar'
     image: scaffold-cloud/scaffold-route-operate:1.0-SNAPSHOT
     volumes:
       - /tmp:/tmp
+      - ./.scripts/wait-for-it.sh:/wait-for-it.sh
     ports:
       - 8850:8850
     networks:
@@ -27,6 +31,7 @@ services:
     depends_on:
       - micro-sys
   eureka:
+    entrypoint: java -jar scaffold-eureka-1.0-SNAPSHOT.jar
     image: scaffold-cloud/scaffold-eureka:1.0-SNAPSHOT
     volumes:
       - /tmp:/tmp
@@ -35,18 +40,23 @@ services:
     networks:
       - scaffold-cloud
   zuul:
+    entrypoint: ./wait-for-it.sh eureka:8761 'java -jar scaffold-zuul-1.0-SNAPSHOT.jar'
     image: scaffold-cloud/scaffold-zuul:1.0-SNAPSHOT
     volumes:
       - /tmp:/tmp
+      - ./.scripts/wait-for-it.sh:/wait-for-it.sh
     ports:
       - 8861:8861
     networks:
       - scaffold-cloud
+    depends_on:
+      - eureka
   tx_manager:
+    entrypoint: ./wait-for-it.sh mysql:3306,redis:6379 'java -jar scaffold-txmanager-1.0-SNAPSHOT.jar'
     image: scaffold-cloud/scaffold-txmanager:1.0-SNAPSHOT
-    working_dir: /scaffold_cloud
     volumes:
       - /tmp:/tmp
+      - ./.scripts/wait-for-it.sh:/wait-for-it.sh
     ports:
       - 8890:8890
       - 7970:7970
@@ -55,6 +65,7 @@ services:
     depends_on:
       - mysql
       - redis
+      - eureka
   mysql:
     image: mysql/mysql-server:5.7
     ports:

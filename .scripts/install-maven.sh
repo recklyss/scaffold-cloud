@@ -1,5 +1,6 @@
 #!/bin/bash -eu
-if [ `command -v mvn` ];then
+# shellcheck disable=SC2046
+if [ $(command -v mvn) ];then
     echo '=======================maven 已经安装======================='
 else
     echo -e "Begin to install maven,Please waiting..."

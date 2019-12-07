@@ -46,7 +46,6 @@
                     <imageName>scaffold-cloud/${project.artifactId}:${project.version}</imageName>
                     <forceTags>true</forceTags>
                     <baseImage>java</baseImage>
-                    <entryPoint>["java", "-jar", "/${project.build.finalName}.jar"]</entryPoint>
                     <resources>
                         <resource>
                             <targetPath>/</targetPath>
