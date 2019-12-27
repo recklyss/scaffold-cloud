@@ -8,6 +8,7 @@
   <a href="https://docs.spring.io/spring-boot/docs/2.0.3.RELEASE/reference/html/"><img alt="Spring Boot" src="https://img.shields.io/badge/Spring Boot-2.1.4.RELEASE-brightgreen.svg"/></a>
   <a href="https://docs.spring.io/spring-boot/docs/2.0.3.RELEASE/reference/html/"><img alt="Spring Cloud" src="https://img.shields.io/badge/Spring Cloud-Greenwich.SR1-black.svg"/></a>
   <a href="https://github.com/Fatezhang/scaffold-cloud/blob/master/LICENSE"><img alt="LICENSE" src="https://img.shields.io/github/license/Fatezhang/scaffold-cloud.svg"/></a>  
+  <a href="https://gitter.im/scaffold-cloud/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge"><img alt="Gitter" src="https://badges.gitter.im/scaffold-cloud/community.svg"/></a>  
 </p>
 
 
@@ -15,9 +16,7 @@
   <a href="https://github.com/Fatezhang/scaffold-cloud/stargazers"><img alt="star" src="https://img.shields.io/github/stars/Fatezhang/scaffold-cloud.svg?label=Stars&style=social"/></a>
   <a href="https://github.com/Fatezhang/scaffold-cloud/network/members"><img alt="star" src="https://img.shields.io/github/forks/Fatezhang/scaffold-cloud.svg?label=Fork&style=social"/></a>
   <a href="https://github.com/Fatezhang/scaffold-cloud/watchers"><img alt="star" src="https://img.shields.io/github/watchers/Fatezhang/scaffold-cloud.svg?label=Watch&style=social"/></a>
-  <a href='https://gitee.com/chennianfenglou/scaffold-cloud/stargazers'>
-  	  <img src='https://gitee.com/chennianfenglou/scaffold-cloud/badge/star.svg?theme=white' alt='star'></img>
-  	</a>
+  <a href='https://gitee.com/chennianfenglou/scaffold-cloud/stargazers'><img alt='fork' src='https://gitee.com/chennianfenglou/scaffold-cloud/badge/star.svg?theme=white'/></a>
 </p>
 
 ## scaffold-cloud项目说明
@@ -77,4 +76,3 @@
 - scaffold-route [主业务消费者](#) 端口从8750 - 8760
     - scaffold-route-operate [后台管理接口及页面](#) 端口 8750
     - scaffold-route-app [APP客户端接口](#) 端口 8751
-    
