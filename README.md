@@ -84,6 +84,14 @@ Relevantly, mysql, Redis, docker, maven, etc. Learn more if you can.
 4. Run script `./.scripts/start-docker-service.sh` to start with docker-compose
 5. Visit http://localhost:8750 , it's a CMS management platform 
 
+## The CMS management platform looks like this
+
+![home](images/demo.png)
+![home](images/demo2.png)
+
+## Contributing
+
+
 
 
 
