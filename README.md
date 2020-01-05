@@ -72,17 +72,17 @@ Relevantly, mysql, Redis, docker, maven, etc. Learn more if you can.
 
 8. Start scaffold-business-sys-service, this is a basic module, others depends on it
 
-9. Start scaffold-operate 后台管理服务
+9. Start scaffold-operate 
 
-10. 访问 http://localhost:8750 即可访问后台管理
+10. Visit http://localhost:8750 , it's a CMS management platform
 
 #### Start in docker:nut_and_bolt:
 
-1. 安装 docker，参考[安装教程](https://docs.docker.com/install/)
-2. 进入项目所在目录
-3. 执行 `./.scripts/recreate-docker-image.sh` 创建 docker 镜像
-4. 执行 `./.scripts/start-docker-service.sh` 即使用 docker-compose 启动
-5. 访问 http://localhost:8750 即可访问后台管理
+1. Install docker，follow [install guide](https://docs.docker.com/install/)
+2. Go into the folder
+3. Run script `./.scripts/recreate-docker-image.sh` to create docker images.
+4. Run script `./.scripts/start-docker-service.sh` to start with docker-compose
+5. Visit http://localhost:8750 , it's a CMS management platform 
 
 
 
