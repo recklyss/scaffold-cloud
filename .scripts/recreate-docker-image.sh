@@ -2,6 +2,8 @@
 
 echo "============start to package with maven and recreate docker image=============="
 
+mvn clean install
+
 SERVICE_FOLDERS=(
   scaffold-eureka
   scaffold-zuul
@@ -19,7 +21,7 @@ for (( i = 0; i < ${#SERVICE_FOLDERS[@]}; i++ )); do
     echo "进入目录 >>>> cd ${path}"
     cd "${path}" || exit
     pwd
-    mvn clean install docker:build -Pdocker
+    mvn package docker:build -Pdocker
     cd - || exit
 done
 echo "============                      create end                     =============="
