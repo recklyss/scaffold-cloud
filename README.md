@@ -78,11 +78,13 @@ Relevantly, mysql, Redis, docker, maven, etc. Learn more if you can.
 
 #### Start in docker:nut_and_bolt:
 
-1. Install docker，follow [install guide](https://docs.docker.com/install/)
-2. Go into the folder
-3. Run script `./.scripts/recreate-docker-image.sh` to create docker images.
-4. Run script `./.scripts/start-docker-service.sh` to start with docker-compose
-5. Visit http://localhost:8750 , it's a CMS management platform 
+1. Install maven
+2. Install docker，follow [install guide](https://docs.docker.com/install/)
+3. If you get some issue with this: `docker-compose: command not found` install guide here: https://docs.docker.com/compose/install/
+4. Go into the folder
+5. Run script `./.scripts/recreate-docker-image.sh` to create docker images.
+6. Run script `./.scripts/start-docker-service.sh` to start with docker-compose
+7. Visit http://localhost:8750 , it's a CMS management platform 
 
 ## The CMS management platform looks like this
 
@@ -90,6 +92,7 @@ Relevantly, mysql, Redis, docker, maven, etc. Learn more if you can.
 ![home](images/demo2.png)
 
 ## Contributing
+If you want to contribute this project, just rise issues or PRs to me. Thank you.
 
 
 
