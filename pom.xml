@@ -29,7 +29,7 @@
         <scaffold.version>1.0-SNAPSHOT</scaffold.version>
 
 
-        <spring.boot.version>2.1.4.RELEASE</spring.boot.version>
+        <spring.boot.version>2.5.12</spring.boot.version>
         <spring.cloud.version>Greenwich.SR1</spring.cloud.version>
         <spring.cloud.eureka.version>2.1.2.RELEASE</spring.cloud.eureka.version>
 
